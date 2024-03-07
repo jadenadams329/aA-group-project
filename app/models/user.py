@@ -13,6 +13,15 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
+    phone_number = db.Column(db.Integer, nullable=False)
+    address = db.Column(db.String(255), nullable=False)
+    city = db.Column(db.String(50), nullable=False)
+    state = db.Column(db.String(50), nullable=False)
+    zip_code = db.Column(db.Integer, nullable=False)
+    credit = db.Column(db.Float, default=0.0)
+    profile_photo = db.Column(db.String(1000))
 
     @property
     def password(self):
@@ -29,5 +38,14 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'first_name': self.first_name,
+            'last-name' : self.last_name,
+            'phone_number': self.phone_number,
+            'address': self.address,
+            'city' : self.city,
+            'state': self.state,
+            'zip_code': self.zip_code,
+            'credit': self.credit,
+            'profile_photo': self.profile_photo
         }
