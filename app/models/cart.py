@@ -7,8 +7,8 @@ class Cart(db.Model):
     __tablename__ = 'carts'
 
     id=Column(Integer,primary_key=True)
-    user_id=Column(Integer,ForeignKey=("user_id"),nullable=False)
-    restaurant_id=Column(Integer,ForeignKey=("restaurant_id"),nullable=True)
+    user_id=Column(Integer,ForeignKey=("users.id"),nullable=False)
+    restaurant_id=Column(Integer,ForeignKey=("restaurants.id"),nullable=True)
     purchased=Column(Boolean,default=False)
     created_at=Column(Date)
     last_updated_at=Column(Date)
