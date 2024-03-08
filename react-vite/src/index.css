@@ -1,1 +1,5 @@
 /* TODO: Add sitewide styles */
+html {
+    margin: 0 auto; /* Center horizontally */
+    max-width: 1840px;
+}
