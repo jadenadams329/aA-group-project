@@ -14,3 +14,4 @@ class Menu(db.Model):
 
     # Relationships
     menu_items = relationship("MenuItem", back_populates="menu", cascade='all, delete')
+    restaurant = relationship("Restaurant", back_populates="menus")
