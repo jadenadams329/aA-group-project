@@ -2,6 +2,8 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .menus import seed_menus, undo_menus
 from .menu_items import seed_menu_items, undo_menu_items
+from .reviews import seed_reviews, undo_reviews
+from .restaurants import seed_restaurants, undo_restaurants
 
 from app.models.db import db, environment, SCHEMA
 
@@ -21,10 +23,13 @@ def seed():
         undo_users()
         undo_menus()
         undo_menu_items()
+        undo_restaurants()
+        undo_reviews()
     seed_users()
+    seed_restaurants()
+    seed_reviews()
     seed_menus()
     seed_menu_items()
-
     # Add other seed functions here
 
 
@@ -32,6 +37,8 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
+    undo_restaurants()
+    undo_reviews()
     undo_menus()
     undo_menu_items()
     # Add other undo functions here
