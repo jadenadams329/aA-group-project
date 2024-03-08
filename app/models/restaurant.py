@@ -1,6 +1,6 @@
 from .db import db, SCHEMA, environment
 
-class Restaurants(db.Model):
+class Restaurant(db.Model):
     __tablename__ = 'restaurants'
 
     if environment == "production":
@@ -14,5 +14,6 @@ class Restaurants(db.Model):
     state = db.Column(db.String, nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    
-    user = db.relationship('User', back_populates='restaurants')
+
+    user = db.relationship('User', back_populates='restaurant')
+    menus = db.relationship('Menu', back_populates='restaurant', cascade='all, delete')
