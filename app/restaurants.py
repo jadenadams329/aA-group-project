@@ -18,7 +18,6 @@
 "state": "Nebraska",
 "zip_code":68847,
 "owner_id": 3
-
 },
 {
 "id": 3,
