@@ -16,5 +16,5 @@ class Restaurant(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     user = db.relationship('User', back_populates='restaurants')
-    menus = db.relationship('Menu', back_populates='restaurants', cascade='all, delete')
-    carts = db.relationship('Cart', back_populates='restaurants', cascade='all, delete')
+    menus = db.relationship('Menu', back_populates='restaurant', cascade='all, delete')
+    carts = db.relationship('Cart', back_populates='restaurant', cascade='all, delete')
