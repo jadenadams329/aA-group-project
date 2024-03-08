@@ -1,6 +1,6 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
-
+from .carts import seed_cart,undo_cart
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -18,7 +18,7 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_users()
     seed_users()
-    
+    seed_cart()
     # Add other seed functions here
 
 
@@ -26,4 +26,5 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
+    undo_cart()
     # Add other undo functions here
