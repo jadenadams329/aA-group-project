@@ -13,6 +13,6 @@ class Cart(db.Model):
     created_at=Column(Date)
     last_updated_at=Column(Date)
 
-    cartitems = relationship("CartItem", back_populates="cart")
+    cart_items = relationship("CartItem", back_populates="cart")
     user=relationship("User", back_populates="carts")
     restaurant= relationship("Restaurant", back_populates="carts")

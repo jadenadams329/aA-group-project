@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 
 
 class CartItem(db.Model):
-    __tablename__='cartitems'
+    __tablename__='cart_items'
 
     if environment == "production":
      __table_args__ = {'schema': SCHEMA}
@@ -13,8 +13,8 @@ class CartItem(db.Model):
 
     id=Column(Integer,primary_key=True)
     cart_id=Column(Integer,ForeignKey("cart_id"),nullable=False)
-    menu_item_id=Column(Integer,ForeignKey("menuItems.id"),nullable=False)
+    menu_item_id=Column(Integer,ForeignKey("menu_items.id"),nullable=False)
     quantity=Column(Integer,default=1)
 
-    cart = relationship("Cart",back_populates="cartitems")
+    cart = relationship("Cart",back_populates="cart_items")
     menu_item = relationship("MenuItem", back_populates="cart_item",uselist=False)
