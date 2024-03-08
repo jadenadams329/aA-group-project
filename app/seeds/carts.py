@@ -1,5 +1,5 @@
 from app.models import db,environment,SCHEMA
-from models.cart import Cart
+from app.models.cart import Cart
 from sqlalchemy.sql import text
 
 

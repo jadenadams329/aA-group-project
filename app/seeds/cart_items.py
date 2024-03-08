@@ -1,5 +1,5 @@
 from app.models import db,environment,SCHEMA
-from models.cart_items import CartItem
+from app.models.cart_items import CartItem
 from sqlalchemy.sql import text
 
 def seed_cart_items():
