@@ -12,7 +12,7 @@ class CartItem(db.Model):
 
 
     id=Column(Integer,primary_key=True)
-    cart_id=Column(Integer,ForeignKey("cart_id"),nullable=False)
+    cart_id=Column(Integer,ForeignKey("carts.id"),nullable=False)
     menu_item_id=Column(Integer,ForeignKey("menu_items.id"),nullable=False)
     quantity=Column(Integer,default=1)
 
