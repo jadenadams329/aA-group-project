@@ -1,4 +1,4 @@
-from .db import db, SCHEMA, environment
+from .db import db, SCHEMA, environment, add_prefix_for_prod
 
 class Restaurant(db.Model):
     __tablename__ = 'restaurants'
@@ -13,7 +13,7 @@ class Restaurant(db.Model):
     city = db.Column(db.String, nullable=False)
     state = db.Column(db.String, nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
-    owner_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete='CASCADE'))
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete='CASCADE'))
 
     user = db.relationship('User', back_populates='restaurants')
     menus = db.relationship('Menu', back_populates='restaurant', cascade='all, delete')
