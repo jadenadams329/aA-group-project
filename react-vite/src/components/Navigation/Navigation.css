@@ -100,7 +100,7 @@ nav{
   background-color: black;
   color: white;
   font-size: small;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .loginButton:hover{
@@ -116,7 +116,7 @@ nav{
   background-color: rgb(228, 228, 228);
   color: black;
   font-size: small;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .signupButton:hover{
@@ -137,3 +137,17 @@ nav{
   color: black;
 }
 
+.locationDiv{
+  background-color: rgb(228, 228, 228);
+  border-radius: 40px;
+  width: 150px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.locationDiv > p {
+  font-size: 11pt;
+  font-weight: 500;
+}

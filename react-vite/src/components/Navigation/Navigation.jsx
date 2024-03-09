@@ -20,6 +20,9 @@ function Navigation({ isLoaded }) {
 	if (user) {
 		sessionLinks = (
 			<>
+				<div className="locationDiv">
+					<p><i className="fa-solid fa-location-dot"></i> {user && user.address}</p>
+				</div>
 				<li>
 					<CartButton />
 				</li>
