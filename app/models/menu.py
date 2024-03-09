@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.orm import relationship
 from sqlalchemy.schema import ForeignKey
 
@@ -10,7 +10,7 @@ class Menu(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
-    restaurant_id = db.Column(db.Integer, ForeignKey("restaurants.id"), nullable=False)
+    restaurant_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod("restaurants.id"), ondelete='CASCADE'), nullable=False)
 
     # Relationships
     menu_items = relationship("MenuItem", back_populates="menu", cascade='all, delete')
