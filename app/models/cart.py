@@ -1,4 +1,4 @@
-from .db import db,SCHEMA,environment
+from .db import db,SCHEMA,environment, add_prefix_for_prod
 from sqlalchemy.schema import Column,ForeignKey
 from sqlalchemy.types import Integer,Boolean,Date
 from sqlalchemy.orm import relationship
@@ -10,8 +10,8 @@ class Cart(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id=Column(Integer,primary_key=True)
-    user_id=Column(Integer,ForeignKey("users.id"),nullable=False)
-    restaurant_id=Column(Integer,ForeignKey("restaurants.id"),nullable=True)
+    user_id=Column(Integer,ForeignKey(add_prefix_for_prod("users.id")),nullable=False)
+    restaurant_id=Column(Integer,ForeignKey(add_prefix_for_prod("restaurants.id")),nullable=True)
     purchased=Column(Boolean,default=False)
 
     cart_items = relationship("CartItem", back_populates="cart", cascade="all, delete")
