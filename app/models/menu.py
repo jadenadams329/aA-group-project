@@ -10,7 +10,7 @@ class Menu(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
-    restaurant_id = db.Column(db.Integer, ForeignKey("restaurants.id"), nullable=False)
+    restaurant_id = db.Column(db.Integer, ForeignKey("restaurants.id",ondelete='CASCADE'), nullable=False)
 
     # Relationships
     menu_items = relationship("MenuItem", back_populates="menu", cascade='all, delete')
