@@ -14,7 +14,7 @@ class MenuItem(db.Model):
     description = db.Column(db.String(500), nullable=False)
     category = db.Column(db.String(50), nullable=False)
     photo_url = db.Column(db.String(1000))
-    menu_id = db.Column(db.Integer, ForeignKey("menus.id"), nullable=False)
+    menu_id = db.Column(db.Integer, ForeignKey("menus.id",ondelete='CASCADE'), nullable=False)
 
     # Relationships
     menu = relationship("Menu", back_populates="menu_items")
