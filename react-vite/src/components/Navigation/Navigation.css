@@ -57,3 +57,83 @@ nav{
   gap: 50px;
   align-items: center;
 }
+
+.cartButton {
+  width: 94px;
+  height: 36px;
+  border-radius: 40px;
+  border: none;
+  background-color: black;
+  color: white;
+  font-size: small;
+  font-weight: bold;
+}
+
+.cartButton:hover{
+  background-color: rgb(33, 33, 33);
+  cursor: pointer;
+}
+
+.profileButton {
+  height: 36px;
+  width: 36px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgb(228, 228, 228);
+}
+
+.profileButton:hover{
+  background-color: rgb(216, 216, 216);
+  cursor: pointer;
+}
+
+#profileIcon {
+  font-size: 20px;
+  color: black;
+}
+
+.loginButton {
+  width: 94px;
+  height: 36px;
+  border-radius: 40px;
+  border: none;
+  background-color: black;
+  color: white;
+  font-size: small;
+  font-weight: bold;
+}
+
+.loginButton:hover{
+  background-color: rgb(33, 33, 33);
+  cursor: pointer;
+}
+
+.signupButton {
+  width: 94px;
+  height: 36px;
+  border-radius: 40px;
+  border: none;
+  background-color: rgb(228, 228, 228);
+  color: black;
+  font-size: small;
+  font-weight: bold;
+}
+
+.signupButton:hover{
+  background-color: rgb(216, 216, 216);
+  cursor: pointer;
+}
+
+.yumLogo{
+  font-size: xx-large;
+  text-decoration: none;
+  color: black;
+}
+
+.cartLogo{
+  font-size: xx-large;
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+

@@ -32,22 +32,24 @@ function Navigation({ isLoaded }) {
 		sessionLinks = (
 			<>
 				<li>
-					<button onClick={toLogin}>Log In</button>
+					<button className="loginButton" onClick={toLogin}><i className="fa-solid fa-user"></i> Log In</button>
 				</li>
 				<li>
-					<button onClick={toSignup}>Sign Up</button>
+					<button className="signupButton" onClick={toSignup}>Sign Up</button>
 				</li>
 			</>
 		);
 	}
 
+
+
 	return (
 		<nav>
 			<ul className='navList'>
-				<div className="navListContainer">
+				<div className='navListContainer'>
 					<div>
 						<li>
-							<NavLink to='/'>LOGO</NavLink>
+							<NavLink className='yumLogo' to='/'>Yum</NavLink> <NavLink className='cartLogo' to='/'>Cart</NavLink>
 						</li>
 					</div>
 					<div className='sessionLinks'>{isLoaded && sessionLinks}</div>

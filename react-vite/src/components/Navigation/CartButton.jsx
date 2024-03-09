@@ -24,12 +24,12 @@ function CartButton() {
 	}, [showMenu]);
 
 	const ulClassName = "cart-dropdown" + (showMenu ? "" : " hidden");
-
+    //TODO ADD CART QTY next to cart word
 	return (
 		<>
 			<div style={{position: 'relative'}}>
-				<button onClick={toggleMenu}>
-					<FaShoppingCart /> Cart
+				<button onClick={toggleMenu} className="cartButton">
+					<FaShoppingCart /> Cart · 0
 				</button>
 				{showMenu && (
 					//make a cart button dropdown component and put below.

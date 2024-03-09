@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaUserCircle } from "react-icons/fa";
 import { thunkLogout } from "../../redux/session";
 
 function ProfileButton() {
@@ -43,8 +42,8 @@ function ProfileButton() {
 	return (
 		<>
 			<div style={{ position: "relative" }}>
-				<button onClick={toggleMenu}>
-					<FaUserCircle />
+				<button onClick={toggleMenu} className="profileButton">
+					<i className="fa-solid fa-user" id="profileIcon"></i>
 				</button>
 				{showMenu && (
 					<ul className={ulClassName} ref={ulRef}>
