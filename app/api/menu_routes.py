@@ -6,7 +6,7 @@ menu_routes = Blueprint('menu', __name__)
 
 @menu_routes.route('/')
 def get_all_menus():
-    menus = db.session.query(Menu).options(joinedload(Menu.menu_items))
+    menus = Menu.query.options(joinedload(Menu.menu_items)).all()
     menu_list = []
 
     for menu in menus:
@@ -15,7 +15,6 @@ def get_all_menus():
         menu_list.append(menu_dict)
 
     return menu_list
-
 
 @menu_routes.route('/<int:id>')
 def get_one_menu(id):
@@ -44,6 +43,4 @@ def delete_menu(id):
     db.session.delete(menu)
     db.session.commit()
 
-    return {
-        'message': 'Successfully Deleted!'
-    }
+    return {'message': 'Successfully Deleted!'}
