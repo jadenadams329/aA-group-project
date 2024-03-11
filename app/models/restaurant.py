@@ -19,3 +19,15 @@ class Restaurant(db.Model):
     menus = db.relationship('Menu', back_populates='restaurant', cascade='all, delete')
     carts = db.relationship('Cart', back_populates='restaurant', cascade='all, delete')
     reviews= db.relationship('Review', back_populates='restaurant', cascade='all, delete')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'logo': self.logo,
+            'address': self.address,
+            'city': self.city,
+            'state': self.state,
+            'zip_code': self.zip_code,
+            'owner_id': self.owner_id
+        }

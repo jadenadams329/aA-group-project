@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
-from app.models import Menu, db
+from app.models import Menu, db, Restaurant
 from sqlalchemy.orm import joinedload
+from flask_login import current_user
 
 menu_routes = Blueprint('menu', __name__)
 
@@ -35,6 +36,15 @@ def update_menu_by_id(id):
     if not menu:
         return jsonify({'error': 'Menu not found!'}), 404
 
+    userId = current_user.to_dict()['id']
+    restaurantId = menu.to_dict()['restaurant_id']
+
+    restaurant = Restaurant.query.get(restaurantId)
+    restaurant_owner_id = restaurant.to_dict()['owner_id']
+
+    if userId != restaurant_owner_id:
+        return {'message': 'Unauthorized'}, 401
+
     data = request.json
 
     for key, value in data.items():
@@ -51,6 +61,15 @@ def delete_menu(id):
 
     if not menu:
         return jsonify({'error': 'Menu not found!'}), 404
+
+    userId = current_user.to_dict()['id']
+    restaurantId = menu.to_dict()['restaurant_id']
+
+    restaurant = Restaurant.query.get(restaurantId)
+    restaurant_owner_id = restaurant.to_dict()['owner_id']
+
+    if userId != restaurant_owner_id:
+        return {'message': 'Unauthorized'}, 401
 
     db.session.delete(menu)
     db.session.commit()
