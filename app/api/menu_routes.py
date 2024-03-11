@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify
 from app.models import Menu, db
 from sqlalchemy.orm import joinedload
 
@@ -21,7 +21,7 @@ def get_one_menu(id):
     menu = Menu.query.options(joinedload(Menu.menu_items)).get(id)
 
     if not menu:
-        return {'error': 'Menu not found!'}
+        return jsonify({'error': 'Menu not found!'}), 404
 
     menu_dict = menu.to_dict()
     menu_dict['menu_items'] = [menu_item.to_dict() for menu_item in menu.menu_items]
@@ -38,7 +38,7 @@ def delete_menu(id):
     menu = Menu.query.options(joinedload(Menu.menu_items)).get(id)
 
     if not menu:
-        return {'error': 'Menu not found!'}
+        return jsonify({'error': 'Menu not found!'}), 404
 
     db.session.delete(menu)
     db.session.commit()
