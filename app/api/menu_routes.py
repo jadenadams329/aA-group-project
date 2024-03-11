@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from app.models import Menu, db
 from sqlalchemy.orm import joinedload
 
@@ -28,10 +28,22 @@ def get_one_menu(id):
 
     return menu_dict
 
-# @menu_routes.route('/<int:id>', methods=['PUT'])
-# def update_menu(id):
+@menu_routes.route('/<int:id>', methods=['PUT'])
+def update_menu_by_id(id):
+    menu = Menu.query.get(id)
 
+    if not menu:
+        return jsonify({'error': 'Menu not found!'}), 404
 
+    data = request.json
+
+    for key, value in data.items():
+        setattr(menu, key, value)
+
+    menu_dict = menu.to_dict()
+    menu_dict['menu_items'] = [menu_item.to_dict() for menu_item in menu.menu_items]
+
+    return menu_dict
 
 @menu_routes.route('/<int:id>', methods=['DELETE'])
 def delete_menu(id):
