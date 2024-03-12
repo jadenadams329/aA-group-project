@@ -28,7 +28,7 @@ def update_menu_item_by_id(id):
     restaurant_owner_id = restaurant.to_dict()['owner_id']
 
     if userId != restaurant_owner_id:
-        return {'message': 'Unauthorized'}, 401
+        return jsonify({'message': 'Unauthorized'}), 401
 
     data = request.json
 
@@ -54,9 +54,9 @@ def delete_an_item_by_id(id):
     restaurant_owner_id = restaurant.to_dict()['owner_id']
 
     if userId != restaurant_owner_id:
-        return {'message': 'Unauthorized'}, 401
+        return jsonify({'message': 'Unauthorized'}), 401
 
     db.session.delete(item)
     db.session.commit()
 
-    return {'message': 'Successfully Deleted!'}
+    return jsonify({'message': 'Successfully Deleted!'})
