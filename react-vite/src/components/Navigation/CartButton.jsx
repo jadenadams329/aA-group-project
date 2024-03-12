@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import CartDropDown from "../Cart/Cart-drop-down";
 
 function CartButton() {
 	const [showMenu, setShowMenu] = useState(false);
@@ -33,9 +34,7 @@ function CartButton() {
 				</button>
 				{showMenu && (
 					//make a cart button dropdown component and put below.
-					<ul className={ulClassName} ref={ulRef}>
-						<li>Cart Item Goes Here</li>
-					</ul>
+					<CartDropDown className={ulClassName} ref={ulRef}/>
 				)}
 			</div>
 		</>
