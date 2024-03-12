@@ -17,3 +17,11 @@ class Cart(db.Model):
     cart_items = relationship("CartItem", back_populates="cart", cascade="all, delete")
     user = relationship("User", back_populates="carts")
     restaurant = relationship("Restaurant", back_populates="carts")
+
+    def to_dic(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            "restaurant_id": self.restaurant_id,
+            "purchased" : self.purchased
+    }
