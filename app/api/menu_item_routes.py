@@ -4,6 +4,18 @@ from flask_login import current_user
 
 menu_item_routes = Blueprint('items', __name__)
 
+# Get all menu items
+@menu_item_routes.route('/')
+def get_all_menu_items():
+    items = MenuItem.query.all()
+    itemList = []
+    for item in items:
+        item_dict = item.to_dict()
+        itemList.append(item_dict)
+
+    return itemList
+
+# Get a menu item by Id
 @menu_item_routes.route('/<int:id>')
 def get_menu_item_by_id(id):
     item = MenuItem.query.get(id)
@@ -13,6 +25,7 @@ def get_menu_item_by_id(id):
 
     return item.to_dict()
 
+# Update a menu item by id
 @menu_item_routes.route('/<int:id>', methods=['PUT'])
 def update_menu_item_by_id(id):
     item = MenuItem.query.get(id)
@@ -39,6 +52,8 @@ def update_menu_item_by_id(id):
 
     return item.to_dict()
 
+
+# delete a menu item by id
 @menu_item_routes.route('/<int:id>', methods=['DELETE'])
 def delete_an_item_by_id(id):
     item = MenuItem.query.get(id)

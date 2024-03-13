@@ -37,8 +37,7 @@ export const getAllMenus = () => async(dispatch) => {
     }
 }
 
-/* need to fix this */
-export const createMenu = menu => async(dispatch) => {
+export const createMenu = (restaurantId, menu) => async(dispatch) => {
     const res = await fetch(`/api/restaurants/${restaurantId}/menus`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -64,7 +63,7 @@ export const updateMenu = menu => async(dispatch) => {
 
     if(res.ok){
         const updatedMenu = await res.json()
-        dispatch(editMenu(updateMenu))
+        dispatch(editMenu(updatedMenu))
         return updatedMenu
     } else {
         const err = await res.json()

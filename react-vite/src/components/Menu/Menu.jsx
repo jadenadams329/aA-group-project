@@ -1,15 +1,16 @@
 import './Menu.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllMenus } from '../../redux/menus'
 import { useEffect } from 'react'
 
 
 function Menu(){
     const dispatch = useDispatch()
-    const menus = Object.values(useSelector((state) => state.menus ? state.menus : null))
+    const menus = Object.values(useSelector((state) => state.menu ? state.menu : null))
+    // const items = Object.values(useSelector((state) => state.menu_item ? state.menu_item : null))
 
     useEffect(() => {
-        dispatch(getAllMenus())
+
+
     }, [dispatch])
 
     if(!menus) return <>Loading...</>
