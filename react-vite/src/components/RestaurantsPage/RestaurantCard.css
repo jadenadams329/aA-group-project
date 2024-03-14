@@ -1,0 +1,42 @@
+.rcContainer {
+	width: 280px;
+	height: 190px;
+}
+
+.rcImg {
+	width: 280px;
+	height: 130px;
+	object-fit: cover;
+}
+
+.rcBottom {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+    padding-top: 5px;
+
+}
+.rcBottom > h3 {
+	font-weight: 500;
+	display: -webkit-box;
+	-webkit-line-clamp: 1; /* Number of lines to display before truncating */
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+    max-width: 240px;
+    margin: 0px;
+}
+.rcReview{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+
+
+}
+.rcReview > span {
+    font-size: 12px;
+}
