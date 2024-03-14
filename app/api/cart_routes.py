@@ -10,14 +10,27 @@ cart_route = Blueprint('cart_route',__name__)
 
 @cart_route.route('/items')
 def fullCart():
+    activeCart = Cart.query.filter(Cart.purchased == False)
+    wholeCart = None
+    for item in activeCart:
+      item = item.to_dict()
+      wholeCart= item
+
+    print(wholeCart['restaurant_id'],'this is the active cart ```````````````')
+    restId = wholeCart["restaurant_id"]
+    print(type(restId),'restaurant id')
+    print(restId,'restaurant id')
     allthem=CartItem.query.all()
     theFullList = []
     for item in allthem:
         theguy = item.to_dict()
-        menu_items = int(theguy["menu_item_id"])
-        menu_item = MenuItem.query.filter_by(menu_item_id: menu_items)
+        itemid = theguy["menu_item_id"]
+        theItem = MenuItem.query.get(itemid)
+        final=theItem.to_dict()
+        print(final,'this is the final result i need')
+        print(theItem,"finding the items$$$$$$$$$$$$$$$$$$$$$$$$$")
         theFullList.append(theguy)
-        print(int(theguy["menu_item_id"]),"this is the item")
-        print(menu_items)
+
+
 
     return theFullList

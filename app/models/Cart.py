@@ -18,7 +18,7 @@ class Cart(db.Model):
     user = relationship("User", back_populates="carts")
     restaurant = relationship("Restaurant", back_populates="carts")
 
-    def to_dic(self):
+    def to_dict(self):
         return {
             "id": self.id,
             "user_id": self.user_id,
