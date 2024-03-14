@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import Menu, db, Restaurant, MenuItem
 from sqlalchemy.orm import joinedload
-from flask_login import current_user
+from .auth_routes import authenticate
 
 menu_routes = Blueprint('menu', __name__)
 
@@ -34,12 +34,18 @@ def get_one_menu(id):
 ### Update a specific menu by menu ID
 @menu_routes.route('/<int:id>', methods=['PUT'])
 def update_menu_by_id(id):
+    data = authenticate()
+
+    if isinstance(data, tuple):
+        (err, statusCode) = data
+        return err, statusCode
+
+    userId = data['id']
     menu = Menu.query.get(id)
 
     if not menu:
         return jsonify({'error': 'Menu not found!'}), 404
 
-    userId = current_user.to_dict()['id']
     restaurantId = menu.to_dict()['restaurant_id']
 
     restaurant = Restaurant.query.get(restaurantId)
@@ -61,12 +67,18 @@ def update_menu_by_id(id):
 ### Delete a menu by ID
 @menu_routes.route('/<int:id>', methods=['DELETE'])
 def delete_menu(id):
+    data = authenticate()
+
+    if isinstance(data, tuple):
+        (err, statusCode) = data
+        return err, statusCode
+
+    userId = data['id']
     menu = Menu.query.options(joinedload(Menu.menu_items)).get(id)
 
     if not menu:
         return jsonify({'error': 'Menu not found!'}), 404
 
-    userId = current_user.to_dict()['id']
     restaurantId = menu.to_dict()['restaurant_id']
 
     restaurant = Restaurant.query.get(restaurantId)
@@ -83,12 +95,18 @@ def delete_menu(id):
 ### Create a menu item by menu Id
 @menu_routes.route('/<int:id>/items', methods=['POST'])
 def create_menu_item(id):
+    data = authenticate()
+
+    if isinstance(data, tuple):
+        (err, statusCode) = data
+        return err, statusCode
+
+    userId = data['id']
     menu = Menu.query.options(joinedload(Menu.menu_items)).get(id)
 
     if not menu:
         return jsonify({'error': 'Menu not found!'}), 404
 
-    userId = current_user.to_dict()['id']
     restaurantId = menu.to_dict()['restaurant_id']
 
     restaurant = Restaurant.query.get(restaurantId)

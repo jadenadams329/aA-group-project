@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 function Menu(){
     const dispatch = useDispatch()
     const menus = Object.values(useSelector((state) => state.menu ? state.menu : null))
-    // const items = Object.values(useSelector((state) => state.menu_item ? state.menu_item : null))
+
 
     useEffect(() => {
 

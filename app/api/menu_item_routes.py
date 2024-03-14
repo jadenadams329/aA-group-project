@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from app.models import MenuItem, db, Menu, Restaurant
+from .auth_routes import authenticate
 from flask_login import current_user
 
 menu_item_routes = Blueprint('items', __name__)
@@ -28,12 +29,19 @@ def get_menu_item_by_id(id):
 # Update a menu item by id
 @menu_item_routes.route('/<int:id>', methods=['PUT'])
 def update_menu_item_by_id(id):
+    data = authenticate()
+
+    if isinstance(data, tuple):
+        (err, statusCode) = data
+        return err, statusCode
+
+    userId = data['id']
+
     item = MenuItem.query.get(id)
 
     if not item:
         return jsonify({'error': 'Menu Item not found!'}), 404
 
-    userId = current_user.to_dict()['id']
     menu_id = item.to_dict()['menu_id']
     menu = Menu.query.get(menu_id)
     restaurantId = menu.to_dict()['restaurant_id']
@@ -56,12 +64,19 @@ def update_menu_item_by_id(id):
 # delete a menu item by id
 @menu_item_routes.route('/<int:id>', methods=['DELETE'])
 def delete_an_item_by_id(id):
+    data = authenticate()
+
+    if isinstance(data, tuple):
+        (err, statusCode) = data
+        return err, statusCode
+
+    userId = data['id']
+
     item = MenuItem.query.get(id)
 
     if not item:
         return jsonify({'error': 'Menu Item not found!'}), 404
 
-    userId = current_user.to_dict()['id']
     menu_id = item.to_dict()['menu_id']
     menu = Menu.query.get(menu_id)
     restaurantId = menu.to_dict()['restaurant_id']
