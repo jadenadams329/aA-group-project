@@ -13,7 +13,7 @@ def get_restaurants():
     except Exception as err:
         return jsonify(error=str(err)), 500
 
-# Add A Menu to a specific Restaurant
+### Add A Menu to a specific Restaurant
 @restaurant_routes.route('/<int:id>/menus', methods=['POST'])
 def create_menu(id):
     data = authenticate()

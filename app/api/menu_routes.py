@@ -44,7 +44,7 @@ def update_menu_by_id(id):
     userId = data['id']
     menu = Menu.query.get(id)
 
-    # check if there is the menu exist
+    # check if the menu exist
     if not menu:
         return jsonify({'error': 'Menu not found!'}), 404
 
@@ -80,7 +80,7 @@ def delete_menu(id):
     userId = data['id']
     menu = Menu.query.options(joinedload(Menu.menu_items)).get(id)
 
-    # check if there is the menu exist
+    # check if the menu exist
     if not menu:
         return jsonify({'error': 'Menu not found!'}), 404
 
