@@ -1,0 +1,11 @@
+.rpCardContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+.rpHeader {
+    font-size: 36px;
+    font-weight: 600;
+    margin: 10px 0;
+}
