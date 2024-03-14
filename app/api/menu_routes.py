@@ -36,6 +36,7 @@ def get_one_menu(id):
 def update_menu_by_id(id):
     data = authenticate()
 
+    # check if there is a user
     if isinstance(data, tuple):
         (err, statusCode) = data
         return err, statusCode
@@ -43,6 +44,7 @@ def update_menu_by_id(id):
     userId = data['id']
     menu = Menu.query.get(id)
 
+    # check if there is the menu exist
     if not menu:
         return jsonify({'error': 'Menu not found!'}), 404
 
@@ -51,6 +53,7 @@ def update_menu_by_id(id):
     restaurant = Restaurant.query.get(restaurantId)
     restaurant_owner_id = restaurant.to_dict()['owner_id']
 
+    # check if the user is the owner of the restaurant
     if userId != restaurant_owner_id:
         return jsonify({'message': 'Unauthorized'}), 401
 
@@ -69,6 +72,7 @@ def update_menu_by_id(id):
 def delete_menu(id):
     data = authenticate()
 
+    # check if there is a user
     if isinstance(data, tuple):
         (err, statusCode) = data
         return err, statusCode
@@ -76,6 +80,7 @@ def delete_menu(id):
     userId = data['id']
     menu = Menu.query.options(joinedload(Menu.menu_items)).get(id)
 
+    # check if there is the menu exist
     if not menu:
         return jsonify({'error': 'Menu not found!'}), 404
 
@@ -84,6 +89,7 @@ def delete_menu(id):
     restaurant = Restaurant.query.get(restaurantId)
     restaurant_owner_id = restaurant.to_dict()['owner_id']
 
+    # check if the user is the owner of the restaurant
     if userId != restaurant_owner_id:
         return jsonify({'message': 'Unauthorized'}), 401
 
@@ -97,6 +103,7 @@ def delete_menu(id):
 def create_menu_item(id):
     data = authenticate()
 
+    # check if there is a user
     if isinstance(data, tuple):
         (err, statusCode) = data
         return err, statusCode
@@ -104,6 +111,7 @@ def create_menu_item(id):
     userId = data['id']
     menu = Menu.query.options(joinedload(Menu.menu_items)).get(id)
 
+    # check if the menu exists
     if not menu:
         return jsonify({'error': 'Menu not found!'}), 404
 
@@ -112,6 +120,7 @@ def create_menu_item(id):
     restaurant = Restaurant.query.get(restaurantId)
     restaurant_owner_id = restaurant.to_dict()['owner_id']
 
+    # check if the user owns the restaurant
     if userId != restaurant_owner_id:
         return jsonify({'message': 'Unauthorized'}), 401
 

@@ -17,7 +17,7 @@ def seed_menu_items():
         description="Fluffy buttermilk pancakes served with maple syrup and a pat of butter.",
         category="Breakfast",
         photo_url="https://handletheheat.com/wp-content/uploads/2019/02/The-Best-Pancake-Recipe-SQUARE-500x375.jpg",
-        menu_id=1,
+        menu_id=5,
     )
     item_three = MenuItem(
         name="Avocado Toast",
@@ -25,7 +25,7 @@ def seed_menu_items():
         description="Sliced avocado on whole-grain toast, topped with cherry tomatoes, red pepper flakes, and a drizzle of olive oil.",
         category="Breakfast",
         photo_url="https://www.thekitchenwhisperer.net/wp-content/uploads/2020/03/Caprese-Avocado-Toast-7.jpg",
-        menu_id=1,
+        menu_id=10,
     )
     item_four = MenuItem(
         name="Greek Yogurt Parfait",
@@ -41,7 +41,7 @@ def seed_menu_items():
         description="Poached eggs on English muffins with Canadian bacon, hollandaise sauce, and a sprinkle of chives.",
         category="Breakfast",
         photo_url="https://thewoodenskillet.com/wp-content/uploads/2023/05/how-to-make-eggs-benedict-1.jpg",
-        menu_id=1,
+        menu_id=5,
     )
     db.session.add_all([item_one, item_two, item_three, item_four, item_five])
     db.session.commit()
