@@ -1,11 +1,20 @@
 .rpCardContainer{
     display: flex;
-    justify-content: space-between;
+
+    align-items: center;
     flex-wrap: wrap;
+    gap: 25px;
+    row-gap: 5px;
 
 }
 .rpHeader {
     font-size: 36px;
     font-weight: 600;
     margin: 10px 0;
+}
+
+.rcLink{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
 }
