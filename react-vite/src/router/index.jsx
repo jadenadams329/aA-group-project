@@ -3,6 +3,7 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import RestaurantsPage from '../components/RestaurantsPage/RestaurantsPage';
 import Layout from './Layout';
+import RestaurantDetailsPage from '../components/RestaurantDetailsPage/RestaurantDetailsPage';
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
       {
         path: "restaurants",
         element: <RestaurantsPage />
+      },
+      {
+        path: "restaurants/:id",
+        element: <RestaurantDetailsPage/>
       }
     ],
   },
