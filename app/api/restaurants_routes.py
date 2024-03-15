@@ -28,6 +28,23 @@ def get_restaurant_by_id(id):
     except Exception as err:
         return jsonify(error=str(err)), 500
 
+### Get All Menus from a specific Restaurant
+@restaurant_routes.route('/<int:id>/menus')
+def get_restaurants_menu_by_id(id):
+    restaurant = Restaurant.query.get(id)
+
+    if not restaurant:
+        return jsonify({'error': 'Restaurant not found!'}), 404
+
+    menus = Menu.query.filter(Menu.restaurant_id == id).all()
+    menus_list = []
+    for menu in menus:
+        menu_dict = menu.to_dict()
+        menu_dict['menu_items'] = [menu_item.to_dict() for menu_item in menu.menu_items]
+        menus_list.append(menu_dict)
+
+    return menus_list
+
 ### Add A Menu to a specific Restaurant
 @restaurant_routes.route('/<int:id>/menus', methods=['POST'])
 def create_menu(id):
