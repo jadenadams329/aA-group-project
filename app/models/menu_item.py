@@ -18,7 +18,7 @@ class MenuItem(db.Model):
 
     # Relationships
     menu = relationship("Menu", back_populates="menu_items")
-    cart_item = relationship("CartItem", uselist=False, back_populates="menu_item")
+    cart_item = relationship("CartItem", uselist=False, back_populates="menu_item", cascade='all, delete')
 
     def to_dict(self):
         return {

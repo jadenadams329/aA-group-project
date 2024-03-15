@@ -7,6 +7,7 @@
 	width: 280px;
 	height: 130px;
 	object-fit: cover;
+	border-radius: 15px;
 }
 
 .rcBottom {

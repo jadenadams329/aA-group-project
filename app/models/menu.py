@@ -15,3 +15,11 @@ class Menu(db.Model):
     # Relationships
     menu_items = relationship("MenuItem", back_populates="menu", cascade='all, delete')
     restaurant = relationship("Restaurant", back_populates="menus")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'restaurant_id': self.restaurant_id,
+            'menu_items': self.menu_items
+        }

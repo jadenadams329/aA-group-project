@@ -18,6 +18,8 @@ class Restaurant(db.Model):
         db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete="CASCADE")
     )
 
+
+
     user = db.relationship("User", back_populates="restaurants")
     menus = db.relationship("Menu", back_populates="restaurant", cascade="all, delete")
     carts = db.relationship("Cart", back_populates="restaurant", cascade="all, delete")
