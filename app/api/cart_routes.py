@@ -29,7 +29,9 @@ def fullCart():
         final=theItem.to_dict()
         Kart = {
            "name": final['name'],
-           "photo_url": final["photo_url"]
+           "photo_url": final["photo_url"],
+           "price": final["price"],
+           "quantity": theguy["quantity"]
         }
         print(theguy,'this is the final result i need')
         print(theItem,"finding the items$$$$$$$$$$$$$$$$$$$$$$$$$")
