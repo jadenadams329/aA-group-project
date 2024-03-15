@@ -27,9 +27,13 @@ def fullCart():
         itemid = theguy["menu_item_id"]
         theItem = MenuItem.query.get(itemid)
         final=theItem.to_dict()
-        print(final,'this is the final result i need')
+        Kart = {
+           "name": final['name'],
+           "photo_url": final["photo_url"]
+        }
+        print(theguy,'this is the final result i need')
         print(theItem,"finding the items$$$$$$$$$$$$$$$$$$$$$$$$$")
-        theFullList.append(theguy)
+        theFullList.append(Kart)
 
 
 
