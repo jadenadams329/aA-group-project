@@ -20,7 +20,6 @@ def get_restaurants():
 def get_restaurant_by_id(id):
     try:
         restaurant = Restaurant.query.get(id)
-        print(id)
         if not restaurant:
             return jsonify(error="Restaurant not found"), 404
 
