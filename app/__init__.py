@@ -13,6 +13,7 @@ from .api.menu_routes import menu_routes
 from .api.menu_item_routes import menu_item_routes
 from .seeds import seed_commands
 from .config import Config
+from .api.checkout import checkout
 
 app = Flask(__name__, static_folder='../react-vite/dist', static_url_path='/')
 
@@ -36,6 +37,7 @@ app.register_blueprint(restaurant_routes, url_prefix='/api/restaurants')
 app.register_blueprint(cart_route,url_prefix='/api/cart')
 app.register_blueprint(menu_routes, url_prefix='/api/menus')
 app.register_blueprint(menu_item_routes, url_prefix='/api/items')
+app.register_blueprint(checkout,url_prefix='/api/checkout')
 db.init_app(app)
 Migrate(app, db)
 

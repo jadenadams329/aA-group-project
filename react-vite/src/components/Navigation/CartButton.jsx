@@ -5,9 +5,12 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
 import { getTheCart } from "../../redux/cart";
 
+
+
 function CartButton() {
 	const dispatch = useDispatch()
 	const cart = useSelector((state) => state.cart?.cart)
+	const rest = useSelector((state) => state.cart?.restaurant)
 	// let cart = []
 	const [showMenu, setShowMenu] = useState(false);
 	const [counted, setCounted ] = useState(0)
@@ -57,7 +60,7 @@ function CartButton() {
 				{showMenu && (
 					//make a cart button dropdown component and put below.
 					<div className={ulClassName} ref={ulRef}>
-						<CartDropDown cart={cart}/>
+						<CartDropDown cart={cart} restaurant={rest}/>
 					</div>
 				)}
 			</div>

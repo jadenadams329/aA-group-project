@@ -1,17 +1,15 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { getTheCart } from "../../redux/cart"
-import { useEffect } from "react";
-import { useState } from "react";
-
-
-
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"
 import "./cart.css"
 
-export default function CartDropDown({cart}) {
-const dispatch = useDispatch();
+export default function CartDropDown({cart, restaurant}) {
+const navigate = useNavigate()
+  const dispatch = useDispatch();
 const [isLoading, setIsLoading] = useState(true);
 
-const rest = useSelector((state) => state.cart?.restaurant)
+
 // console.log(cart,"this is my cart state at the moment")
 let subTotal = 0.00
 const getSubTotal = () => {
@@ -28,7 +26,16 @@ const getSubTotal = () => {
 useEffect(()=>{
   dispatch(getTheCart()).then(()=> setIsLoading(false))
 
-},[])
+},[dispatch])
+
+
+const addItemfunc = (e) => {
+  e.preventDefault()
+  navigate(`restaurants/${restaurant.id}`)
+}
+
+
+
 
 if (!isLoading) {
   return (
@@ -36,7 +43,7 @@ if (!isLoading) {
 
     {cart.length >= 1 && (
       <>
-<h1 className="cart-header"><img key={rest.id} src={rest.logo} style={{height: "50px", width: "50px", borderRadius: "30px"}}></img>{rest.name}</h1>
+<h1 className="cart-header"><img key={restaurant.id} src={restaurant.logo} style={{height: "50px", width: "50px", borderRadius: "30px"}}></img>{restaurant.name}</h1>
 <hr></hr>
 <ul className="cartList" style={{listStyle: "none"}}>
     {cart && cart.map((item)=>(
@@ -56,14 +63,14 @@ if (!isLoading) {
 
 <h3>Subtotal: ${getSubTotal()}</h3>
 {/* <h3>Subtotal: ${subTotal}</h3> */}
-<button className="checkoutButton">Checkout</button> <button className="addItemsButton">Add Items</button>
+<button className="checkoutButton" onClick={()=> navigate('/checkout')}>Checkout</button> <button className="addItemsButton" onClick={addItemfunc}>Add Items</button>
       </>
     )}
     {cart.length === 0 && (
 <>
       <h1>No items in Cart!</h1>
       <hr></hr>
-      <button className="addItemsButton">Add Items</button>
+      <button className="addItemsButton" onClick={()=> navigate('restaurants')}>Add Items</button>
       </>
     )}
 
