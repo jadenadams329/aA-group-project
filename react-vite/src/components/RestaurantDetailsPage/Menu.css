@@ -5,7 +5,7 @@
     font-weight: bold;
     text-decoration: underline;
     padding-bottom: 20px;
-    
+
 }
 
 .MenuName:hover {
@@ -18,11 +18,45 @@
 
 .CategoriesType {
     width: 200px;
+    font-size: 20px;
 }
 
 .ItemImage {
-    width: 280px;
-    height: 130px;
+    width: 200px;
+    height: 150px;
     object-fit: cover;
     border-radius: 15px;
+    flex: 0 0 30%
+}
+
+.ItemDetail {
+    display: flex;
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    align-items: center;
+    width: 700px;
+}
+
+.nameAndPrice {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    font-size: 15px;
+    justify-content: center;
+    flex: 1;
+    padding: 10px;
+}
+
+.CategoriesType li {
+    list-style: none;
+}
+
+.Items {
+    display: flex;
+    gap:20px;
+    height: 150px
+}
+
+.itemdes {
+    font-weight: lighter;
 }

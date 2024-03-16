@@ -7,7 +7,7 @@ def seed_menu_items():
         name="Moons Over My Hammy",
         price=17.77,
         description="Ham and scrambled egg sandwich with Swiss & American cheeses on grilled artisan bread. Served with hash browns.",
-        category="Breakfast",
+        category="PanCakes",
         photo_url="https://www.dennys.ca/wp-content/uploads/2019/10/moons-over-my-hammy_thumb-l.jpg",
         menu_id=1,
     )
@@ -31,7 +31,7 @@ def seed_menu_items():
         name="Greek Yogurt Parfait",
         price=6.75,
         description="Layers of Greek yogurt, granola, fresh berries, and honey.",
-        category="Breakfast",
+        category="Yogurt",
         photo_url="https://thefoodiephysician.com/wp-content/uploads/2019/02/Greek-Yogurt-Berry-Parfaits-1.jpg",
         menu_id=1,
     )
@@ -43,7 +43,32 @@ def seed_menu_items():
         photo_url="https://thewoodenskillet.com/wp-content/uploads/2023/05/how-to-make-eggs-benedict-1.jpg",
         menu_id=5,
     )
-    db.session.add_all([item_one, item_two, item_three, item_four, item_five])
+    item6 = MenuItem(
+        name='Big Mac',
+        price=12.99,
+        description='Big Mac® is a 100 percent beef burger with a taste like no other.',
+        category='Burger',
+        photo_url='https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?q=80&w=2615&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=1
+    )
+    item7 = MenuItem(
+        name='Healthy Salad',
+        price=15.99,
+        description='House Buttermilk Ranch Dressing (on the side), Tri Tip Steak, Chopped Romaine Lettuce, Smoked Bacon Pieces.',
+        category='Salad',
+        photo_url='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=1
+    )
+    item8 = MenuItem(
+        name='Braised Salmon',
+        price=18.99,
+        description='Braised Salmon with Oyster Sauce with chopped Cucumbers',
+        category='Seafood',
+        photo_url='https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=1
+    )
+
+    db.session.add_all([item_one, item_two, item_three, item_four, item_five, item6, item7, item8])
     db.session.commit()
 
 
