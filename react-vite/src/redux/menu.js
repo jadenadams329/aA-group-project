@@ -25,11 +25,12 @@ export const deleteMenu = menuId => ({
 })
 
 /* Thunk */
-export const getAllMenus = () => async(dispatch) => {
-    const res = await fetch('/api/menus')
+export const getAllMenus = restaurantId => async(dispatch) => {
+    const res = await fetch(`/api/restaurants/${restaurantId}/menus`)
 
     if(res.ok){
         const menus = await res.json()
+        console.log(menus)
         dispatch(loadMenus(menus))
     } else {
         const err = await res.json()

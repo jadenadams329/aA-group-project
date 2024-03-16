@@ -1,0 +1,28 @@
+.MenuTypeContainer{
+    display: flex;
+    font-size: 25px;
+    gap: 25px;
+    font-weight: bold;
+    text-decoration: underline;
+    padding-bottom: 20px;
+    
+}
+
+.MenuName:hover {
+    cursor: pointer;
+}
+
+.Details {
+    display: flex;
+}
+
+.CategoriesType {
+    width: 200px;
+}
+
+.ItemImage {
+    width: 280px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 15px;
+}
