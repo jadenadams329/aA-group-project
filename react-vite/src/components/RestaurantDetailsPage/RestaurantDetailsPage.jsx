@@ -36,7 +36,7 @@ function RestaurantDetailsPage() {
 					<div>
 						<Link className='rdReviewLinkContainer'>
 							<span>4.6</span>
-							<i class='fa-solid fa-star'></i>
+							<i className='fa-solid fa-star'></i>
 							<span className='rdReviewLinkSpan'>(33)</span>
 							<span className='rdReviewLinkSpan'>{">"}</span>
 						</Link>
