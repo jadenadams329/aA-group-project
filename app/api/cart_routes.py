@@ -16,10 +16,10 @@ def fullCart():
       item = item.to_dict()
       wholeCart= item
 
-    print(wholeCart['restaurant_id'],'this is the active cart ```````````````')
+    # print(wholeCart['restaurant_id'],'this is the active cart ```````````````')
     restId = wholeCart["restaurant_id"]
-    print(type(restId),'restaurant id')
-    print(restId,'restaurant id')
+    # print(type(restId),'restaurant id')
+    # print(restId,'restaurant id')
     allthem=CartItem.query.all()
     theFullList = []
     for item in allthem:
@@ -31,10 +31,11 @@ def fullCart():
            "name": final['name'],
            "photo_url": final["photo_url"],
            "price": final["price"],
-           "quantity": theguy["quantity"]
+           "quantity": theguy["quantity"],
+           "restaurant": restId
         }
-        print(theguy,'this is the final result i need')
-        print(theItem,"finding the items$$$$$$$$$$$$$$$$$$$$$$$$$")
+        # print(theguy,'this is the final result i need')
+        # print(theItem,"finding the items$$$$$$$$$$$$$$$$$$$$$$$$$")
         theFullList.append(Kart)
 
 
