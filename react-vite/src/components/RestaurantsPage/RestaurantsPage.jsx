@@ -17,7 +17,7 @@ function RestaurantsPage() {
 	}, [dispatch]);
 	return (
 		<>
-			<div>
+			<div className="pageContainer">
 				<div>
 					<h2 className='rpHeader'>All Restaurants</h2>
 				</div>

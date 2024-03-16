@@ -1,0 +1,23 @@
+.rdContainer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+.rdContainer > h1{
+    margin: 0;
+    font-weight: 600;
+
+}
+.rdReviewLinkContainer{
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    text-decoration: none;
+    color: black;
+}
+.rdReviewLinkContainer > span{
+    font-size: smaller;
+}
+.rdReviewLinkSpan{
+    color: gray;
+}

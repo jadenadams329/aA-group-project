@@ -4,5 +4,6 @@ html {
     max-width: 1840px;
     font-family: "Poppins", sans-serif;
 }
-
-
+.pageContainer{
+    margin: 0 25px;
+}
