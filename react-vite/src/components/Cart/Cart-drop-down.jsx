@@ -18,19 +18,21 @@ useEffect(()=>{
 
 if (!isLoading) {
   return (
-    <ul className="cartList">
+    <>
 <h1>{rest}</h1>
-    {cart && cart.map((item)=>{
-        
+    <ul className="cartList">
+    {cart.map((item)=>{
+
       <li>
         <p>{item && item.name}</p>
       </li>
     })}
     {!cart && (
       <h1>No items in Cart!</h1>
-    )}
+      )}
     </ul>
 
+      </>
   )}
   else {
   return (<div>Loading...</div>)

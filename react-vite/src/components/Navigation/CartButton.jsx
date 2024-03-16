@@ -34,7 +34,9 @@ function CartButton() {
 				</button>
 				{showMenu && (
 					//make a cart button dropdown component and put below.
-					<CartDropDown className={ulClassName} ref={ulRef}/>
+					<div className={ulClassName} ref={ulRef}>
+						<CartDropDown/>
+					</div>
 				)}
 			</div>
 		</>
