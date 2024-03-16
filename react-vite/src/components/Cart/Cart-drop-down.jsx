@@ -21,12 +21,11 @@ if (!isLoading) {
     <>
 <h1>{rest}</h1>
     <ul className="cartList">
-    {cart.map((item)=>{
-
+    {cart.map((item)=>(
       <li>
         <p>{item && item.name}</p>
       </li>
-    })}
+    ))}
     {!cart && (
       <h1>No items in Cart!</h1>
       )}
