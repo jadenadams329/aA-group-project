@@ -7,16 +7,14 @@ import { useState } from "react";
 
 import "./cart.css"
 
-export default function CartDropDown() {
+export default function CartDropDown({cart}) {
 const dispatch = useDispatch();
 const [isLoading, setIsLoading] = useState(true);
-// let cart = []
-const cart = useSelector((state) => state.cart?.cart)
+
 const rest = useSelector((state) => state.cart?.restaurant)
 // console.log(cart,"this is my cart state at the moment")
 let subTotal = 0.00
 const getSubTotal = () => {
-  let sub = 0.00
   if (cart.length){
 
     cart.map((item)=>(
