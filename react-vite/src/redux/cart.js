@@ -16,6 +16,7 @@ const setRestaurant = (restaurant) =>({
 })
 
 
+
 //? Thunks:
 export const getTheCart = () => async (dispatch)=> {
     const res = await fetch('/api/cart/items');
@@ -24,17 +25,20 @@ export const getTheCart = () => async (dispatch)=> {
         const cartItems = await res.json();
         console.log(cartItems[0].restaurant,'this is the cart items in the thunk')
         const theSpot = await fetch(`/api/restaurants/${cartItems[0].restaurant}`);
-        const rest = await theSpot.json()
-        console.log(rest,'this is the restaurant that is pulled')
-        const restaurant = rest.name
-        dispatch(setRestaurant(restaurant))
+        if (theSpot.ok){
+            const restaurant = await theSpot.json()
+            dispatch(setRestaurant(restaurant))
+        }
         dispatch(loadCart(cartItems))
     }else{
         return { message: "No items in Cart" }
     }
 }
 
-
+export const clearCart = () => async (dispatch) => {
+    const cartItems = []
+    dispatch(loadCart(cartItems))
+}
 
 //! Reducer:
 
