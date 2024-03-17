@@ -7,6 +7,7 @@ import { getTheCart } from "../../redux/cart";
 
 
 
+
 function CartButton() {
 	const dispatch = useDispatch()
 	const cart = useSelector((state) => state.cart?.cart)
