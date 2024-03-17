@@ -29,7 +29,7 @@ function CartButton() {
 	useEffect(()=>{
 		dispatch(getTheCart()).then(() => setCounted(getCount()))
 		console.log(getCount(), "this is the cart in the cartbutton")
-	},[dispatch])
+	},[dispatch,counted])
 
 	useEffect(() => {
 		if (!showMenu) return;
