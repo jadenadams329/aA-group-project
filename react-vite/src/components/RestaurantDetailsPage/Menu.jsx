@@ -2,6 +2,8 @@ import "./Menu.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllMenus } from "../../redux/menu";
+import DeleteItemModal from "./DeleteItemModal";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
 
 function Menu({ id }) {
   const dispatch = useDispatch();
@@ -9,6 +11,8 @@ function Menu({ id }) {
   const [lunch, setLunch] = useState(false);
   const [dinner, setDinner] = useState(false);
   const [beverages, setBeverages] = useState(false)
+  const userId = useSelector(state => state.session ? state.session.user.id : null)
+  const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.owner_id : null)
   const menus = Object.values(useSelector((state) => (state.menus ? state.menus : null)));
   const breakfastItems = menus.filter(menu => menu.name === 'Breakfast')[0]?.menu_items
   const lunchItems = menus.filter(menu => menu.name === 'Lunch')[0]?.menu_items
@@ -40,6 +44,7 @@ function Menu({ id }) {
         setLunch(false);
         setDinner(false);
         setBeverages(true);
+        break;
       default:
         break;
     }
@@ -50,8 +55,6 @@ function Menu({ id }) {
   }, [dispatch, id]);
 
   if (!menus) return <>Loading...</>;
-
-
 
   return (
     <>
@@ -91,9 +94,23 @@ function Menu({ id }) {
             {breakfast && breakfastItems && breakfastItems.map(item => (
                 <div key={item.id} className="ItemDetail">
                     <div className="nameAndPrice">
-                      <p>{item.name}</p>
+                      {item.name}
                       <p className="itemdes">{item.description}</p>
-                      <p>${item.price}</p>
+                      ${item.price}
+                      {ownerId === userId ?
+                      <p>
+                        <button className="UpdateButton">Update</button>
+                        <OpenModalButton
+                          buttonText="Delete"
+                          modalComponent={
+                            <DeleteItemModal
+                              item={item}
+                              restId={id}
+                            />
+                          }
+                        />
+                      </p>
+                      : null}
                     </div>
                     <img className="ItemImage" src={item.photo_url}/>
                 </div>

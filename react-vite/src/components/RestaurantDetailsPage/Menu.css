@@ -1,62 +1,76 @@
-.MenuTypeContainer{
-    display: flex;
-    font-size: 25px;
-    gap: 25px;
-    font-weight: bold;
-    text-decoration: underline;
-    padding-bottom: 20px;
-
+.MenuTypeContainer {
+  display: flex;
+  font-size: 25px;
+  gap: 25px;
+  font-weight: bold;
+  text-decoration: underline;
+  padding-bottom: 20px;
 }
 
 .MenuName:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .Details {
-    display: flex;
+  display: flex;
+  margin: 0;
 }
 
 .CategoriesType {
-    width: 200px;
-    font-size: 20px;
+  width: 200px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .ItemImage {
-    width: 200px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 15px;
-    flex: 0 0 30%
+  width: 200px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 15px;
+  flex: 0 0 35%;
 }
 
 .ItemDetail {
-    display: flex;
-    border: 1px solid lightgray;
-    border-radius: 15px;
-    align-items: center;
-    width: 700px;
+  display: flex;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  align-items: center;
+  width: 750px;
 }
 
 .nameAndPrice {
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
-    font-size: 15px;
-    justify-content: center;
-    flex: 1;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 15px;
+  justify-content: center;
+  flex: 1;
+  padding: 10px;
 }
 
 .CategoriesType li {
-    list-style: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 15px;
+}
+
+.CategoriesType ul {
+  margin: 0;
+  padding-left: 0;
+  padding-right: 100px;
 }
 
 .Items {
-    display: flex;
-    gap:20px;
-    height: 150px
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  height: 230px;
 }
 
 .itemdes {
-    font-weight: lighter;
+  font-weight: lighter;
 }
+
+
