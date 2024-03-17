@@ -14,10 +14,11 @@ const user = useSelector((state)=> state.session.user)
 // console.log(cart,"this is my cart state at the moment")
 let subTotal = 0.00
 const getSubTotal = () => {
+
   if (cart.length){
 
     cart.map((item)=>(
-      subTotal += item.price
+      subTotal += (item.price * item.quantity)
       ))
       return subTotal.toFixed(2)
     }
@@ -52,12 +53,12 @@ if (!isLoading) {
       <li key={item.name} className="items">
         <>
         <div className="quantityButtons">
-          <button className="qbutton"> - </button> {item.quantity} <button className="qbutton">+</button>
+          <button className="qbutton" > - </button> {item.quantity} <button className="qbutton">+</button>
         </div>
         <div>
 
         <p className="cart-label" style={{fontSize: '11pt'}}>
-          {item.name}<div className="price"  style={{fontWeight: "bold"}}> ${item.price.toFixed(2)}
+          {item.name}<div className="price"  style={{fontWeight: "bold"}}> ${(item.price * item.quantity).toFixed(2)}
         </div>
         </p>
         <hr className="separater"></hr>

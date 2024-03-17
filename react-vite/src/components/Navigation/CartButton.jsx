@@ -21,15 +21,27 @@ function CartButton() {
 		setShowMenu(!showMenu);
 	};
 	const getCount = () =>{
+		let count = 0
 		if (cart?.length){
-			return cart.length
+			cart.map((item) => (
+				count += item.quantity
+				))
+				console.log(count)
+			return count
+
 		}else{
 		return 0
 		}
+
+
 }
 	useEffect(()=>{
 		dispatch(getTheCart()).then(() => setCounted(getCount()))
 		console.log(getCount(), "this is the cart in the cartbutton")
+
+
+
+
 	},[dispatch,counted])
 
 	useEffect(() => {
