@@ -76,8 +76,8 @@ if (!isLoading) {
 <h3 className="sub"><div>Subtotal:</div><div className="subtotal">${getSubTotal()}</div> </h3>
 {/* <h3>Subtotal: ${subTotal}</h3> */}
 <div className="buttons">
+<button className="checkoutButton" onClick={()=> navigate('/checkout')}>Go  to Checkout</button> <button className="addItemsButton" onClick={addItemfunc}>Add Items</button>
 </div>
-<button className="checkoutButton" onClick={()=> navigate('/checkout')}>Checkout</button> <button className="addItemsButton" onClick={addItemfunc}>Add Items</button>
 
       </>
     )}
