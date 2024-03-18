@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllMenus } from "../../redux/menu";
 import Category from "./Category";
-import DeleteItemModal from "./DeleteItemModal";
-import OpenModalButton from "../OpenModalButton/OpenModalButton";
 
 function Menu({ id }) {
   const dispatch = useDispatch();
