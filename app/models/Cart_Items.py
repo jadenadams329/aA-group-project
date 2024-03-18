@@ -18,3 +18,12 @@ class CartItem(db.Model):
 
     cart = relationship("Cart",back_populates="cart_items")
     menu_item = relationship("MenuItem", back_populates="cart_item",uselist=False)
+
+
+    def to_dict(self):
+       return {
+          "id": self.id,
+          "cart_id": self.cart_id,
+          "menu_item_id": self.menu_item_id,
+          "quantity": self.quantity
+       }

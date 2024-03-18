@@ -1,0 +1,82 @@
+.cartList{
+    position: relative;
+    right: 40px
+}
+
+.cart-label{
+position: relative;
+left: 10px;
+top:10px
+}
+
+.items{
+    display: grid;
+    grid-template-columns: 70px 1fr ;
+    grid-template-rows: 70px;
+    align-items: top;
+}
+
+.quantityButtons{
+    position: relative;
+    top: 25px
+}
+
+.price{
+    position: relative;
+    left: 250px;
+    bottom: 22px
+}
+
+.separater{
+    position: relative;
+    width: 400px;
+    right:70px
+}
+
+.qbutton{
+    border: none;
+    background-color: white;
+    font-size: large;
+}
+
+.sub{
+    display: flex;
+}
+
+.subtotal{
+    position: relative;
+    left:230px
+}
+
+.itemimg{
+position: relative;
+left: 270px;
+bottom: 50px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.checkoutButton{
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: black;
+    color: white;
+    font-weight:bold;
+    font-size: 14px;
+    font-family:sans-serif;
+    border: none;
+
+}
+
+.addItemsButton{
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border:none;
+    background-color: lightgray;
+}
