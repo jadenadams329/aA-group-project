@@ -21,8 +21,10 @@ h2 {
 
 .itemImage {
     height: 150px;
+    width: 180px;
     border-radius: 15px;
     margin-left: 15px;
+    object-fit: cover;
 }
 
 .NopeButton {

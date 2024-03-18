@@ -1,0 +1,21 @@
+.BottomContainer {
+    display: flex;
+}
+
+.Categories ul {
+    list-style: none;
+    padding-left: 0;
+    padding-right: 150px;
+    padding-bottom: 10px;
+}
+
+.Categories li:hover {
+    cursor: pointer;
+}
+
+.Items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    height: 230px;
+}

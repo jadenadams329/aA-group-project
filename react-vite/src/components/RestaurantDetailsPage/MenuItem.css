@@ -1,0 +1,37 @@
+.ItemDetail {
+  display: flex;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  align-items: center;
+  width: 750px;
+}
+
+.NameAndPrice {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 15px;
+  justify-content: center;
+  flex: 1;
+  padding: 10px;
+}
+
+.ItemDetail {
+  display: flex;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  align-items: center;
+  width: 750px;
+}
+
+.itemdes {
+  font-weight: lighter;
+}
+
+.ItemImage {
+  width: 200px;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 15px;
+  flex: 0 0 35%;
+}

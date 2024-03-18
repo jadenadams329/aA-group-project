@@ -2,6 +2,7 @@ import "./Menu.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllMenus } from "../../redux/menu";
+import Category from "./Category";
 import DeleteItemModal from "./DeleteItemModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 
@@ -11,8 +12,6 @@ function Menu({ id }) {
   const [lunch, setLunch] = useState(false);
   const [dinner, setDinner] = useState(false);
   const [beverages, setBeverages] = useState(false)
-  const userId = useSelector(state => state.session ? state.session.user.id : null)
-  const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.owner_id : null)
   const menus = Object.values(useSelector((state) => (state.menus ? state.menus : null)));
   const breakfastItems = menus.filter(menu => menu.name === 'Breakfast')[0]?.menu_items
   const lunchItems = menus.filter(menu => menu.name === 'Lunch')[0]?.menu_items
@@ -45,8 +44,6 @@ function Menu({ id }) {
         setDinner(false);
         setBeverages(true);
         break;
-      default:
-        break;
     }
   };
 
@@ -66,76 +63,11 @@ function Menu({ id }) {
             </div>
           ))}
       </div>
-
-      <div className="Details">
-        <div className="CategoriesType">
-            {breakfast && breakfastItems && breakfastItems.map(item => (
-                <ul key={item.id}>
-                    <li>{item.category}</li>
-                </ul>
-            ))}
-            {lunch && lunchItems && lunchItems.map(item => (
-                <ul key={item.id}>
-                    <li>{item.category}</li>
-                </ul>
-            ))}
-            {dinner && dinnerItems && dinnerItems.map(item => (
-                <ul key={item.id}>
-                    <li>{item.category}</li>
-                </ul>
-            ))}
-            {beverages && beverageItems && beverageItems.map(item => (
-                <ul key={item.id}>
-                    <li>{item.category}</li>
-                </ul>
-            ))}
-        </div>
-        <div className="Items">
-            {breakfast && breakfastItems && breakfastItems.map(item => (
-                <div key={item.id} className="ItemDetail">
-                    <div className="nameAndPrice">
-                      {item.name}
-                      <p className="itemdes">{item.description}</p>
-                      ${item.price}
-                      {ownerId === userId ?
-                      <p>
-                        <button className="UpdateButton">Update</button>
-                        <OpenModalButton
-                          buttonText="Delete"
-                          modalComponent={
-                            <DeleteItemModal
-                              item={item}
-                              restId={id}
-                            />
-                          }
-                        />
-                      </p>
-                      : null}
-                    </div>
-                    <img className="ItemImage" src={item.photo_url}/>
-                </div>
-            ))}
-            {lunch && lunchItems && lunchItems.map(item => (
-                <div key={item.id} className="ItemDetail">
-                    <img className="ItemImage" src={item.photo_url}/>
-                    <div className="nameAndPrice">
-                      <p>{item.name}</p>
-                      <p>${item.price}</p>
-                    </div>
-                </div>
-            ))}
-            {dinner && dinnerItems && dinnerItems.map(item => (
-                <div key={item.id} className="ItemDetail">
-                    <img className="ItemImage" src={item.photo_url}/>
-                    <div className="nameAndPrice">
-                      <p>{item.name}</p>
-                      <p>${item.price}</p>
-                    </div>
-                </div>
-            ))}
-        </div>
-
-
+      <div className="CategoriesType">
+        {breakfast ? <Category breakfastItems={breakfastItems}/> : null}
+        {lunch ? <Category lunchItems={lunchItems}/> : null}
+        {dinner ? <Category dinnerItems={dinnerItems}/> : null}
+        {beverages ? <Category beverageItems={beverageItems}/> : null}
       </div>
     </>
   );

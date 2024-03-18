@@ -67,8 +67,16 @@ def seed_menu_items():
         photo_url='https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         menu_id=1
     )
+    item9 = MenuItem(
+        name='Honey Pancakes',
+        price=12.99,
+        description='Honey Pancakes served with fresh blueberries.',
+        category='PanCakes',
+        photo_url='https://images.unsplash.com/photo-1506084868230-bb9d95c24759?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=1
+    )
 
-    db.session.add_all([item_one, item_two, item_three, item_four, item_five, item6, item7, item8])
+    db.session.add_all([item_one, item_two, item_three, item_four, item_five, item6, item7, item8, item9])
     db.session.commit()
 
 
