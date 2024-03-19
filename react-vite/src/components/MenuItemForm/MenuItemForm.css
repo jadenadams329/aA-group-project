@@ -1,0 +1,40 @@
+.ItemForm {
+    display: flex;
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.FormPic {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px 0px 15px;
+}
+
+.Pic,
+.ItemList {
+    flex: 1;
+}
+
+.ItemList {
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Pic {
+    padding-right: 0px;
+    margin-right: 0px;
+}
+
+.ItemList input,
+.ItemList textarea {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

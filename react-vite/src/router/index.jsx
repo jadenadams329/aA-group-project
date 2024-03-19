@@ -5,6 +5,8 @@ import RestaurantsPage from '../components/RestaurantsPage/RestaurantsPage';
 import Layout from './Layout';
 import RestaurantDetailsPage from '../components/RestaurantDetailsPage/RestaurantDetailsPage';
 import CheckoutPage from '../components/Checkout/CheckoutPage';
+import CreateItemForm from '../components/MenuItemForm/CreateItemForm';
+import EditItemForm from '../components/MenuItemForm/EditItemForm';
 
 export const router = createBrowserRouter([
   {
@@ -15,8 +17,16 @@ export const router = createBrowserRouter([
         element: <h1>Welcome!</h1>
       },
       {
+        path: "items/:id",
+        element: <EditItemForm />
+      },
+      {
         path: "login",
         element: <LoginFormPage />,
+      },
+      {
+        path: "menus/:id/items",
+        element: <CreateItemForm />
       },
       {
         path: "signup",
