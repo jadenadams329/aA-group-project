@@ -4,9 +4,9 @@ import DeleteItemModal from "./DeleteItemModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 
 function MenuItem({ items }) {
-  const userId = useSelector(state => state.session.user.id)
-  const ownerId = useSelector(state => state.restaurants.data['1'].owner_id)
-  const restId = useSelector(state => state.restaurants.data['1'].id)
+  const userId = useSelector(state => state.session ? state.session?.user?.id : null)
+  const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.owner_id : null)
+  const restId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.id : null)
 
   return (
     <>
