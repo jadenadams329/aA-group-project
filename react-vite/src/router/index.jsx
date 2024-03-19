@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
         element: <LoginFormPage />,
       },
       {
-        path: "menus/:id/items",
+        path: "menus/:id/items/new",
         element: <CreateItemForm />
       },
       {
@@ -43,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: 'checkout',
         element: < CheckoutPage />
+      },
+      {
+        path: '*',
+        element: <h1>Page Not Found</h1>
       }
     ],
   },

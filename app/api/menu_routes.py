@@ -99,7 +99,7 @@ def delete_menu(id):
     return jsonify({'message': 'Successfully Deleted!'})
 
 ### Create a menu item by menu Id
-@menu_routes.route('/<int:id>/items', methods=['POST'])
+@menu_routes.route('/<int:id>/items/new', methods=['POST'])
 def create_menu_item(id):
     data = authenticate()
 
