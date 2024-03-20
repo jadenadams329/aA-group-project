@@ -41,21 +41,21 @@ function Category({ breakfastItems, lunchItems, dinnerItems, beverageItems }) {
         ))}
         {lunchCat.map(category => (
           <ul key={category}>
-            <li onClick={() => handleCategoryClick(category)}>
+            <li className={selectedCategory === category ? 'SelectedCat' : ''} onClick={() => handleCategoryClick(category)}>
               {category}
             </li>
           </ul>
         ))}
         {dinnerCat.map(category => (
           <ul key={category}>
-            <li onClick={() => handleCategoryClick(category)}>
+            <li className={selectedCategory === category ? 'SelectedCat' : ''} onClick={() => handleCategoryClick(category)}>
               {category}
             </li>
           </ul>
         ))}
         {beverageCat.map(category => (
           <ul key={category}>
-            <li onClick={() => handleCategoryClick(category)}>
+            <li className={selectedCategory === category ? 'SelectedCat' : ''} onClick={() => handleCategoryClick(category)}>
               {category}
             </li>
           </ul>
