@@ -26,18 +26,22 @@ function MenuItem({ items }) {
                 </button>
               </div>
               {ownerId === userId ?
-                      <p>
-                        <button className="UpdateButton">Update</button>
-                        <OpenModalButton
-                          buttonText="Delete"
-                          modalComponent={
-                            <DeleteItemModal
-                              item={item}
-                              restId={restId}
-                            />
-                          }
-                        />
-                      </p>
+                      <div className="Buttons">
+                        <div>
+                          <button className="UpdateButton">Update</button>
+                        </div>
+                        <div className="DeleteItemButton">
+                          <OpenModalButton
+                            buttonText="Delete"
+                            modalComponent={
+                              <DeleteItemModal
+                                item={item}
+                                restId={restId}
+                              />
+                            }
+                          />
+                        </div>
+                      </div>
                       : null}
             </div>
             <img className="ItemImage" src={item.photo_url} />

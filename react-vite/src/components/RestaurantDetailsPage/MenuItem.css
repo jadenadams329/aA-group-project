@@ -4,6 +4,7 @@
   border-radius: 15px;
   align-items: center;
   width: 750px;
+  height: 230px;
 }
 
 .NameAndDes {
@@ -13,7 +14,7 @@
   font-size: 15px;
   justify-content: center;
   flex: 1;
-  padding: 15px;
+  padding: 10px;
 }
 
 .ItemDetail {
@@ -53,4 +54,30 @@
 .DesAndButton {
   display: flex;
   justify-content: space-between;
+}
+
+.Buttons {
+  display: flex;
+}
+
+.UpdateButton {
+  margin-right: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 20px;
+  border: 1px solid;
+  border-radius: 6px;
+  color: #ffffff;
+  background-color: #2ea44f;
+  border-color: #1b1f2326;
+}
+
+.DeleteItemButton button{
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 6px;
+  color: #ffffff;
+  background-color: red;
+  border: 1px solid red;
 }
