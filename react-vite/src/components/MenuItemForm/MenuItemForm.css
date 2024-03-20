@@ -14,11 +14,11 @@
 }
 
 .Pic,
-.ItemList {
+.Form {
     flex: 1;
 }
 
-.ItemList {
+.Form {
     font-size: 30px;
     display: flex;
     flex-direction: column;
@@ -30,8 +30,8 @@
     margin-right: 0px;
 }
 
-.ItemList input,
-.ItemList textarea {
+.Form input,
+.Form textarea {
   width: 80%;
   padding: 10px;
   font-size: 16px;

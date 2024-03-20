@@ -38,7 +38,7 @@ export const getAllItems = () => async(dispatch) => {
 }
 
 export const createItem = (menuId, item) => async(dispatch) => {
-    const res = await fetch(`/api/menus/${menuId}/items`, {
+    const res = await fetch(`/api/menus/${menuId}/items/new`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(item)
@@ -50,6 +50,7 @@ export const createItem = (menuId, item) => async(dispatch) => {
         return newItem
     } else {
         const err = await res.json()
+        console.log(err)
         return err
     }
 }
