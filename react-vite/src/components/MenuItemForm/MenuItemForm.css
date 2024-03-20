@@ -3,6 +3,7 @@
     border: 1px solid lightgray;
     border-radius: 15px;
     margin-top: 20px;
+    height: auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 

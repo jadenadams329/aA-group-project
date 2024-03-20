@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request
 from app.models import Menu, db, Restaurant, MenuItem
+from app.forms import MenuItemForm
 from sqlalchemy.orm import joinedload
-from .auth_routes import authenticate
+from flask_login import current_user
 
 menu_routes = Blueprint('menu', __name__)
 
@@ -34,14 +35,12 @@ def get_one_menu(id):
 ### Update a specific menu by menu ID
 @menu_routes.route('/<int:id>', methods=['PUT'])
 def update_menu_by_id(id):
-    data = authenticate()
+    ## make sure user is logged in
+    if not current_user.is_authenticated:
+        return jsonify({"error": "Must be logged in"}), 401
 
-    # check if there is a user
-    if isinstance(data, tuple):
-        (err, statusCode) = data
-        return err, statusCode
-
-    userId = data['id']
+    # get the current user id
+    userId = current_user.to_dict()["id"]
     menu = Menu.query.get(id)
 
     # check if the menu exist
@@ -70,14 +69,13 @@ def update_menu_by_id(id):
 ### Delete a menu by ID
 @menu_routes.route('/<int:id>', methods=['DELETE'])
 def delete_menu(id):
-    data = authenticate()
+    ## make sure user is logged in
+    if not current_user.is_authenticated:
+        return jsonify({"error": "Must be logged in"}), 401
 
-    # check if there is a user
-    if isinstance(data, tuple):
-        (err, statusCode) = data
-        return err, statusCode
+    # get the current user id
+    userId = current_user.to_dict()["id"]
 
-    userId = data['id']
     menu = Menu.query.options(joinedload(Menu.menu_items)).get(id)
 
     # check if the menu exist
@@ -101,14 +99,12 @@ def delete_menu(id):
 ### Create a menu item by menu Id
 @menu_routes.route('/<int:id>/items/new', methods=['POST'])
 def create_menu_item(id):
-    data = authenticate()
+    ## make sure user is logged in
+    if not current_user.is_authenticated:
+        return jsonify({"error": "Must be logged in"}), 401
 
-    # check if there is a user
-    if isinstance(data, tuple):
-        (err, statusCode) = data
-        return err, statusCode
-
-    userId = data['id']
+    # get the current user id
+    userId = current_user.to_dict()["id"]
     menu = Menu.query.options(joinedload(Menu.menu_items)).get(id)
 
     # check if the menu exists
@@ -124,11 +120,19 @@ def create_menu_item(id):
     if userId != restaurant_owner_id:
         return jsonify({'message': 'Unauthorized'}), 401
 
-    data = request.json
-    data['menu_id'] = id
-    item = MenuItem(**data)
+    form = MenuItemForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    db.session.add(item)
-    db.session.commit()
-
-    return item.to_dict()
+    if form.validate_on_submit():
+        newItem = MenuItem(
+            name=form.data['name'],
+            price=form.data['price'],
+            description=form.data['description'],
+            category=form.data['category'],
+            photo_url=form.data['photo_url'],
+            menu_id = id
+        )
+        db.session.add(newItem)
+        db.session.commit()
+        return newItem.to_dict()
+    return form.errors, 400

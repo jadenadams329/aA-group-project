@@ -12,6 +12,7 @@ function MenuItemForm({ item, formType }) {
   const [description, setDescription] = useState(item?.description);
   const [category, setCategory] = useState(item?.category);
   const [photo_url, setPhoto_url] = useState(item?.photo_url);
+  const [errors, setErrors] = useState({})
 
   const reset = () => {
     setName(""),
@@ -21,7 +22,10 @@ function MenuItemForm({ item, formType }) {
       setPhoto_url("");
   };
 
-  const handleSubmit = async (e) => {};
+  const handleSubmit = async (e) => {
+    const errs = {}
+    
+  };
 
   return (
     <form className="ItemForm" onSubmit={handleSubmit}>

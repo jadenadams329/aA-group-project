@@ -1,9 +1,8 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import Restaurant, Menu, db
-from .auth_routes import authenticate
 from flask_login import current_user
-from app.forms import RestaurantForm
+from app.forms import RestaurantForm, MenuForm
 
 restaurant_routes = Blueprint("restaurants", __name__)
 
@@ -82,14 +81,13 @@ def add_restaurant():
 ### Add A Menu to a specific Restaurant
 @restaurant_routes.route("/<int:id>/menus", methods=["POST"])
 def create_menu(id):
-    data = authenticate()
+    ## make sure user is logged in
+    if not current_user.is_authenticated:
+        return jsonify({"error": "Must be logged in"}), 401
 
-    # check if there is a user
-    if isinstance(data, tuple):
-        (err, statusCode) = data
-        return err, statusCode
+    # get the current user id
+    userId = current_user.to_dict()["id"]
 
-    userId = data["id"]
     restaurant = Restaurant.query.get(id)
 
     # check if the restaurant exist
@@ -102,12 +100,19 @@ def create_menu(id):
     if userId != restaurant_owner_id:
         return jsonify({"message": "Unauthorized"}), 401
 
-    data = request.json
-    data["restaurant_id"] = id
+    if len(restaurant.menus) > 3:
+        return jsonify({"error": "Only 4 menus are allowed for a restaurant"}), 400
 
-    newMenu = Menu(**data)
+    form = MenuForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    form.restaurant_id = id
 
-    db.session.add(newMenu)
-    db.session.commit()
-
-    return newMenu.to_dict()
+    if form.validate_on_submit():
+        newMenu = Menu(
+            name=form.data['name'],
+            restaurant_id=id
+        )
+        db.session.add(newMenu)
+        db.session.commit()
+        return newMenu.to_dict()
+    return form.errors, 400
