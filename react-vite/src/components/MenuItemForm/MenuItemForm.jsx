@@ -25,28 +25,27 @@ function MenuItemForm({ item, formType }) {
   }, [dispatch, menu_id])
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    item = { ...name, price, description, category, photo_url, menu_id}
+      e.preventDefault()
+      item = { ...name, price, description, category, photo_url, menu_id}
 
-    const errs = {}
-    if (name.length <= 0) errs.name = 'Please provide a name for the Item.'
-    if (price <= 0) errs.price = 'Price must be greater than 0.'
-    if (description.length <= 0) errs.description = 'Please provide description of the item.'
-    if (category.length <= 0) errs.category = 'Please categorize the item.'
-    if (!photo_url) errs.photo_url = 'Please provide a picture for the item'
-    if((photo_url && !photo_url.toLowerCase().endsWith('.png')) &&
-              (photo_url && !photo_url.toLowerCase().endsWith('.jpg')) &&
-              (photo_url && !photo_url.toLowerCase().endsWith('.jpeg'))) {
-                errs.photo_url = 'Image URL must end in .png, .jpg, or .jpeg'
-              }
-    setErrors(errs)
+      const errs = {}
+      if (name.length <= 0) errs.name = 'Please provide a name for the Item.'
+      if (price <= 0) errs.price = 'Price must be greater than 0.'
+      if (description.length <= 0) errs.description = 'Please provide description of the item.'
+      if (category.length <= 0) errs.category = 'Please categorize the item.'
+      if (!photo_url) errs.photo_url = 'Please provide a picture for the item'
+      if((photo_url && !photo_url.toLowerCase().endsWith('.png')) &&
+                (photo_url && !photo_url.toLowerCase().endsWith('.jpg')) &&
+                (photo_url && !photo_url.toLowerCase().endsWith('.jpeg'))) {
+                  errs.photo_url = 'Image URL must end in .png, .jpg, or .jpeg'
+                }
+      setErrors(errs)
 
-    if (formType === 'Create Item'){
-      console.log('line 45')
-      const newItem = await dispatch(createItem(menu_id))
-      item = newItem
-      navigate(`/restaurants/${restId}`)
-    }
+      if (formType === 'Create Item'){
+        const newItem = {name, price, description, category, photo_url, menu_id}
+        await dispatch(createItem(menu_id, newItem))
+        navigate(`/restaurants/${restId}`)
+      }
   };
 
   if(!loaded) return <>Loading.....</>
