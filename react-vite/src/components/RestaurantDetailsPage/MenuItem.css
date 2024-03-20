@@ -6,14 +6,14 @@
   width: 750px;
 }
 
-.NameAndPrice {
+.NameAndDes {
   display: flex;
   flex-direction: column;
   font-weight: bold;
   font-size: 15px;
   justify-content: center;
   flex: 1;
-  padding: 10px;
+  padding: 15px;
 }
 
 .ItemDetail {
@@ -30,8 +30,27 @@
 
 .ItemImage {
   width: 200px;
-  height: 230px;
+  height: 100%;
   object-fit: cover;
   border-radius: 15px;
-  flex: 0 0 35%;
+  flex: 0 0 30%;
+}
+
+.fa-solid.fa-circle-plus{
+  font-size: 30px;
+  transition: font-size 1s ease;
+}
+
+.fa-solid.fa-circle-plus:hover{
+  font-size: 40px;
+}
+
+.AddButton {
+  border: none;
+  background-color: white;
+}
+
+.DesAndButton {
+  display: flex;
+  justify-content: space-between;
 }

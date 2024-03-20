@@ -19,3 +19,9 @@
     gap: 30px;
     height: 230px;
 }
+
+.SelectedCat {
+    color: gold;
+    font-size: 18px;
+    text-decoration: underline;
+}

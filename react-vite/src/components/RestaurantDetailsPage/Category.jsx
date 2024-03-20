@@ -34,7 +34,7 @@ function Category({ breakfastItems, lunchItems, dinnerItems, beverageItems }) {
       <div className="Categories">
         {breakfastCat.map(category => (
           <ul key={category}>
-            <li onClick={() => handleCategoryClick(category)}>
+            <li className={selectedCategory === category ? 'SelectedCat' : ''} onClick={() => handleCategoryClick(category)}>
               {category}
             </li>
           </ul>

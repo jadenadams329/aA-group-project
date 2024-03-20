@@ -8,14 +8,23 @@ function MenuItem({ items }) {
   const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.owner_id : null)
   const restId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.id : null)
 
+  const addItemToCart = () => {
+
+  }
+
   return (
     <>
       {items && items.map((item) => (
           <div key={item.id} className="ItemDetail">
-            <div className="NameAndPrice">
+            <div className="NameAndDes">
               {item.name}
               <p className="itemdes">{item.description}</p>
-              ${item.price}
+              <div className="DesAndButton">
+                ${item.price}
+                <button onClick={addItemToCart} className="AddButton">
+                  <i className="fa-solid fa-circle-plus"></i>
+                </button>
+              </div>
               {ownerId === userId ?
                       <p>
                         <button className="UpdateButton">Update</button>
