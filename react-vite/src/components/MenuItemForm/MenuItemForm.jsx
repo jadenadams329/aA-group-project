@@ -96,7 +96,7 @@ function MenuItemForm({ item, formType }) {
             />
           </label>
           <label>
-            <h4>How much is the item for?</h4>
+            <h4>How much is the item?</h4>
             {errors.price && <span className="ErrorMsg">{errors.price}</span>}
             <input
               type="number"
