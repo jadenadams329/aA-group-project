@@ -14,7 +14,7 @@ function CartButton() {
 	const rest = useSelector((state) => state.cart?.restaurant)
 	// let cart = []
 	const [showMenu, setShowMenu] = useState(false);
-	const [counted, setCounted ] = useState(0)
+	const [counted, setCounted ] = useState()
 	const ulRef = useRef();
 	const toggleMenu = (e) => {
 		e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
@@ -30,7 +30,7 @@ function CartButton() {
 			return count
 
 		}else{
-		return 0
+		return count
 		}
 
 
