@@ -26,7 +26,7 @@ function CartButton() {
 			cart.map((item) => (
 				count += item.quantity
 				))
-				console.log(count)
+				// console.log(count)
 			return count
 
 		}else{
@@ -37,7 +37,7 @@ function CartButton() {
 }
 	useEffect(()=>{
 		dispatch(getTheCart()).then(() => setCounted(getCount()))
-		console.log(getCount(), "this is the cart in the cartbutton")
+		// console.log(getCount(), "this is the cart in the cartbutton")
 
 
 
