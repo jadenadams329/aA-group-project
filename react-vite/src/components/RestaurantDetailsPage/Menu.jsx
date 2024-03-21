@@ -13,8 +13,8 @@ function Menu({ id }) {
   const dinnerItems = menus.filter(menu => menu.name === 'Dinner')[0]?.menu_items
   const beverageItems = menus.filter(menu => menu.name === 'Beverages')[0]?.menu_items
   const menuId = menus.filter(menu => menu.name === selectedMenu)[0]?.id
-  const userId = useSelector(state => state.session ? state.session?.user?.id : null)
-  const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.owner_id : null)
+  // const userId = useSelector(state => state.session ? state.session?.user?.id : null)
+  // const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.owner_id : null)
 
   useEffect(() => {
     dispatch(getAllMenus(id));

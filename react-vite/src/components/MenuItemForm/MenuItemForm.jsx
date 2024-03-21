@@ -28,9 +28,9 @@ function MenuItemForm({ item, formType }) {
     if (!name) errs.name = "Please provide a name for the Item.";
     if (!price) errs.price = "Please provide the price for the Item.";
     if (price && price <= 0) errs.price = "Price must be greater than 0.";
-    if (description.length <= 0)
+    if (description && description.length <= 0)
       errs.description = "Please provide description of the item.";
-    if (category.length <= 0) errs.category = "Please categorize the item.";
+    if (category && category.length <= 0) errs.category = "Please categorize the item.";
     if (!photo_url) errs.photo_url = "Please provide a picture for the item";
     if (
       photo_url &&
