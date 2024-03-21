@@ -79,70 +79,76 @@ function MenuItemForm({ item, formType }) {
         />
       </div>
       <div className="Form">
-        <h2>
-          {formType === "Create Item"
-            ? "Create a New Item"
-            : "Update Your Item"}
-        </h2>
-        <label>
-          <h4>Item Name</h4>
-          {errors.name && <span className="ErrorMsg">{errors.name}</span>}
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Item Name"
-          />
-        </label>
-        <label>
-          <h4>Default Price</h4>
-          {errors.price && <span className="ErrorMsg">{errors.price}</span>}
-          <input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            placeholder="Please enter the default pricing"
-          />
-        </label>
-        <label>
-          <h4>Describe your Item!</h4>
-          {errors.description && (
-            <span className="ErrorMsg">{errors.description}</span>
-          )}
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Stir-fried rice with scrambled eggs and vegetables, seasoned with soy sauce."
-          />
-        </label>
-        <label>
-          <h4>Define the Category of your Item!</h4>
-          {errors.category && (
-            <span className="ErrorMsg">{errors.category}</span>
-          )}
-          <input
-            type="text"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            placeholder="FastFood, Pizza, ...etc"
-          />
-        </label>
-        <label>
-          <h4>Liven up the item with a preview Photo!</h4>
-          {errors.photo_url && (
-            <span className="ErrorMsg">{errors.photo_url}</span>
-          )}
-          <input
-            type="text"
-            value={photo_url}
-            onChange={(e) => setPhoto_url(e.target.value)}
-            placeholder="Preview Image URL"
-          />
-        </label>
         <div>
-          <button disabled={Object.values(errors).length}>{formType}</button>
+          <h2>
+            {formType === "Create Item"
+              ? "Create a New Item"
+              : "Update Your Item"}
+          </h2>
+          <label>
+            <h4>Item Name</h4>
+            {errors.name && <span className="ErrorMsg">{errors.name}</span>}
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Item Name"
+            />
+          </label>
+          <label>
+            <h4>Default Price</h4>
+            {errors.price && <span className="ErrorMsg">{errors.price}</span>}
+            <input
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              placeholder="Please enter the default pricing"
+            />
+          </label>
+          <label>
+            <h4>Describe your Item!</h4>
+            {errors.description && (
+              <span className="ErrorMsg">{errors.description}</span>
+            )}
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Stir-fried rice with scrambled eggs and vegetables, seasoned with soy sauce."
+            />
+          </label>
+          <label>
+            <h4>Define the Category of the Item!</h4>
+            {errors.category && (
+              <span className="ErrorMsg">{errors.category}</span>
+            )}
+            <input
+              type="text"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              placeholder="FastFood, Pizza, ...etc"
+            />
+          </label>
+          <label>
+            <h4>Liven up the item with a Photo!</h4>
+            {errors.photo_url && (
+              <span className="ErrorMsg">{errors.photo_url}</span>
+            )}
+            <input
+              type="text"
+              value={photo_url}
+              onChange={(e) => setPhoto_url(e.target.value)}
+              placeholder="Preview Image URL"
+            />
+          </label>
+          <div className="CreateButton">
+            <button
+              disabled={Object.values(errors).length}
+              className="CreateItemButton"
+            >{formType}</button>
+          </div>
         </div>
-      </div>
+
+        </div>
     </form>
   );
 }
