@@ -4,3 +4,42 @@
     left: 90px;
     bottom: 90px;
 }
+
+.addyedit{
+    border-radius: 40px;
+    height: 30px;
+    width: 45px;
+    border: none;
+    background-color: lightgray;
+    position: relative;
+    left: 130px
+
+}
+
+#cvv{
+display: none;
+}
+
+.qmark:hover #cvv{
+    display: block;
+    position: relative;
+    height: 150px;
+    left: 180px;
+    bottom:40px
+}
+
+.placeOrderButton{
+    height: 50px;
+    width: 391px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: green;
+    font-size: 14pt;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.qmark{
+    height: 50px;
+}
