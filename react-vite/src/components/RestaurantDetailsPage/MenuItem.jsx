@@ -2,6 +2,7 @@ import "./MenuItem.css";
 import { useSelector } from "react-redux";
 import DeleteItemModal from "./DeleteItemModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import { Link } from "react-router-dom";
 
 function MenuItem({ items }) {
   const userId = useSelector(state => state.session ? state.session?.user?.id : null)
@@ -27,8 +28,8 @@ function MenuItem({ items }) {
               </div>
               {ownerId === userId ?
                       <div className="Buttons">
-                        <div>
-                          <button className="UpdateButton">Update</button>
+                        <div className="UpdateLink">
+                            <Link to={`/items/${item.id}/edit`}>Update</Link>
                         </div>
                         <div className="DeleteItemButton">
                           <OpenModalButton

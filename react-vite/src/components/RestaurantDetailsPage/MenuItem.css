@@ -60,16 +60,20 @@
   display: flex;
 }
 
-.UpdateButton {
+.UpdateLink {
   margin-right: 20px;
   cursor: pointer;
-  font-size: 14px;
-  line-height: 20px;
   border: 1px solid;
   border-radius: 6px;
-  color: #ffffff;
   background-color: #2ea44f;
   border-color: #1b1f2326;
+}
+
+.UpdateLink a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .DeleteItemButton button{
@@ -80,4 +84,5 @@
   color: #ffffff;
   background-color: red;
   border: 1px solid red;
+  font-weight: bold;
 }
