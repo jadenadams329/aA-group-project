@@ -6,8 +6,8 @@ import "./MenuItemForm.css";
 import { getOneMenu } from "../../redux/menu";
 
 function MenuItemForm({ item, formType }) {
-  const { id } = useParams()
-  const menu_id = id
+  const { id } = useParams();
+  const menu_id = id;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [name, setName] = useState(item?.name);
@@ -15,40 +15,60 @@ function MenuItemForm({ item, formType }) {
   const [description, setDescription] = useState(item?.description);
   const [category, setCategory] = useState(item?.category);
   const [photo_url, setPhoto_url] = useState(item?.photo_url);
-  const [errors, setErrors] = useState({})
-  const [loaded, setLoaded] = useState(false)
-  const restId = useSelector(state => state.menus ? state.menus['1']?.restaurant_id : null);
+  const [errors, setErrors] = useState({});
+  const [loaded, setLoaded] = useState(false);
+  const restId = useSelector((state) =>
+    state.menus ? state.menus["1"]?.restaurant_id : null
+  );
 
   useEffect(() => {
-    dispatch(getOneMenu(menu_id))
-    setLoaded(true)
-  }, [dispatch, menu_id])
+    dispatch(getOneMenu(menu_id));
+    setLoaded(true);
+    const errs = {};
+    if (!name) errs.name = "Please provide a name for the Item.";
+    if (!price) errs.price = "Please provide the price for the Item.";
+    if (price && price <= 0) errs.price = "Price must be greater than 0.";
+    if (description.length <= 0)
+      errs.description = "Please provide description of the item.";
+    if (category.length <= 0) errs.category = "Please categorize the item.";
+    if (!photo_url) errs.photo_url = "Please provide a picture for the item";
+    if (
+      photo_url &&
+      !photo_url.toLowerCase().endsWith(".png") &&
+      photo_url &&
+      !photo_url.toLowerCase().endsWith(".jpg") &&
+      photo_url &&
+      !photo_url.toLowerCase().endsWith(".jpeg")
+    ) {
+      errs.photo_url = "Image URL must end in .png, .jpg, or .jpeg";
+    }
+    setErrors(errs);
+  }, [dispatch, menu_id, name, price, description, category, photo_url]);
 
   const handleSubmit = async (e) => {
-      e.preventDefault()
-      item = { ...name, price, description, category, photo_url, menu_id}
-
-      const errs = {}
-      if (name.length <= 0) errs.name = 'Please provide a name for the Item.'
-      if (price <= 0) errs.price = 'Price must be greater than 0.'
-      if (description.length <= 0) errs.description = 'Please provide description of the item.'
-      if (category.length <= 0) errs.category = 'Please categorize the item.'
-      if (!photo_url) errs.photo_url = 'Please provide a picture for the item'
-      if((photo_url && !photo_url.toLowerCase().endsWith('.png')) &&
-                (photo_url && !photo_url.toLowerCase().endsWith('.jpg')) &&
-                (photo_url && !photo_url.toLowerCase().endsWith('.jpeg'))) {
-                  errs.photo_url = 'Image URL must end in .png, .jpg, or .jpeg'
-                }
-      setErrors(errs)
-
-      if (formType === 'Create Item'){
-        const newItem = {name, price, description, category, photo_url, menu_id}
-        await dispatch(createItem(menu_id, newItem))
-        navigate(`/restaurants/${restId}`)
+    try {
+      e.preventDefault();
+      item = { ...name, price, description, category, photo_url, menu_id };
+      if (formType === "Create Item") {
+        const newItem = {
+          name,
+          price,
+          description,
+          category,
+          photo_url,
+          menu_id,
+        };
+        await dispatch(createItem(menu_id, newItem));
+        navigate(`/restaurants/${restId}`);
       }
+    } catch (error) {
+      const errs = await error.json();
+      console.log(errs);
+      setErrors(errs);
+    }
   };
 
-  if(!loaded) return <>Loading.....</>
+  if (!loaded) return <>Loading.....</>;
 
   return (
     <form className="ItemForm" onSubmit={handleSubmit}>
@@ -78,7 +98,7 @@ function MenuItemForm({ item, formType }) {
           <h4>Default Price</h4>
           {errors.price && <span className="ErrorMsg">{errors.price}</span>}
           <input
-            type="text"
+            type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             placeholder="Please enter the default pricing"
@@ -86,7 +106,9 @@ function MenuItemForm({ item, formType }) {
         </label>
         <label>
           <h4>Describe your Item!</h4>
-          {errors.description && <span className="ErrorMsg">{errors.description}</span>}
+          {errors.description && (
+            <span className="ErrorMsg">{errors.description}</span>
+          )}
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -95,7 +117,9 @@ function MenuItemForm({ item, formType }) {
         </label>
         <label>
           <h4>Define the Category of your Item!</h4>
-          {errors.category && <span className="ErrorMsg">{errors.category}</span>}
+          {errors.category && (
+            <span className="ErrorMsg">{errors.category}</span>
+          )}
           <input
             type="text"
             value={category}
@@ -104,19 +128,19 @@ function MenuItemForm({ item, formType }) {
           />
         </label>
         <label>
-            <h4>Liven up the item with a preview Photo!</h4>
-            {errors.photo_url && <span className="ErrorMsg">{errors.photo_url}</span>}
-            <input
-                type="text"
-                value={photo_url}
-                onChange={e => setPhoto_url(e.target.value)}
-                placeholder="Preview Image URL"
-            />
+          <h4>Liven up the item with a preview Photo!</h4>
+          {errors.photo_url && (
+            <span className="ErrorMsg">{errors.photo_url}</span>
+          )}
+          <input
+            type="text"
+            value={photo_url}
+            onChange={(e) => setPhoto_url(e.target.value)}
+            placeholder="Preview Image URL"
+          />
         </label>
         <div>
-            <button>
-                {formType}
-            </button>
+          <button disabled={Object.values(errors).length}>{formType}</button>
         </div>
       </div>
     </form>

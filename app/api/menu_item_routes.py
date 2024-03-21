@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, request
 from app.models import MenuItem, db, Menu, Restaurant
-from .auth_routes import authenticate
 from flask_login import current_user
 
 menu_item_routes = Blueprint('items', __name__)
@@ -29,14 +28,12 @@ def get_menu_item_by_id(id):
 ### Update a menu item by id
 @menu_item_routes.route('/<int:id>', methods=['PUT'])
 def update_menu_item_by_id(id):
-    data = authenticate()
+    ## make sure user is logged in
+    if not current_user.is_authenticated:
+        return jsonify({"error": "Must be logged in"}), 401
 
-    # check if there is a user
-    if isinstance(data, tuple):
-        (err, statusCode) = data
-        return err, statusCode
-
-    userId = data['id']
+    # get the current user id
+    userId = current_user.to_dict()["id"]
 
     item = MenuItem.query.get(id)
 
@@ -67,14 +64,12 @@ def update_menu_item_by_id(id):
 ### delete a menu item by id
 @menu_item_routes.route('/<int:id>', methods=['DELETE'])
 def delete_an_item_by_id(id):
-    data = authenticate()
+    ## make sure user is logged in
+    if not current_user.is_authenticated:
+        return jsonify({"error": "Must be logged in"}), 401
 
-    # check if there is a user
-    if isinstance(data, tuple):
-        (err, statusCode) = data
-        return err, statusCode
-
-    userId = data['id']
+    # get the current user id
+    userId = current_user.to_dict()["id"]
 
     item = MenuItem.query.get(id)
 

@@ -20,7 +20,7 @@ function MenuItem({ items }) {
               {item.name}
               <p className="itemdes">{item.description}</p>
               <div className="DesAndButton">
-                ${item.price}
+                ${item.price.toFixed(2)}
                 <button onClick={addItemToCart} className="AddButton">
                   <i className="fa-solid fa-circle-plus"></i>
                 </button>
