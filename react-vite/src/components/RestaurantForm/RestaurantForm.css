@@ -1,0 +1,62 @@
+.rfContainer{
+    background:
+        linear-gradient(to bottom, rgba(6, 6, 6, 0.6), rgba(6, 6, 6, 0.6)),
+        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.rfFormContainer{
+    background-color: white;
+    width: 550px;
+    height: 600px;
+    margin-right: 30px;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2), 0px 6px 20px 0px rgba(0, 0, 0, 0.19);
+
+}
+.rfLeft{
+    margin-left: 30px;
+}
+.rfLeft > h1, p {
+    color: white;
+    margin: 0;
+}
+.rfForm{
+    display: flex;
+    flex-direction: column;
+    padding: 0 30px;
+
+}
+
+.rfForm > input {
+    border: none;
+    background-color: rgb(237, 237, 237);
+    height: 35px;
+    border-radius: 5px;
+    font-size: 16px;
+    padding-left: 14px;
+    margin-bottom: 20px;
+}
+.rfForm > input:focus{
+    background-color: white;
+}
+#zip_code{
+    width: 25%;
+}
+#zip_code::-webkit-inner-spin-button,
+#zip_code::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#city{
+    width: 50%;
+}
+#state{
+    width: 50%;
+}

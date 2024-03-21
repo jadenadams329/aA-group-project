@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkLogout } from "../../redux/session";
-
+import { Link } from "react-router-dom";
 function ProfileButton() {
 	const dispatch = useDispatch();
 	const [showMenu, setShowMenu] = useState(false);
@@ -51,6 +51,11 @@ function ProfileButton() {
 							<>
 								<li>{user.username}</li>
 								<li>{user.email}</li>
+								<li>
+									<Link to={'restaurants/new'}>
+										Add your restaurant
+									</Link>
+								</li>
 								<li>
 									<button onClick={logout}>Log Out</button>
 								</li>
