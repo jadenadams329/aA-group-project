@@ -10,6 +10,9 @@ def menu_exists(form, field):
     if menu:
         raise ValidationError('Menu Already exists')
 
+# def more_than_four_menu(form, field):
+
+
 class MenuForm(FlaskForm):
     name = SelectField('name', choices=['Breakfast', 'Lunch', 'Dinner', 'Beverages'], validators=[DataRequired(), menu_exists])
     restaurant_id = None

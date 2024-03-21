@@ -13,6 +13,13 @@
     cursor: pointer;
 }
 
+.Categories a {
+    text-decoration: underline black;
+    color: blue;
+    font-weight: bold;
+    font-size: 18px;
+}
+
 .Items {
     display: flex;
     flex-wrap: wrap;

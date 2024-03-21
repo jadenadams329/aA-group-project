@@ -86,7 +86,7 @@ function MenuItemForm({ item, formType }) {
               : "Update Your Item"}
           </h2>
           <label>
-            <h4>Item Name</h4>
+            <h4>Give the Item a Name!</h4>
             {errors.name && <span className="ErrorMsg">{errors.name}</span>}
             <input
               type="text"
@@ -96,7 +96,7 @@ function MenuItemForm({ item, formType }) {
             />
           </label>
           <label>
-            <h4>Default Price</h4>
+            <h4>How much is the item for?</h4>
             {errors.price && <span className="ErrorMsg">{errors.price}</span>}
             <input
               type="number"
