@@ -26,7 +26,7 @@ def get_menu_item_by_id(id):
     return item.to_dict()
 
 ### Update a menu item by id
-@menu_item_routes.route('/<int:id>', methods=['PUT'])
+@menu_item_routes.route('/<int:id>/edit', methods=['PUT'])
 def update_menu_item_by_id(id):
     ## make sure user is logged in
     if not current_user.is_authenticated:

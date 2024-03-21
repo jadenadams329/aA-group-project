@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
         element: <h1>Welcome!</h1>
       },
       {
-        path: "items/:id",
+        path: "items/:id/edit",
         element: <EditItemForm />
       },
       {
