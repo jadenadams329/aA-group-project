@@ -5,6 +5,7 @@ import RestaurantsPage from '../components/RestaurantsPage/RestaurantsPage';
 import Layout from './Layout';
 import RestaurantDetailsPage from '../components/RestaurantDetailsPage/RestaurantDetailsPage';
 import CheckoutPage from '../components/Checkout/CheckoutPage';
+import Confirmation from '../components/Checkout/Confirmation';
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: 'checkout',
         element: < CheckoutPage />
+      },
+      {
+        path: 'confirmed',
+        element: < Confirmation />
       }
     ],
   },

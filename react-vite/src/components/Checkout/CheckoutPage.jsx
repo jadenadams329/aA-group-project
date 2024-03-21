@@ -7,8 +7,13 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { FaChevronCircleDown } from "react-icons/fa";
 import { FaCircleChevronUp } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import Confirmation from "./Confirmation";
+
+
 
 export default function CheckoutPage() {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session?.user);
   const cart = useSelector((state) => state.cart?.cart);
@@ -17,6 +22,8 @@ export default function CheckoutPage() {
   const [lastFour, setLastFour] = useState();
   const [counted, setCounted] = useState();
   const [showPics, setShowPics] = useState(true);
+
+
   const tax = 0.09
   const getCount = () => {
     let count = 0;
@@ -33,7 +40,7 @@ export default function CheckoutPage() {
   const getSubTotal = () => {
     if (cart?.length) {
       cart.map((item) => (subTotal += item.price * item.quantity));
-      return subTotal.toFixed(2);
+      return subTotal
     }
     return subTotal.toFixed(2);
   };
@@ -61,6 +68,19 @@ export default function CheckoutPage() {
         setCounted(getCount());
       });
   }, [dispatch, subTotal, counted]);
+
+
+  const finished = () => {
+
+const sub = getSubTotal()
+const tot= getTotal()
+  // navigate(<Confirmation lastFour={lastFour} total={getTotal()} subtotal={getSubTotal()}  />)
+  navigate('/confirmed',tot,sub,lastFour)
+  }
+
+
+
+
 
   return (
     <div>
@@ -156,14 +176,14 @@ export default function CheckoutPage() {
             )}
             {showPics &&
               cart.map((item) => (
-                <img
+                <img key={item.photo_url}
                   style={{ height: "30px", width: " 30px", margin: "5px" }}
                   src={item.photo_url}
                 ></img>
               ))}
             {!showPics &&
               cart.map((item) => (
-                <div style={{ height: "50px" }}>
+                <div key={item.name} style={{ height: "50px" }}>
                   <hr></hr>
                   <p>{item.quantity}</p>{" "}
                   <p
@@ -197,7 +217,7 @@ export default function CheckoutPage() {
                     <p>Taxes <p style={{position:'relative',left:'300px',bottom:'40px',height:'2px',margin:'none'}}>${(subTotal*tax).toFixed(2)}</p></p>
                     <hr></hr>
                     <h2>Total <p style={{position:'relative',left:'280px',bottom:'58px',margin:'none'}}>${getTotal()}</p></h2>
-                    <button className="placeOrderButton">Place Order</button>
+                    <button className="placeOrderButton" onClick={finished}>Place Order</button>
                     </div>
 
         </div>
