@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import MenuItem, db, Menu, Restaurant
 from flask_login import current_user
+from app.forms import MenuItemForm
 
 menu_item_routes = Blueprint('items', __name__)
 
@@ -51,15 +52,18 @@ def update_menu_item_by_id(id):
     if userId != restaurant_owner_id:
         return jsonify({'message': 'Unauthorized'}), 401
 
-    data = request.json
+    form = MenuItemForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    for key, value in data.items():
-        setattr(item, key, value)
-
-    db.session.commit()
-
-    return item.to_dict()
-
+    if form.validate_on_submit():
+        item.name = form.name.data
+        item.price = form.price.data
+        item.description = form.description.data
+        item.category = form.category.data
+        item.photo_url = form.photo_url.data
+        db.session.commit()
+        return item.to_dict()
+    return form.errors, 400
 
 ### delete a menu item by id
 @menu_item_routes.route('/<int:id>', methods=['DELETE'])
