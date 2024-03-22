@@ -4,10 +4,9 @@ import DeleteItemModal from "./DeleteItemModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import { Link } from "react-router-dom";
 
-function MenuItem({ items }) {
+function MenuItem({ restId, items }) {
   const userId = useSelector(state => state.session ? state.session?.user?.id : null)
-  const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.owner_id : null)
-  const restId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.id : null)
+  const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data[restId]?.owner_id : null)
 
   const addItemToCart = () => {
 

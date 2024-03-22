@@ -66,8 +66,7 @@ function MenuItemForm({ item, formType }) {
       }
       navigate(`/restaurants/${restId}`);
     } catch (error) {
-      const errs = await error.json();
-      setErrors(errs.errors);
+        
     }
   };
 

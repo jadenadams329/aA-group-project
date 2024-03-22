@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 import "./Category.css";
 
-function Category({ menuId, breakfastItems, lunchItems, dinnerItems, beverageItems }) {
+function Category({ restId, menuId, breakfastItems, lunchItems, dinnerItems, beverageItems }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const userId = useSelector(state => state.session ? state.session?.user?.id : null)
   const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.owner_id : null)
@@ -70,7 +70,7 @@ function Category({ menuId, breakfastItems, lunchItems, dinnerItems, beverageIte
         ))}
       </div>
       <div className="Items">
-        <MenuItem items={itemsToRender} />
+        <MenuItem restId={restId} items={itemsToRender} />
       </div>
     </div>
   );

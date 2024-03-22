@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllMenus } from "../../redux/menu";
 import Category from "./Category";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import CreateMenuModal from "./CreateMenuModal";
 
 function Menu({ id }) {
   const dispatch = useDispatch();
@@ -13,8 +15,8 @@ function Menu({ id }) {
   const dinnerItems = menus.filter(menu => menu.name === 'Dinner')[0]?.menu_items
   const beverageItems = menus.filter(menu => menu.name === 'Beverages')[0]?.menu_items
   const menuId = menus.filter(menu => menu.name === selectedMenu)[0]?.id
-  // const userId = useSelector(state => state.session ? state.session?.user?.id : null)
-  // const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.owner_id : null)
+  const userId = useSelector(state => state.session ? state.session?.user?.id : null)
+  const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data[id]?.owner_id : null)
 
   useEffect(() => {
     dispatch(getAllMenus(id));
@@ -35,13 +37,19 @@ function Menu({ id }) {
               {menu.name}
             </div>
           ))}
-
+        {userId === ownerId && menus.length < 4 ?
+        <OpenModalButton
+          buttonText="Add A Menu"
+          modalComponent={
+            <CreateMenuModal restId={id}/>
+          }/>
+          : null}
       </div>
       <div className="CategoriesType">
-        {selectedMenu === "Breakfast" && <Category menuId={menuId} breakfastItems={breakfastItems}/>}
-        {selectedMenu === "Lunch" && <Category menuId={menuId} lunchItems={lunchItems}/>}
-        {selectedMenu === "Dinner" && <Category menuId={menuId} dinnerItems={dinnerItems}/>}
-        {selectedMenu === "Beverages" && <Category menuId={menuId} beverageItems={beverageItems}/>}
+        {selectedMenu === "Breakfast" && <Category restId={id} menuId={menuId} breakfastItems={breakfastItems}/>}
+        {selectedMenu === "Lunch" && <Category restId={id} menuId={menuId} lunchItems={lunchItems}/>}
+        {selectedMenu === "Dinner" && <Category restId={id} menuId={menuId} dinnerItems={dinnerItems}/>}
+        {selectedMenu === "Beverages" && <Category restId={id} menuId={menuId} beverageItems={beverageItems}/>}
       </div>
     </>
   );
