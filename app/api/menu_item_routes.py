@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import MenuItem, db, Menu, Restaurant
 from flask_login import current_user
-from app.forms import MenuItemForm
+from app.forms import EditItemForm
 
 menu_item_routes = Blueprint('items', __name__)
 
@@ -27,7 +27,7 @@ def get_menu_item_by_id(id):
     return item.to_dict()
 
 ### Update a menu item by id
-@menu_item_routes.route('/<int:id>/edit', methods=['PUT'])
+@menu_item_routes.route('/<int:id>', methods=['PUT'])
 def update_menu_item_by_id(id):
     ## make sure user is logged in
     if not current_user.is_authenticated:
@@ -52,10 +52,11 @@ def update_menu_item_by_id(id):
     if userId != restaurant_owner_id:
         return jsonify({'message': 'Unauthorized'}), 401
 
-    form = MenuItemForm()
+    form = EditItemForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
+        item.id = id
         item.name = form.name.data
         item.price = form.price.data
         item.description = form.description.data

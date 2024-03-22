@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createItem } from "../../redux/menu_item";
+import { createItem, updateItem } from "../../redux/menu_item";
 import "./MenuItemForm.css";
 import { getOneMenu } from "../../redux/menu";
 
@@ -48,7 +48,7 @@ function MenuItemForm({ item, formType }) {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      item = { ...name, price, description, category, photo_url, menu_id };
+      item = { name, price, description, category, photo_url, menu_id };
       if (formType === "Create Item") {
         const newItem = {
           name,
@@ -59,12 +59,15 @@ function MenuItemForm({ item, formType }) {
           menu_id,
         };
         await dispatch(createItem(menu_id, newItem));
-        navigate(`/restaurants/${restId}`);
+      } else if(formType === "Update Item") {
+        item.id = id
+        const editItem = await dispatch(updateItem(item))
+        item = editItem
       }
+      navigate(`/restaurants/${restId}`);
     } catch (error) {
       const errs = await error.json();
-      console.log(errs);
-      setErrors(errs);
+      setErrors(errs.errors);
     }
   };
 
@@ -73,10 +76,17 @@ function MenuItemForm({ item, formType }) {
   return (
     <form className="ItemForm" onSubmit={handleSubmit}>
       <div className="Pic">
-        <img
-          className="FormPic"
-          src="https://images.unsplash.com/photo-1554672408-a5f6022e74c1?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        />
+        {formType === "Create Item" ?
+          <img
+            className="FormPic"
+            src="https://images.unsplash.com/photo-1554672408-a5f6022e74c1?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          />
+          :
+          <img
+            className="FormPic"
+            src="https://images.unsplash.com/photo-1615642036791-a9fa3dc117b2?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          />
+        }
       </div>
       <div className="Form">
         <div>
