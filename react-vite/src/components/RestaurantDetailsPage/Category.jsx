@@ -10,6 +10,7 @@ function Category({ restId, menuId, breakfastItems, lunchItems, dinnerItems, bev
   const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.owner_id : null)
   const handleCategoryClick = category => setSelectedCategory(category);
   const CategoryList = items => items ? ['All Items', ...new Set(items.map(item => item.category))] : [];
+  
   const breakfastCat = CategoryList(breakfastItems);
   const lunchCat = CategoryList(lunchItems);
   const dinnerCat = CategoryList(dinnerItems);
