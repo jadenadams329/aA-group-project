@@ -47,7 +47,7 @@ function Menu({ id }) {
       </div>
       <div className="CategoriesType">
         {selectedMenu === "Breakfast" && <Category restId={id} menuId={menuId} breakfastItems={breakfastItems}/>}
-        {selectedMenu === "Lunch" && <Category restId={id} menuId={menuId} lunchItems={lunchItems}/>}
+        {selectedMenu === "Lunch" && <Category  restId={id} menuId={menuId} lunchItems={lunchItems}/>}
         {selectedMenu === "Dinner" && <Category restId={id} menuId={menuId} dinnerItems={dinnerItems}/>}
         {selectedMenu === "Beverages" && <Category restId={id} menuId={menuId} beverageItems={beverageItems}/>}
       </div>

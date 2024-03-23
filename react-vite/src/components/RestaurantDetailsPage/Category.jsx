@@ -1,10 +1,12 @@
 import MenuItem from "./MenuItem";
+import DeleteMenuModal from "./DeleteMenuModal";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 import "./Category.css";
 
-function Category({ restId, menuId, breakfastItems, lunchItems, dinnerItems, beverageItems }) {
+function Category({restId, menuId, breakfastItems, lunchItems, dinnerItems, beverageItems }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const userId = useSelector(state => state.session ? state.session?.user?.id : null)
   const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data[restId]?.owner_id : null)
@@ -15,6 +17,7 @@ function Category({ restId, menuId, breakfastItems, lunchItems, dinnerItems, bev
   const lunchCat = CategoryList(lunchItems);
   const dinnerCat = CategoryList(dinnerItems);
   const beverageCat = CategoryList(beverageItems);
+
 
   let itemsToRender;
   if (selectedCategory === "All Items") {
@@ -33,14 +36,25 @@ function Category({ restId, menuId, breakfastItems, lunchItems, dinnerItems, bev
     itemsToRender = breakfastItems || lunchItems || dinnerItems || beverageItems;
   }
 
+
+
   return (
     <div className="BottomContainer">
       <div className="Categories">
-        {ownerId === userId && (
-          <Link to={`/menus/${menuId}/items/new`}>
-            Add an Item
-          </Link>
-        )}
+        <div className="Authorties">
+          {ownerId === userId ?
+            <OpenModalButton
+              buttonText='Delete Menu'
+              modalComponent={
+                <DeleteMenuModal menuId={menuId}/>
+              } />
+          : null}
+          {ownerId === userId && (
+            <Link to={`/menus/${menuId}/items/new`}>
+              Add an Item
+            </Link>
+          )}
+        </div>
         {breakfastCat.map(category => (
           <ul key={category}>
             <li className={selectedCategory === category ? 'SelectedCat' : ''} onClick={() => handleCategoryClick(category)}>

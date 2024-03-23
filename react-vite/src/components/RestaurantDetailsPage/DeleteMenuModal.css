@@ -1,0 +1,16 @@
+.DeleteMenuForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    font-size: 15px;
+}
+
+h2 {
+    margin-bottom: 0px ;
+}
+
+.SelectionAndPhoto {
+    align-items: center;
+}
