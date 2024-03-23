@@ -7,10 +7,10 @@ import "./Category.css";
 function Category({ restId, menuId, breakfastItems, lunchItems, dinnerItems, beverageItems }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const userId = useSelector(state => state.session ? state.session?.user?.id : null)
-  const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.owner_id : null)
+  const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data[restId]?.owner_id : null)
   const handleCategoryClick = category => setSelectedCategory(category);
   const CategoryList = items => items ? ['All Items', ...new Set(items.map(item => item.category))] : [];
-  
+
   const breakfastCat = CategoryList(breakfastItems);
   const lunchCat = CategoryList(lunchItems);
   const dinnerCat = CategoryList(dinnerItems);
