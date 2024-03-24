@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
-from wtforms.validators import DataRequired, ValidationError
+from wtforms.validators import DataRequired, ValidationError, Length
 from app.models import Restaurant
 
 def restaurant_name_exists(form, field):
@@ -17,4 +17,4 @@ class RestaurantForm(FlaskForm):
     address = StringField('address', validators=[DataRequired()])
     city = StringField('city', validators=[DataRequired()])
     state = StringField('state', validators=[DataRequired()])
-    zip_code = IntegerField('zip_code', validators=[DataRequired()])
+    zip_code = StringField('zip_code', validators=[DataRequired(), Length(min=5, max=5)])

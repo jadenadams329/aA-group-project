@@ -145,9 +145,11 @@ nav{
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .locationDiv > p {
   font-size: 11pt;
   font-weight: 500;
+  color: black;
 }
