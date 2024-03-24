@@ -1,0 +1,47 @@
+.DeleteItemForm {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+    font-size: 20px;
+}
+
+.NameAndImage {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    color: blue;
+}
+
+.ItemName {
+    font-weight: bold;
+}
+
+.itemImage {
+    height: 150px;
+    width: 180px;
+    border-radius: 15px;
+    margin-left: 15px;
+    object-fit: cover;
+}
+
+.NopeButton {
+    box-shadow: 3px 3px 3px black;
+    color: white;
+    background-color: black;
+    height: 30px;
+    width: 180px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.DeleteButton {
+    background-color: orangered;
+    color: white;
+    box-shadow: 3px 3px 3px black;
+    height: 30px;
+    width: 180px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-right: 20px;
+}

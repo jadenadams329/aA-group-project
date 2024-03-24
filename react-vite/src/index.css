@@ -4,11 +4,10 @@ html {
     max-width: 1840px;
     font-family: "Poppins", sans-serif;
 }
+.pageContainer{
+    margin: 0 25px;
 
-@media only screen and (max-width: 1900px) {
-    /* Your CSS rules for screens under 1900px go here */
-    /* For instance, you can adjust font sizes, layout, or hide certain elements */
-    html {
-        margin: 0 30px;
-    }
-  }
+}
+body{
+    margin: 0;
+}

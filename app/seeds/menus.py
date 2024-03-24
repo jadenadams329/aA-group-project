@@ -3,8 +3,24 @@ from sqlalchemy.sql import text
 
 
 def seed_menus():
-    breakfast = Menu(name="Breakfast", restaurant_id=1)
-    db.session.add(breakfast)
+    menu1 = Menu(name="Breakfast", restaurant_id=1)
+    menu2 = Menu(name="Lunch", restaurant_id=1)
+    menu3 = Menu(name="Dinner", restaurant_id=1)
+    menu4 = Menu(name="Beverages", restaurant_id=1)
+    menu5 = Menu(name="Breakfast", restaurant_id=2)
+    menu6 = Menu(name="Lunch", restaurant_id=2)
+    menu7 = Menu(name="Dinner", restaurant_id=2)
+    menu8 = Menu(name="Beverages", restaurant_id=2)
+    menu9 = Menu(name="Breakfast", restaurant_id=3)
+    menu10 = Menu(name="Lunch", restaurant_id=3)
+    menu11 = Menu(name="Dinner", restaurant_id=3)
+    menu12 = Menu(name="Beverages", restaurant_id=3)
+
+    menus = [menu1, menu2, menu3, menu4, menu5, menu6, menu7, menu8, menu9, menu10, menu11, menu12]
+
+    for menu in menus:
+        db.session.add(menu)
+
     db.session.commit()
 
 
