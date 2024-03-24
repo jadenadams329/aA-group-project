@@ -5,9 +5,11 @@ import { getAllMenus } from "../../redux/menu";
 import Category from "./Category";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import CreateMenuModal from "./CreateMenuModal";
+import DeleteMenuModal from "./DeleteMenuModal";
 
 function Menu({ id }) {
   const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false)
   const [selectedMenu, setSelectedMenu] = useState("Breakfast")
   const menus = Object.values(useSelector((state) => (state.menus ? state.menus : null)));
   const breakfastItems = menus.filter(menu => menu.name === 'Breakfast')[0]?.menu_items
@@ -20,6 +22,7 @@ function Menu({ id }) {
 
   useEffect(() => {
     dispatch(getAllMenus(id));
+    setLoaded(true)
   }, [dispatch, id]);
 
   if (!menus) return <>Loading...</>;
@@ -44,6 +47,13 @@ function Menu({ id }) {
             <CreateMenuModal restId={id}/>
           }/>
           : null}
+        {ownerId === userId ?
+        <OpenModalButton
+          buttonText='Delete Menu'
+          modalComponent={
+            <DeleteMenuModal menus={menus} selectedMenu={selectedMenu}/>
+          } />
+        : null}
       </div>
       <div className="CategoriesType">
         {selectedMenu === "Breakfast" && <Category restId={id} menuId={menuId} breakfastItems={breakfastItems}/>}

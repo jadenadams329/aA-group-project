@@ -1,6 +1,4 @@
 import MenuItem from "./MenuItem";
-import DeleteMenuModal from "./DeleteMenuModal";
-import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
@@ -17,7 +15,6 @@ function Category({restId, menuId, breakfastItems, lunchItems, dinnerItems, beve
   const lunchCat = CategoryList(lunchItems);
   const dinnerCat = CategoryList(dinnerItems);
   const beverageCat = CategoryList(beverageItems);
-
 
   let itemsToRender;
   if (selectedCategory === "All Items") {
@@ -36,25 +33,14 @@ function Category({restId, menuId, breakfastItems, lunchItems, dinnerItems, beve
     itemsToRender = breakfastItems || lunchItems || dinnerItems || beverageItems;
   }
 
-
-
   return (
     <div className="BottomContainer">
       <div className="Categories">
-        <div className="Authorties">
-          {ownerId === userId ?
-            <OpenModalButton
-              buttonText='Delete Menu'
-              modalComponent={
-                <DeleteMenuModal menuId={menuId}/>
-              } />
-          : null}
-          {ownerId === userId && (
-            <Link to={`/menus/${menuId}/items/new`}>
-              Add an Item
-            </Link>
-          )}
-        </div>
+        {ownerId === userId && (
+          <Link to={`/menus/${menuId}/items/new`}>
+            Add an Item
+          </Link>
+        )}
         {breakfastCat.map(category => (
           <ul key={category}>
             <li className={selectedCategory === category ? 'SelectedCat' : ''} onClick={() => handleCategoryClick(category)}>
