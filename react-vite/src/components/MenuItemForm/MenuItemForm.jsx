@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { createItem, updateItem } from "../../redux/menu_item";
 import "./MenuItemForm.css";
 import { getOneItem } from "../../redux/menu_item";
-import { getOneMenu } from "../../redux/menu";
 
 function MenuItemForm({ item, formType }) {
   const { id } = useParams();
+  const menu_id = id
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [name, setName] = useState(item?.name);
@@ -17,13 +17,15 @@ function MenuItemForm({ item, formType }) {
   const [photo_url, setPhoto_url] = useState(item?.photo_url);
   const [errors, setErrors] = useState({});
   const [loaded, setLoaded] = useState(false);
-  const menu_id = useSelector(state => state.menu_items ? state.menu_items[id]?.menu_id : null)
-  const restId = useSelector(state => state.menus ? state.menus[menu_id]?.restaurant_id : null)
+  const restId = useSelector(state => state.menus ? state.menus[id]?.restaurant_id : null)
+
   console.log(restId)
+  console.log(menu_id)
+  
+
 
   useEffect(() => {
     dispatch(getOneItem(id));
-    dispatch(getOneMenu(menu_id))
     setLoaded(true);
     const errs = {};
     if (!name) errs.name = "Please provide a name for the Item.";
