@@ -8,7 +8,6 @@ import { getOneMenu } from "../../redux/menu";
 
 function MenuItemForm({ item, formType }) {
   const { id } = useParams();
-  const itemId = id
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [name, setName] = useState(item?.name);
@@ -18,22 +17,29 @@ function MenuItemForm({ item, formType }) {
   const [photo_url, setPhoto_url] = useState(item?.photo_url);
   const [errors, setErrors] = useState({});
   const [loaded, setLoaded] = useState(false);
-  const menu_id = useSelector(state => state.menu_items[itemId]?.menu_id)
+  let menu_id
+  let item_id
+  if (formType === 'Create Item'){
+    menu_id = id
+  } else if (formType === 'Update Item'){
+    item_id = id
+    menu_id = useSelector(state => state.menu_items[item_id]?.menu_id)
+  }
+
   const restId = useSelector(state => state.menus[menu_id]?.restaurant_id)
-  console.log(menu_id)
-  console.log(itemId)
 
   useEffect(() => {
     const fetch = async () => {
-      if(formType === 'Create Item') {
-        
+      if(formType === 'Update Item') {
+        await dispatch(getOneItem(item_id))
+        await dispatch(getOneMenu(menu_id))
+        setLoaded(true)
+      } else {
+        setLoaded(true)
       }
-      await dispatch(getOneItem(itemId))
-      await dispatch(getOneMenu(menu_id))
-      setLoaded(true)
     }
     fetch()
-  }, [dispatch, itemId, menu_id])
+  }, [dispatch, formType, item_id, menu_id])
 
   useEffect(() => {
     const errs = {};
@@ -69,10 +75,9 @@ function MenuItemForm({ item, formType }) {
           photo_url,
           menu_id,
         };
-
         await dispatch(createItem(menu_id, newItem));
       } else if(formType === "Update Item") {
-        item.id = itemId
+        item.id = item_id
         const editItem = await dispatch(updateItem(item))
         item = editItem
       }
