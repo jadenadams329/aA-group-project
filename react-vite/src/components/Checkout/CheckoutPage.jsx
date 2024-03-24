@@ -8,7 +8,7 @@ import { FaRegQuestionCircle } from "react-icons/fa";
 import { FaChevronCircleDown } from "react-icons/fa";
 import { FaCircleChevronUp } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-import Confirmation from "./Confirmation";
+
 
 
 
