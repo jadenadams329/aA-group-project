@@ -29,22 +29,65 @@ def get_restaurant_by_id(id):
     except Exception as err:
         return jsonify(error=str(err)), 500
 
+## Update Restaurant
+@restaurant_routes.route("/<int:id>", methods=["PUT"])
+def update_restaurant(id):
+    try:
+        # make sure user is logged in
+        if not current_user.is_authenticated:
+            return jsonify({"error": "Must be logged in to update restaurant"}), 401
+
+        # get the current user id
+        userId = current_user.to_dict()["id"]
+
+        # get the restaurant by id
+        restaurant = Restaurant.query.get(id)
+        if not restaurant:
+            return jsonify(error="Restaurant not found"), 404
+
+        # only allow the owner to update the restaurant
+        if restaurant.owner_id != userId:
+            return (
+                jsonify({"error": "You are not authorized to update this restaurant"}),
+                403,
+            )
+
+        # get form data
+        data = request.get_json()
+
+        # validate incoming request data
+        if data:
+            restaurant.name = data.get("name", restaurant.name)
+            restaurant.logo = data.get("logo", restaurant.logo)
+            restaurant.address = data.get("address", restaurant.address)
+            restaurant.city = data.get("city", restaurant.city)
+            restaurant.state = data.get("state", restaurant.state)
+            restaurant.zip_code = data.get("zip_code", restaurant.zip_code)
+
+            db.session.commit()
+            return restaurant.to_dict()
+        return {"error": "No data provided"}, 400
+    except Exception as err:
+        return jsonify(error=str(err)), 500
+
+
 ### Get All Menus from a specific Restaurant
-@restaurant_routes.route('/<int:id>/menus')
+@restaurant_routes.route("/<int:id>/menus")
 def get_restaurants_menu_by_id(id):
     restaurant = Restaurant.query.get(id)
 
     if not restaurant:
-        return jsonify({'error': 'Restaurant not found!'}), 404
+        return jsonify({"error": "Restaurant not found!"}), 404
 
     menus = Menu.query.filter(Menu.restaurant_id == id).all()
     menus_list = []
     for menu in menus:
         menu_dict = menu.to_dict()
-        menu_dict['menu_items'] = [menu_item.to_dict() for menu_item in menu.menu_items]
+        menu_dict["menu_items"] = [menu_item.to_dict() for menu_item in menu.menu_items]
         menus_list.append(menu_dict)
 
     return menus_list
+
 
 ## Add a restaurant
 @restaurant_routes.route("", methods=["POST"])
@@ -108,10 +151,7 @@ def create_menu(id):
     form.restaurant_id = id
 
     if form.validate_on_submit():
-        newMenu = Menu(
-            name=form.data['name'],
-            restaurant_id=id
-        )
+        newMenu = Menu(name=form.data["name"], restaurant_id=id)
         db.session.add(newMenu)
         db.session.commit()
         return newMenu.to_dict()
