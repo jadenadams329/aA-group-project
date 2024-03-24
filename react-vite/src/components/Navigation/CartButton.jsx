@@ -14,22 +14,34 @@ function CartButton() {
 	const rest = useSelector((state) => state.cart?.restaurant)
 	// let cart = []
 	const [showMenu, setShowMenu] = useState(false);
-	const [counted, setCounted ] = useState(0)
+	const [counted, setCounted ] = useState()
 	const ulRef = useRef();
 	const toggleMenu = (e) => {
 		e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
 		setShowMenu(!showMenu);
 	};
 	const getCount = () =>{
+		let count = 0
 		if (cart?.length){
-			return cart.length
+			cart.map((item) => (
+				count += item.quantity
+				))
+				// console.log(count)
+			return count
+
 		}else{
-		return 0
+		return count
 		}
+
+
 }
 	useEffect(()=>{
 		dispatch(getTheCart()).then(() => setCounted(getCount()))
-		console.log(getCount(), "this is the cart in the cartbutton")
+		// console.log(getCount(), "this is the cart in the cartbutton")
+
+
+
+
 	},[dispatch,counted])
 
 	useEffect(() => {

@@ -5,8 +5,10 @@ import RestaurantsPage from '../components/RestaurantsPage/RestaurantsPage';
 import Layout from './Layout';
 import RestaurantDetailsPage from '../components/RestaurantDetailsPage/RestaurantDetailsPage';
 import CheckoutPage from '../components/Checkout/CheckoutPage';
+import RestaurantForm from '../components/RestaurantForm/RestaurantForm';
 import CreateItemForm from '../components/MenuItemForm/CreateItemForm';
 import EditItemForm from '../components/MenuItemForm/EditItemForm';
+import Confirmation from '../components/Checkout/Confirmation';
 
 export const router = createBrowserRouter([
   {
@@ -41,12 +43,16 @@ export const router = createBrowserRouter([
         element: <RestaurantDetailsPage/>
       },
       {
+        path: "restaurants/new",
+        element: <RestaurantForm />
+      },
+      {
         path: 'checkout',
         element: < CheckoutPage />
       },
       {
-        path: '*',
-        element: <h1>Page Not Found</h1>
+        path: 'confirmed',
+        element:<Confirmation/>
       }
     ],
   },

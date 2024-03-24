@@ -1,8 +1,11 @@
 from flask import Blueprint
+from app.models.Cart import Cart
+from .cart_routes import fullCart
 
 checkout = Blueprint('checkout',__name__)
 
 
-@checkout.route('')
+@checkout.route('',methods=['GET','POST'])
 def checkoutPage():
-    return '<h1>test</h1>'
+    cart = fullCart()
+    return cart
