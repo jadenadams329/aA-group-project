@@ -44,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: 'checkout',
         element: < CheckoutPage />
+      },
+      {
+        path: 'confirmed',
+        element:<Confirmation/>
       }
     ],
   },
