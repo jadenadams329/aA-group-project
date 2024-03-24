@@ -34,6 +34,14 @@ function UpdateRestaurantForm() {
         }
     }, [restaurant]);
 
+    useEffect(() => {
+        const validationErrors = {}
+        if (zip > 99999 || zip < 10000) {
+            validationErrors["zip"] = "Please enter valid Zip Code"
+        }
+        setErrors(validationErrors)
+    },[zip])
+
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		const formData = { name, logo, address, city, state, zip_code: zip };
@@ -171,11 +179,11 @@ function UpdateRestaurantForm() {
 									value={zip}
 									placeholder='92084'
 								/>
-								{errors && errors.zip_code && <p className='error'>{`*${errors.zip_code[0]}`}</p>}
+								{errors && errors.zip && <p className='error'>{`*${errors.zip}`}</p>}
 							</div>
 
 							<div>
-								<button className='rfButton' type='submit'>
+								<button className='rfButton' type='submit' disabled={errors && errors.zip && !!errors.zip}>
 									Submit
 								</button>
 							</div>
