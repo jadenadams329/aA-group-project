@@ -55,7 +55,7 @@ const getCount =()=>{
 		document.addEventListener("mousedown", closeMenu);
 
 		return () => document.removeEventListener("mousedown", closeMenu);
-	}, [showMenu]);
+	}, [showMenu,dispatch]);
 
 	const ulClassName = "cart-dropdown" + (showMenu ? "" : " hidden");
     //TODO ADD CART QTY next to cart word
