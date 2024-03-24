@@ -1,0 +1,17 @@
+.MenuTypeContainer {
+  display: flex;
+  font-size: 25px;
+  gap: 25px;
+  font-weight: bold;
+  text-decoration: underline;
+  padding-bottom: 20px;
+}
+
+.MenuName:hover {
+  cursor: pointer;
+}
+
+.SelectedMenu {
+  font-size: 30px;
+  color: blue;
+}

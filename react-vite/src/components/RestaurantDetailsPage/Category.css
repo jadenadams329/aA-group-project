@@ -1,0 +1,34 @@
+.BottomContainer {
+    display: flex;
+}
+
+.Categories ul {
+    list-style: none;
+    padding-left: 0;
+    padding-right: 100px;
+    padding-bottom: 10px;
+}
+
+.Categories li:hover {
+    cursor: pointer;
+}
+
+.Categories a {
+    text-decoration: underline black;
+    color: blue;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.Items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    height: 230px;
+}
+
+.SelectedCat {
+    color: gold;
+    font-size: 18px;
+    text-decoration: underline;
+}

@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from app.models import MenuItem, db, Menu, Restaurant
-from .auth_routes import authenticate
 from flask_login import current_user
+from app.forms import EditItemForm
 
 menu_item_routes = Blueprint('items', __name__)
 
@@ -29,14 +29,12 @@ def get_menu_item_by_id(id):
 ### Update a menu item by id
 @menu_item_routes.route('/<int:id>', methods=['PUT'])
 def update_menu_item_by_id(id):
-    data = authenticate()
+    ## make sure user is logged in
+    if not current_user.is_authenticated:
+        return jsonify({"error": "Must be logged in"}), 401
 
-    # check if there is a user
-    if isinstance(data, tuple):
-        (err, statusCode) = data
-        return err, statusCode
-
-    userId = data['id']
+    # get the current user id
+    userId = current_user.to_dict()["id"]
 
     item = MenuItem.query.get(id)
 
@@ -54,27 +52,29 @@ def update_menu_item_by_id(id):
     if userId != restaurant_owner_id:
         return jsonify({'message': 'Unauthorized'}), 401
 
-    data = request.json
+    form = EditItemForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    for key, value in data.items():
-        setattr(item, key, value)
-
-    db.session.commit()
-
-    return item.to_dict()
-
+    if form.validate_on_submit():
+        item.id = id
+        item.name = form.name.data
+        item.price = form.price.data
+        item.description = form.description.data
+        item.category = form.category.data
+        item.photo_url = form.photo_url.data
+        db.session.commit()
+        return item.to_dict()
+    return form.errors, 400
 
 ### delete a menu item by id
 @menu_item_routes.route('/<int:id>', methods=['DELETE'])
 def delete_an_item_by_id(id):
-    data = authenticate()
+    ## make sure user is logged in
+    if not current_user.is_authenticated:
+        return jsonify({"error": "Must be logged in"}), 401
 
-    # check if there is a user
-    if isinstance(data, tuple):
-        (err, statusCode) = data
-        return err, statusCode
-
-    userId = data['id']
+    # get the current user id
+    userId = current_user.to_dict()["id"]
 
     item = MenuItem.query.get(id)
 

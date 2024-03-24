@@ -1,9 +1,15 @@
+const LOAD_ONE_ITEM = 'items/LOAD_ONE_ITEM'
 const LOAD_ITEMS = 'items/LOAD_ITEMS'
-const ADD_ITEM = 'item/ADD_ITEM'
-const UPDATE_ITEM = 'item/UPDATE_ITEM'
-const DELETE_ITEM = 'item/DELETE_ITEM'
+const ADD_ITEM = 'items/ADD_ITEM'
+const UPDATE_ITEM = 'items/UPDATE_ITEM'
+const DELETE_ITEM = 'items/DELETE_ITEM'
 
 /* Action Creator */
+export const load_one_item = item => ({
+    type: LOAD_ONE_ITEM,
+    item
+})
+
 export const loadItems = items => ({
     type: LOAD_ITEMS,
     items
@@ -25,12 +31,25 @@ export const deleteItem = itemId => ({
 })
 
 /* Thunk */
+export const getOneItem = itemId => async(dispatch) => {
+    const res = await fetch(`/api/items/${itemId}`)
+    if(res.ok){
+        const item = await res.json()
+        dispatch(load_one_item(item))
+        return item
+    } else {
+        const err = await res.json()
+        return err
+    }
+}
+
 export const getAllItems = () => async(dispatch) => {
     const res = await fetch('/api/items')
 
     if(res.ok){
         const items = await res.json()
         dispatch(loadItems(items))
+        return items
     } else {
         const err = await res.json()
         return err
@@ -38,7 +57,7 @@ export const getAllItems = () => async(dispatch) => {
 }
 
 export const createItem = (menuId, item) => async(dispatch) => {
-    const res = await fetch(`/api/menus/${menuId}/items`, {
+    const res = await fetch(`/api/menus/${menuId}/items/new`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(item)
@@ -50,6 +69,7 @@ export const createItem = (menuId, item) => async(dispatch) => {
         return newItem
     } else {
         const err = await res.json()
+        console.log(err)
         return err
     }
 }
@@ -90,6 +110,9 @@ const initialState = {}
 
 const menuItemReducer = (state = initialState, action) => {
     switch(action.type) {
+        case LOAD_ONE_ITEM: {
+            return {...state, [action.item.id]: action.item}
+        }
         case LOAD_ITEMS: {
             const itemState = {}
             action.items.forEach(item => itemState[item.id] = item)
