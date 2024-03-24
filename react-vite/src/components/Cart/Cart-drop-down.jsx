@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getTheCart } from "../../redux/cart";
+import {  addQuant, getTheCart, removeItem } from "../../redux/cart";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./cart.css";
@@ -19,14 +19,24 @@ export default function CartDropDown({ cart, restaurant }) {
     }
     return subTotal.toFixed(2);
   };
+  let count = 0
   useEffect(() => {
-    dispatch(getTheCart()).then(() => setIsLoading(false));
-  }, [dispatch]);
+    dispatch(getTheCart()).then(() => setIsLoading(false))
+  if (cart?.length){
+    cart.map((item) => {
+      count += item.quantity
+    })}
+
+  }, [dispatch,count]);
 
   const addItemfunc = (e) => {
     e.preventDefault();
     navigate(`restaurants/${restaurant.id}`);
   };
+
+
+
+
 
   if (!isLoading) {
     return (
@@ -51,25 +61,32 @@ export default function CartDropDown({ cart, restaurant }) {
               ></img>
               {restaurant.name}
             </h1>
-            <p style={{color:'black'}}>Deliver to {user.address}</p>
+            <p style={{ color: "black" }}>Deliver to {user.address}</p>
             <hr></hr>
             <ul className='cartList' style={{ listStyle: "none" }}>
               {cart &&
                 cart.map((item) => (
-                  <li key={item.name} className='items' id='cart'>
+                  <li key={item.name} className='items'>
                     <>
                       <div className='quantityButtons'>
-                        <button className='qbutton'> - </button> {item.quantity}{" "}
-                        <button className='qbutton'>+</button>
+                        <button className='qbutton' onClick={() => dispatch(removeItem(item.id))}> - </button> {item.quantity}{" "}
+                        <button className='qbutton' onClick={() => dispatch(addQuant(item.id))} >+</button>
                       </div>
                       <div>
-                        <p className='cart-label' style={{ fontSize: "11pt",color:'black' }}>
+                        <p
+                          className='cart-label'
+                          style={{ fontSize: "11pt", color: "black" }}
+                        >
                           {item.name}
-                          <div className='price' style={{ fontWeight: "bold",color: 'black' }}>
+
+                        </p>
+                        <p
+                            className='price'
+                            style={{ fontWeight: "bold", color: "black" }}
+                          >
                             {" "}
                             ${(item.price * item.quantity).toFixed(2)}
-                          </div>
-                        </p>
+                          </p>
                         <hr className='separater'></hr>
                       </div>
                       <img

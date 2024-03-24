@@ -1,3 +1,4 @@
+import { json } from "react-router-dom"
 
 //^ action types:
 const LOAD_CART = 'cart/LOAD_CART'
@@ -40,6 +41,32 @@ export const clearCart = () => async (dispatch) => {
     dispatch(loadCart(cartItems))
 }
 
+export const addQuant = (id) => async (dispatch) =>{
+    const newQuant = await fetch(`/api/cart/items/${id}/add`,{
+        method:'PUT'
+        // body: id
+    })
+
+
+    if (newQuant.ok){
+        const data = await newQuant.json()
+        dispatch(getTheCart)
+        return data
+    }
+}
+
+export const removeItem = (id) => async (dispatch) =>{
+    const newQuant = await fetch(`/api/cart/items/${id}/minus`,{
+        method:'PUT'
+    })
+
+
+    if (newQuant.ok){
+        const data = await newQuant.json()
+        dispatch(getTheCart)
+        return data
+    }
+}
 //! Reducer:
 
 const cartReducer =(state = {},action) =>{

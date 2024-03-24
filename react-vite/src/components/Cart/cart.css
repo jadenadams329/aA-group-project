@@ -5,32 +5,33 @@
 
 .cart-label{
 position: relative;
-left: 10px;
-top:10px
+left: 70px;
+top:1px;
 }
 
 .items{
     display: grid;
-    grid-template-columns: 70px 1fr ;
-    grid-template-rows: 70px;
+    grid-template-columns: 1fr ;
+    grid-template-rows: 10px;
     align-items: top;
+
 }
 
 .quantityButtons{
     position: relative;
-    top: 25px
+    top: 12px
 }
 
 .price{
     position: relative;
-    left: 250px;
+    left: 330px;
     bottom: 22px
 }
 
 .separater{
     position: relative;
     width: 400px;
-    right:70px
+    right:3px
 }
 
 .qbutton{
@@ -51,7 +52,7 @@ top:10px
 .itemimg{
 position: relative;
 left: 270px;
-bottom: 50px;
+bottom: 65px;
 }
 
 .buttons{
@@ -79,10 +80,4 @@ bottom: 50px;
     border-radius: 8px;
     border:none;
     background-color: lightgray;
-}
-
-
-
-#cart{
-     text-decoration-color: black;
 }
