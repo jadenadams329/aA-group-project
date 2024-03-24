@@ -22,6 +22,8 @@
 }
 .rfFormContainer > h2 {
     margin: 15px 30px;
+    color: black;
+    font-size: xx-large;
 }
 .error{
     color: red;
