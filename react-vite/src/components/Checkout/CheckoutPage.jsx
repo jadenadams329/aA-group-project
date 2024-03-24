@@ -95,7 +95,7 @@ const tot= getTotal()
 
           <div>
             <h2>Delivery details</h2>
-            <p>
+            <p style={{color:'black'}}>
               <FaMapMarkerAlt /> {user.address}, {user.state}{" "}
               <button
                 className='addyedit'
@@ -111,8 +111,8 @@ const tot= getTotal()
           <hr></hr>
           <div>
             <h2>Payment</h2>
-            <p style={{ fontWeight: "bold" }}>Credits Remaining:</p>
-            <p>${user.credit.toFixed(2)}</p>
+            <p style={{ fontWeight: "bold",color:'black' }}>Credits Remaining:</p>
+            <p style={{color:'black'}}>${user.credit.toFixed(2)}</p>
             <h5>
               Use Credit:{" "}
               <input
@@ -140,7 +140,7 @@ const tot= getTotal()
             <div className='qmark'>
 
               <label>
-                <p><FaRegQuestionCircle />{" "}CVV{" "}</p>
+                <p style={{color:'black'}}><FaRegQuestionCircle />{" "}CVV{" "}</p>
 
                 <img
                   id='cvv'
@@ -163,13 +163,13 @@ const tot= getTotal()
             <h2>Order Summary</h2>
             <br />
             {showPics && (
-              <p>
+              <p style={{color:'black'}}>
                 {counted} items{" "}
                 <FaChevronCircleDown onClick={() => setShowPics(!showPics)} />
               </p>
             )}
             {!showPics && (
-              <p>
+              <p style={{color:'black'}}>
                 {counted} items {" "}
                 <FaCircleChevronUp onClick={() => setShowPics(!showPics)} />
               </p>
@@ -185,13 +185,14 @@ const tot= getTotal()
               cart.map((item) => (
                 <div key={item.name} style={{ height: "50px" }}>
                   <hr></hr>
-                  <p>{item.quantity}</p>{" "}
+                  <p style={{color:'black'}}>{item.quantity}</p>{" "}
                   <p
                     style={{
                       position: "relative",
                       left: "40px",
                       bottom: "40px",
                       margin: "none",
+                      color:'black'
                     }}
                   >
                     {item.name}
@@ -202,6 +203,7 @@ const tot= getTotal()
                       left: "350px",
                       bottom: "78px",
                       margin: "none",
+                      color:'black'
                     }}
                   >
                     ${(item.price * item.quantity).toFixed(2)}
@@ -213,10 +215,10 @@ const tot= getTotal()
 
                       <div className="placeOrder">
                     <h2>Order Total</h2>
-                    <p>Subtotal <p style={{position:'relative',left:'300px',bottom:'40px',height:'2px',margin:'none'}}>${getSubTotal()}</p></p>
-                    <p>Taxes <p style={{position:'relative',left:'300px',bottom:'40px',height:'2px',margin:'none'}}>${(subTotal*tax).toFixed(2)}</p></p>
+                    <p style={{color:'black'}}>Subtotal <p style={{position:'relative',left:'300px',bottom:'40px',height:'2px',margin:'none',color:'black'}}>${getSubTotal()}</p></p>
+                    <p style={{color:'black'}}>Taxes <p style={{position:'relative',left:'300px',bottom:'40px',height:'2px',margin:'none',color:'black'}}>${(subTotal*tax).toFixed(2)}</p></p>
                     <hr></hr>
-                    <h2>Total <p style={{position:'relative',left:'280px',bottom:'58px',margin:'none'}}>${getTotal()}</p></h2>
+                    <h2>Total <p style={{position:'relative',left:'280px',bottom:'58px',margin:'none',color:'black'}}>${getTotal()}</p></h2>
                     <button className="placeOrderButton" onClick={finished}>Place Order</button>
                     </div>
 
