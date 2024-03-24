@@ -20,27 +20,27 @@ function UpdateRestaurantForm() {
 	const [errors, setErrors] = useState(null);
 
 	useEffect(() => {
-        dispatch(getRestaurant(id));
-    }, [dispatch, id]);
+		dispatch(getRestaurant(id));
+	}, [dispatch, id]);
 
-    useEffect(() => {
-        if (restaurant) {
-            setName(restaurant.name);
-            setLogo(restaurant.logo);
-            setAddress(restaurant.address);
-            setCity(restaurant.city);
-            setState(restaurant.state);
-            setZip(restaurant.zip_code);
-        }
-    }, [restaurant]);
+	useEffect(() => {
+		if (restaurant) {
+			setName(restaurant.name);
+			setLogo(restaurant.logo);
+			setAddress(restaurant.address);
+			setCity(restaurant.city);
+			setState(restaurant.state);
+			setZip(restaurant.zip_code);
+		}
+	}, [restaurant]);
 
-    useEffect(() => {
-        const validationErrors = {}
-        if (zip > 99999 || zip < 10000) {
-            validationErrors["zip"] = "Please enter valid Zip Code"
-        }
-        setErrors(validationErrors)
-    },[zip])
+	useEffect(() => {
+		const validationErrors = {};
+		if (zip > 99999 || zip < 10000) {
+			validationErrors["zip"] = "Please enter valid Zip Code";
+		}
+		setErrors(validationErrors);
+	}, [zip]);
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
@@ -53,8 +53,6 @@ function UpdateRestaurantForm() {
 			setErrors(error);
 		}
 	};
-
-	console.log(restaurant);
 
 	return (
 		<>
