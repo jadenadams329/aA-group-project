@@ -3,14 +3,21 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    gap: 10px;
+    gap: 5px;
     font-size: 15px;
 }
 
-h2 {
+h5 {
+    margin-top: 0px;
     margin-bottom: 0px ;
+    font-size: 20px;
 }
 
 .SelectionAndPhoto {
     align-items: center;
+}
+
+.selectedMenu {
+    font-weight: bold;
+    color: red;
 }

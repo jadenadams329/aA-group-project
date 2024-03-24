@@ -67,11 +67,11 @@ function Menu({ id }) {
             <CreateMenuModal restId={id}/>
           }/>
           : null}
-        {ownerId === userId ?
+        {ownerId === userId && menus.length ?
         <OpenModalButton
           buttonText='Delete Menu'
           modalComponent={
-            <DeleteMenuModal menus={menus} selectedMenu={selectedMenu}/>
+            <DeleteMenuModal restId={id} menus={menus} selectedMenu={selectedMenu}/>
           } />
         : null}
       </div>
