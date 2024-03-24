@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { createItem, updateItem } from "../../redux/menu_item";
 import "./MenuItemForm.css";
 import { getOneItem } from "../../redux/menu_item";
+import { getOneMenu } from "../../redux/menu";
 
 function MenuItemForm({ item, formType }) {
   const { id } = useParams();
-  const menu_id = id
+  const itemId = id
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [name, setName] = useState(item?.name);
@@ -17,16 +18,19 @@ function MenuItemForm({ item, formType }) {
   const [photo_url, setPhoto_url] = useState(item?.photo_url);
   const [errors, setErrors] = useState({});
   const [loaded, setLoaded] = useState(false);
-  const restId = useSelector(state => state.menus ? state.menus[id]?.restaurant_id : null)
-
-  console.log(restId)
-  console.log(menu_id)
-  
-
+  const menu_id = useSelector(state => state.menu_items[itemId]?.menu_id)
+  const restId = useSelector(state => state.menus[menu_id]?.restaurant_id)
 
   useEffect(() => {
-    dispatch(getOneItem(id));
-    setLoaded(true);
+    const fetch = async () => {
+      await dispatch(getOneItem(itemId))
+      await dispatch(getOneMenu(menu_id))
+      setLoaded(true)
+    }
+    fetch()
+  }, [dispatch, itemId, menu_id])
+
+  useEffect(() => {
     const errs = {};
     if (!name) errs.name = "Please provide a name for the Item.";
     if (!price) errs.price = "Please provide the price for the Item.";
@@ -50,7 +54,7 @@ function MenuItemForm({ item, formType }) {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      item = { name, price, description, category, photo_url, menu_id };
+      item = { name, price, description, category, photo_url };
       if (formType === "Create Item") {
         const newItem = {
           name,
@@ -62,7 +66,7 @@ function MenuItemForm({ item, formType }) {
         };
         await dispatch(createItem(menu_id, newItem));
       } else if(formType === "Update Item") {
-        item.id = id
+        item.id = itemId
         const editItem = await dispatch(updateItem(item))
         item = editItem
       }

@@ -87,7 +87,7 @@ export const updateItem = item => async(dispatch) => {
         return updatedItem
     } else {
         const err = await res.json()
-        return err
+        throw err
     }
 }
 
