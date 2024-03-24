@@ -19,7 +19,8 @@ top:1px;
 
 .quantityButtons{
     position: relative;
-    top: 12px
+    top: 12px;
+
 }
 
 .price{
@@ -35,9 +36,12 @@ top:1px;
 }
 
 .qbutton{
-    border: none;
-    background-color: white;
+    border:none;
+    background-color: lightgrey;
     font-size: large;
+    border-radius: 10px;
+
+
 }
 
 .sub{

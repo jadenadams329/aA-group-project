@@ -20,8 +20,8 @@ function CartButton() {
 		e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
 		setShowMenu(!showMenu);
 	};
-	const getCount = () =>{
-		let count = 0
+	let count = 0
+const getCount =()=>{
 		if (cart?.length){
 			cart.map((item) => (
 				count += item.quantity
@@ -38,7 +38,6 @@ function CartButton() {
 	useEffect(()=>{
 		dispatch(getTheCart()).then(() => setCounted(getCount()))
 		// console.log(getCount(), "this is the cart in the cartbutton")
-
 
 
 

@@ -69,8 +69,9 @@ export default function CartDropDown({ cart, restaurant }) {
                   <li key={item.name} className='items'>
                     <>
                       <div className='quantityButtons'>
-                        <button className='qbutton' onClick={() => dispatch(removeItem(item.id))}> - </button> {item.quantity}{" "}
-                        <button className='qbutton' onClick={() => dispatch(addQuant(item.id))} >+</button>
+                        {console.log(item.id,'this is the item')}
+                        <button className='qbutton' onClick={() => dispatch(removeItem(item.id)).then(()=>dispatch(getTheCart()))}> - </button> {item.quantity}{" "}
+                        <button className='qbutton' onClick={() => dispatch(addQuant(item.id)).then(()=> dispatch(getTheCart()))} >+</button>
                       </div>
                       <div>
                         <p

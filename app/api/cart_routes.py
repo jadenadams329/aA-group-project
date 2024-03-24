@@ -54,9 +54,16 @@ def addItems(id):
 @cart_route.route('/items/<int:id>/minus',methods=['PUT'])
 def removeItems(id):
    item=CartItem.query.get(id)
-   item.quantity -= 1
-   db.session.commit()
-   return item.to_dict()
+   newone = item.to_dict()
+   print(newone['quantity'],'this is the item**************************************************************************')
+   if(int(newone['quantity']) > 1):
+    item.quantity -= 1
+    db.session.commit()
+    return item.to_dict()
+   else:
+     db.session.delete(item)
+     db.session.commit()
+     return fullCart()
 
 
 @cart_route.route('/items/<int:id>',methods=['POST'])
@@ -68,7 +75,7 @@ def addToCart(id):
   thatguy= None
   for item in findme:
      thisGuy = item.to_dict()
-     thatguy = thisGuy 
+     thatguy = thisGuy
   cart = fullCart()
   newCart = []
   for item in cart:
@@ -84,7 +91,6 @@ def addToCart(id):
         db.session.commit()
         return fullCart()
 
-     print('hit you')
 
   newGuy = CartItem(cart_id = thatguy['id'],menu_item_id=newitem['id'],quantity=1)
   db.session.add(newGuy)

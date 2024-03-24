@@ -215,7 +215,7 @@ const tot= getTotal()
 
                       <div className="placeOrder">
                     <h2>Order Total</h2>
-                    <p style={{color:'black'}}>Subtotal <p style={{position:'relative',left:'300px',bottom:'40px',height:'2px',margin:'none',color:'black'}}>${getSubTotal()}</p></p>
+                    <p style={{color:'black'}}>Subtotal <p style={{position:'relative',left:'300px',bottom:'40px',height:'2px',margin:'none',color:'black'}}>${getSubTotal().toFixed(2)}</p></p>
                     <p style={{color:'black'}}>Taxes <p style={{position:'relative',left:'300px',bottom:'40px',height:'2px',margin:'none',color:'black'}}>${(subTotal*tax).toFixed(2)}</p></p>
                     <hr></hr>
                     <h2>Total <p style={{position:'relative',left:'280px',bottom:'58px',margin:'none',color:'black'}}>${getTotal()}</p></h2>
