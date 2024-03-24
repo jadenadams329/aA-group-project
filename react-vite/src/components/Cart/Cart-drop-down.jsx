@@ -27,7 +27,7 @@ export default function CartDropDown({ cart, restaurant }) {
       count += item.quantity
     })}
 
-  }, [dispatch,count]);
+  }, [dispatch,count,cart.length]);
 
   const addItemfunc = (e) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ export default function CartDropDown({ cart, restaurant }) {
   if (!isLoading) {
     return (
       <div className='cart'>
-        {cart.length >= 1 && (
+        {cart.length > 0 && (
           <>
             <h1
               className='cart-header'
@@ -118,13 +118,14 @@ export default function CartDropDown({ cart, restaurant }) {
             </div>
           </>
         )}
-        {cart.length === 0 && (
+        {!cart || cart.length == 0 && (
           <>
             <h1>No items in Cart!</h1>
             <hr></hr>
             <button
               className='addItemsButton'
               onClick={() => navigate("restaurants")}
+
             >
               Add Items
             </button>

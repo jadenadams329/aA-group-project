@@ -24,15 +24,18 @@ export const getTheCart = () => async (dispatch)=> {
 
     if (res.ok) {
         const cartItems = await res.json();
-        console.log(cartItems[0].restaurant,'this is the cart items in the thunk')
-        const theSpot = await fetch(`/api/restaurants/${cartItems[0].restaurant}`);
-        if (theSpot.ok){
-            const restaurant = await theSpot.json()
-            dispatch(setRestaurant(restaurant))
+        // console.log(cartItems[0].restaurant,'this is the cart items in the thunk')
+        if(cartItems.length){
+
+            const theSpot = await fetch(`/api/restaurants/${cartItems[0].restaurant}`);
+            if (theSpot.ok){
+                const restaurant = await theSpot.json()
+                if (restaurant) {
+                    dispatch(setRestaurant(restaurant))
+                }
+            }
         }
         dispatch(loadCart(cartItems))
-    }else{
-        return { message: "No items in Cart" }
     }
 }
 

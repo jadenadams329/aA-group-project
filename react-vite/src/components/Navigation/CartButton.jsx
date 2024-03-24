@@ -69,6 +69,13 @@ const getCount =()=>{
 
 				</button>
 					)}
+						{!cart && (
+
+<button onClick={toggleMenu} className="cartButton">
+		<FaShoppingCart /> Cart · {counted}
+
+</button>
+	)}
 				{showMenu && (
 					//make a cart button dropdown component and put below.
 					<div className={ulClassName} ref={ulRef}>

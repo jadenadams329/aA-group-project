@@ -59,7 +59,7 @@ def removeItems(id):
    if(int(newone['quantity']) > 1):
     item.quantity -= 1
     db.session.commit()
-    return item.to_dict()
+    return fullCart()
    else:
      db.session.delete(item)
      db.session.commit()
