@@ -18,7 +18,7 @@ function MenuItem({ restId, items }) {
           <div key={item.id} className="ItemDetail">
             <div className="NameAndDes">
               {item.name}
-              <p className="itemdes">{item.description}</p>
+              <div className="itemdes">{item.description}</div>
               <div className="DesAndButton">
                 ${item.price.toFixed(2)}
                 <button onClick={addItemToCart} className="AddButton">

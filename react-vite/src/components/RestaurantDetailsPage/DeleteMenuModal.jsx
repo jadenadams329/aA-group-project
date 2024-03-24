@@ -10,10 +10,7 @@ const DeleteMenuModal = ({menus, selectedMenu }) => {
   const { closeModal } = useModal();
   const [menuType, setMenuType] = useState("");
   const [errors, setErrors] = useState({});
-  console.log(menus)
   const menuId = menus.filter(menu => menu.name === selectedMenu)
-  console.log(selectedMenu)
-  console.log(menuId)
 
   const confirmDelete = async (e) => {
     e.preventDefault();

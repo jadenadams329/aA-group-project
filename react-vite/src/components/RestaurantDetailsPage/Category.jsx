@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 import "./Category.css";
 
-function Category({restId, menuId, breakfastItems, lunchItems, dinnerItems, beverageItems }) {
+function Category({selectedMenu ,restId, menuId, breakfastItems, lunchItems, dinnerItems, beverageItems }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const userId = useSelector(state => state.session ? state.session?.user?.id : null)
   const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data[restId]?.owner_id : null)
@@ -15,6 +15,7 @@ function Category({restId, menuId, breakfastItems, lunchItems, dinnerItems, beve
   const lunchCat = CategoryList(lunchItems);
   const dinnerCat = CategoryList(dinnerItems);
   const beverageCat = CategoryList(beverageItems);
+
 
   let itemsToRender;
   if (selectedCategory === "All Items") {
@@ -36,11 +37,11 @@ function Category({restId, menuId, breakfastItems, lunchItems, dinnerItems, beve
   return (
     <div className="BottomContainer">
       <div className="Categories">
-        {ownerId === userId && (
+        {ownerId === userId && selectedMenu ? (
           <Link to={`/menus/${menuId}/items/new`}>
             Add an Item
           </Link>
-        )}
+        ) : null }
         {breakfastCat.map(category => (
           <ul key={category}>
             <li className={selectedCategory === category ? 'SelectedCat' : ''} onClick={() => handleCategoryClick(category)}>

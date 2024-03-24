@@ -10,7 +10,7 @@ import DeleteMenuModal from "./DeleteMenuModal";
 function Menu({ id }) {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false)
-  const [selectedMenu, setSelectedMenu] = useState("Breakfast")
+  const [selectedMenu, setSelectedMenu] = useState(null)
   const menus = Object.values(useSelector((state) => (state.menus ? state.menus : null)));
   const breakfastItems = menus.filter(menu => menu.name === 'Breakfast')[0]?.menu_items
   const lunchItems = menus.filter(menu => menu.name === 'Lunch')[0]?.menu_items
@@ -25,7 +25,27 @@ function Menu({ id }) {
     setLoaded(true)
   }, [dispatch, id]);
 
-  if (!menus) return <>Loading...</>;
+  useEffect(() => {
+    if (!selectedMenu && menus && menus.length > 0){
+      const breakfastExist = menus.some(menu => menu.name === 'Breakfast')
+      const lunchExist = menus.some(menu => menu.name === 'Lunch')
+      const dinnerExist = menus.some(menu => menu.name === 'Dinner')
+      const beverageExist = menus.some(menu => menu.name === 'Beverages')
+      if (breakfastExist){
+        setSelectedMenu('Breakfast')
+      } else if (lunchExist){
+        setSelectedMenu('Lunch')
+      } else if (dinnerExist){
+        setSelectedMenu('Dinner')
+      } else if (beverageExist) {
+        setSelectedMenu('Beverages')
+      } else {
+        setSelectedMenu(menus[0].name)
+      }
+    }
+  }, [menus, selectedMenu])
+
+  if (!loaded) return <>Loading...</>;
 
   return (
     <>
@@ -56,10 +76,10 @@ function Menu({ id }) {
         : null}
       </div>
       <div className="CategoriesType">
-        {selectedMenu === "Breakfast" && <Category restId={id} menuId={menuId} breakfastItems={breakfastItems}/>}
-        {selectedMenu === "Lunch" && <Category  restId={id} menuId={menuId} lunchItems={lunchItems}/>}
-        {selectedMenu === "Dinner" && <Category restId={id} menuId={menuId} dinnerItems={dinnerItems}/>}
-        {selectedMenu === "Beverages" && <Category restId={id} menuId={menuId} beverageItems={beverageItems}/>}
+        {selectedMenu === "Breakfast" && <Category selectedMenu={selectedMenu}  restId={id} menuId={menuId} breakfastItems={breakfastItems}/>}
+        {selectedMenu === "Lunch" && <Category selectedMenu={selectedMenu}  restId={id} menuId={menuId} lunchItems={lunchItems}/>}
+        {selectedMenu === "Dinner" && <Category selectedMenu={selectedMenu}  restId={id} menuId={menuId} dinnerItems={dinnerItems}/>}
+        {selectedMenu === "Beverages" && <Category selectedMenu={selectedMenu}  restId={id} menuId={menuId} beverageItems={beverageItems}/>}
       </div>
     </>
   );

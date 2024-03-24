@@ -17,6 +17,8 @@ h2 {
 
 .ItemName {
     font-weight: bold;
+    display: flex;
+    align-items: center;
 }
 
 .itemImage {
