@@ -1,9 +1,15 @@
+const LOAD_ONE_MENU = 'menus/LOAD_ONE_MENU'
 const LOAD_MENUS = 'menus/LOAD_MENUS'
 const ADD_MENU = 'menus/ADD_MENUS'
 const UPDATE_MENU = 'menus/UPDATE_MENUS'
 const DELETE_MENU = 'menus/DELETE_MENUS'
 
 /* Action Creator */
+export const loadOneMenu = menu => ({
+    type: LOAD_ONE_MENU,
+    menu
+})
+
 export const loadMenus = menus => ({
     type: LOAD_MENUS,
     menus
@@ -25,8 +31,20 @@ export const deleteMenu = menuId => ({
 })
 
 /* Thunk */
-export const getAllMenus = () => async(dispatch) => {
-    const res = await fetch('/api/menus')
+export const getOneMenu = menuId => async(dispatch) => {
+    const res = await fetch(`/api/menus/${menuId}`)
+
+    if(res.ok){
+        const menu = await res.json()
+        dispatch(loadOneMenu(menu))
+    } else {
+        const err = await res.json()
+        return err
+    }
+}
+
+export const getAllMenus = restaurantId => async(dispatch) => {
+    const res = await fetch(`/api/restaurants/${restaurantId}/menus`)
 
     if(res.ok){
         const menus = await res.json()
@@ -90,6 +108,9 @@ const initialState = {}
 
 const menuReducer = (state = initialState, action) => {
     switch(action.type) {
+        case LOAD_ONE_MENU: {
+            return {...state, [action.menu.id]: action.menu}
+        }
         case LOAD_MENUS: {
             const menuState = {}
             action.menus.forEach(menu => menuState[menu.id] = menu)
