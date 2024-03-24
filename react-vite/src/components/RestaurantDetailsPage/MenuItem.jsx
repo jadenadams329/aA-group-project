@@ -1,17 +1,16 @@
 import "./MenuItem.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import DeleteItemModal from "./DeleteItemModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import { Link } from "react-router-dom";
+import { addingItem } from "../../redux/cart";
+
 
 function MenuItem({ items }) {
+  const dispatch = useDispatch()
   const userId = useSelector(state => state.session ? state.session?.user?.id : null)
   const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.owner_id : null)
   const restId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.id : null)
-
-  const addItemToCart = () => {
-
-  }
 
   return (
     <>
@@ -22,7 +21,7 @@ function MenuItem({ items }) {
               <p className="itemdes">{item.description}</p>
               <div className="DesAndButton">
                 ${item.price.toFixed(2)}
-                <button onClick={addItemToCart} className="AddButton">
+                <button onClick={() => dispatch(addingItem(item.id))} className="AddButton">
                   <i className="fa-solid fa-circle-plus"></i>
                 </button>
               </div>

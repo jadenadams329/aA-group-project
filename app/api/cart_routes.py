@@ -68,22 +68,21 @@ def addToCart(id):
   thatguy= None
   for item in findme:
      thisGuy = item.to_dict()
-     thatguy = thisGuy
-  print(thatguy['id'],'this is him *******************')
+     thatguy = thisGuy 
   cart = fullCart()
   newCart = []
   for item in cart:
      newCart.append(item)
 
-     print(item['id'],'+++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
      if(item['id'] == newitem['id']):
-       print('hit me')
-       final = CartItem.query.filter(CartItem.menu_item_id == id)
 
-       print(final,'++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
-       final['quantity'] += 1
-       db.session.commit()
-       return item
+       final = CartItem.query.filter(CartItem.menu_item_id == id).first()
+
+
+       if final:
+        final.quantity += 1
+        db.session.commit()
+        return fullCart()
 
      print('hit you')
 
