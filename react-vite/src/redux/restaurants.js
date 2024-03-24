@@ -1,6 +1,7 @@
 /** Action Type Constants: */
 const LOAD_RESTAURANTS = "restaurants/LOAD_RESTAURANTS";
 const LOAD_RESTAURANT = "restaurants/LOAD_RESTAURANT";
+const ADD_RESTAURANT = "restaurants/ADD_RESTAURANT";
 
 /**  Action Creators: */
 export const loadRestaurants = (restaurants) => ({
@@ -10,6 +11,11 @@ export const loadRestaurants = (restaurants) => ({
 
 export const loadRestaurant = (restaurant) => ({
 	type: LOAD_RESTAURANT,
+	restaurant,
+});
+
+export const addRestaurant = (restaurant) => ({
+	type: ADD_RESTAURANT,
 	restaurant,
 });
 
@@ -32,6 +38,26 @@ export const getRestaurant = (id) => async (dispatch) => {
 	}
 };
 
+export const createRestaurant = (data) => async (dispatch) => {
+	const res = await fetch(`/api/restaurants`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(data),
+	});
+
+	if (res.ok) {
+		const restaurant = await res.json();
+		dispatch(addRestaurant(restaurant));
+		return restaurant;
+	} else {
+		const errorData = await res.json();
+		console.log(errorData)
+		throw errorData;  // Throw the error data directly
+	}
+};
+
 /** Reducer: */
 const initialState = {
 	isLoading: true,
@@ -48,6 +74,9 @@ const restaurantsReducer = (state = initialState, action) => {
 			return { ...state, data: restaurantState, isLoading: false };
 		}
 		case LOAD_RESTAURANT:
+			return { ...state, data: { ...state.data, [action.restaurant.id]: action.restaurant }, isLoading: false };
+
+		case ADD_RESTAURANT:
 			return { ...state, data: { ...state.data, [action.restaurant.id]: action.restaurant }, isLoading: false };
 		default:
 			return state;
