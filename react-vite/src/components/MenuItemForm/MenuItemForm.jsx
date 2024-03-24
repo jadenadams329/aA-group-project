@@ -20,9 +20,14 @@ function MenuItemForm({ item, formType }) {
   const [loaded, setLoaded] = useState(false);
   const menu_id = useSelector(state => state.menu_items[itemId]?.menu_id)
   const restId = useSelector(state => state.menus[menu_id]?.restaurant_id)
+  console.log(menu_id)
+  console.log(itemId)
 
   useEffect(() => {
     const fetch = async () => {
+      if(formType === 'Create Item') {
+        
+      }
       await dispatch(getOneItem(itemId))
       await dispatch(getOneMenu(menu_id))
       setLoaded(true)
@@ -35,7 +40,7 @@ function MenuItemForm({ item, formType }) {
     if (!name) errs.name = "Please provide a name for the Item.";
     if (!price) errs.price = "Please provide the price for the Item.";
     if (price && price <= 0) errs.price = "Price must be greater than 0.";
-    if (description.length <= 0) errs.description = "Please provide description of the item.";
+    if (!description) errs.description = "Please provide description of the item.";
     if (category.length <= 0) errs.category = "Please categorize the item.";
     if (!photo_url) errs.photo_url = "Please provide a picture for the item";
     if (
@@ -64,6 +69,7 @@ function MenuItemForm({ item, formType }) {
           photo_url,
           menu_id,
         };
+
         await dispatch(createItem(menu_id, newItem));
       } else if(formType === "Update Item") {
         item.id = itemId
