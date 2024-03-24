@@ -29,6 +29,7 @@ def get_restaurant_by_id(id):
     except Exception as err:
         return jsonify(error=str(err)), 500
 
+
 ## Update Restaurant
 @restaurant_routes.route("/<int:id>", methods=["PUT"])
 def update_restaurant(id):
@@ -67,6 +68,36 @@ def update_restaurant(id):
             db.session.commit()
             return restaurant.to_dict()
         return {"error": "No data provided"}, 400
+    except Exception as err:
+        return jsonify(error=str(err)), 500
+
+
+## Delete Restaurant
+@restaurant_routes.route("/<int:id>", methods=["DELETE"])
+def delete_restaurant(id):
+    try:
+        # make sure user is logged in
+        if not current_user.is_authenticated:
+            return jsonify({"error": "Must be logged in to delete restaurant"}), 401
+
+        # get the current user id
+        userId = current_user.to_dict()["id"]
+
+        # get the restaurant by id
+        restaurant = Restaurant.query.get(id)
+        if not restaurant:
+            return jsonify(error="Restaurant not found"), 404
+
+        # only allow the owner to delete the restaurant
+        if restaurant.owner_id != userId:
+            return (
+                jsonify({"error": "You are not authorized to delete this restaurant"}),
+                403,
+            )
+
+        db.session.delete(restaurant)
+        db.session.commit()
+        return {"message": "Restaurant deleted successfully"}
     except Exception as err:
         return jsonify(error=str(err)), 500
 

@@ -3,6 +3,7 @@ const LOAD_RESTAURANTS = "restaurants/LOAD_RESTAURANTS";
 const LOAD_RESTAURANT = "restaurants/LOAD_RESTAURANT";
 const ADD_RESTAURANT = "restaurants/ADD_RESTAURANT";
 const UPDATE_RESTAURANT = "restaurants/UPDATE_RESTAURANT"
+const REMOVE_RESTAURANT = "restaurants/REMOVE_RESTAURANT"
 
 /**  Action Creators: */
 export const loadRestaurants = (restaurants) => ({
@@ -23,6 +24,11 @@ export const addRestaurant = (restaurant) => ({
 export const editRestaurant = (restaurant) => ({
 	type: UPDATE_RESTAURANT,
 	restaurant
+})
+
+export const removeRestaurant = (restaurantId) => ({
+	type: REMOVE_RESTAURANT,
+	restaurantId
 })
 
 
@@ -84,6 +90,17 @@ export const updateRestaurant = (restaurantId, data) => async (dispatch) => {
 	}
 }
 
+export const deleteRestaurant = (restaurantId) => async (dispatch) => {
+	const res = await fetch(`/api/restaurants/${restaurantId}`, {
+		method: "DELETE",
+	})
+	if (res.ok) {
+		dispatch(removeRestaurant(restaurantId))
+	} else {
+		const errorData = await res.json();
+		throw errorData
+	}
+}
 /** Reducer: */
 const initialState = {
 	isLoading: true,
@@ -107,6 +124,13 @@ const restaurantsReducer = (state = initialState, action) => {
 
 		case UPDATE_RESTAURANT:
 			return { ...state, data: { ...state.data, [action.restaurant.id]: action.restaurant }, isLoading: false };
+
+		case REMOVE_RESTAURANT: {
+			const newState = {...state}
+			delete newState.data[action.restaurantId]
+			return {...newState, isLoading: false}
+		}
+
 
 		default:
 			return state;

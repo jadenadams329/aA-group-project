@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import DeleteRestaurantModal from "../RestaurantDetailsPage/DeleteRestaurantModal";
 
 function OwnerButton({ id }) {
 	const [showMenu, setShowMenu] = useState(false);
 	const ulRef = useRef();
+	const navigate = useNavigate();
 
 	const toggleMenu = (e) => {
 		e.stopPropagation(); // Prevent bubbling up to document and triggering closeMenu
@@ -13,6 +16,14 @@ function OwnerButton({ id }) {
 	const closeMenu = () => {
 		setShowMenu(false);
 	};
+
+	const callNavigate = () => {
+		return navigate("/restaurants");
+	};
+
+	const handleEditRestaurant = () => {
+		return navigate(`/restaurants/${id}/edit`)
+	}
 
 	useEffect(() => {
 		const closeMenuOnOutsideClick = (e) => {
@@ -40,9 +51,15 @@ function OwnerButton({ id }) {
 					<ul ref={ulRef} className={ulClassName} id='obUl'>
 						<div>
 							<li className='obListItem'>
-								<Link className='obLink' to={`/restaurants/${id}/edit`}>
-									Edit Restaurant
-								</Link>
+								<button className="obLink" onClick={handleEditRestaurant}>Edit Restaurant</button>
+							</li>
+						</div>
+						<div>
+							<li>
+								<OpenModalButton
+									cssClass={"obLink"}
+									buttonText='Delete Restaurant'
+									modalComponent={<DeleteRestaurantModal restaurantId={id} navigate={callNavigate} />} />
 							</li>
 						</div>
 					</ul>
