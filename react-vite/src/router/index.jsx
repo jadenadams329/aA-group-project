@@ -9,6 +9,7 @@ import RestaurantForm from '../components/RestaurantForm/RestaurantForm';
 import CreateItemForm from '../components/MenuItemForm/CreateItemForm';
 import EditItemForm from '../components/MenuItemForm/EditItemForm';
 import Confirmation from '../components/Checkout/Confirmation';
+import UpdateRestaurantForm from '../components/RestaurantForm/UpdateRestaurantForm';
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
       {
         path: "restaurants/:id",
         element: <RestaurantDetailsPage/>
+      },
+      {
+        path: "restaurants/:id/edit",
+        element: <UpdateRestaurantForm />
       },
       {
         path: "restaurants/new",

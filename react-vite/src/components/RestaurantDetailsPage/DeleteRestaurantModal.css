@@ -1,0 +1,55 @@
+.drmContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.drmInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.drmInfo > h2{
+    color: black;
+    margin: 2px;
+}
+.drmInfo > p{
+    color: black;
+}
+.drmButtons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+.drmButtonTop{
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 0;
+    background-color: black;
+    color: white;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.drmButtonTop:hover{
+    background-color: #1d1d1d;
+
+}
+.drmButtonBottom{
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-radius: 15px;
+    background-color: rgb(211, 211, 211);
+    color: black;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+.drmButtonBottom:hover{
+    background-color: #c9c9c9;
+
+}
