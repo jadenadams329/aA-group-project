@@ -16,7 +16,6 @@ function Category({selectedMenu ,restId, menuId, breakfastItems, lunchItems, din
   const dinnerCat = CategoryList(dinnerItems);
   const beverageCat = CategoryList(beverageItems);
 
-
   let itemsToRender;
   if (selectedCategory === "All Items") {
     itemsToRender = breakfastItems || lunchItems || dinnerItems || beverageItems;

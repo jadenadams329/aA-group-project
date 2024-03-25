@@ -1,19 +1,47 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { removeMenu } from "../../redux/menu";
+import { useEffect } from "react";
 
 import "./DeleteMenuModal.css";
 
-const DeleteMenuModal = ({restId, menus, selectedMenu }) => {
+const DeleteMenuModal = ({ menus, selectedMenu, setSelectedMenu }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const menuId = menus.filter(menu => menu.name === selectedMenu)[0]?.id
-
-  console.log(restId)
+  const menuId = menus.filter((menu) => menu.name === selectedMenu)[0]?.id;
 
   const confirmDelete = async (e) => {
     e.preventDefault();
     await dispatch(removeMenu(menuId));
+
+    if (selectedMenu === 'Breakfast') {
+      if (menus.find(menu => menu.name === 'Lunch')) {
+        setSelectedMenu('Lunch');
+      } else if (menus.find(menu => menu.name === 'Dinner')) {
+        setSelectedMenu('Dinner');
+      } else if (menus.find(menu => menu.name === 'Beverages')) {
+        setSelectedMenu('Beverages');
+      } else {
+        setSelectedMenu(null);
+      }
+    } else if (selectedMenu === 'Lunch') {
+      if (menus.find(menu => menu.name === 'Dinner')) {
+        setSelectedMenu('Dinner');
+      } else if (menus.find(menu => menu.name === 'Beverages')) {
+        setSelectedMenu('Beverages');
+      } else {
+        setSelectedMenu(null);
+      }
+    } else if (selectedMenu === 'Dinner') {
+      if (menus.find(menu => menu.name === 'Beverages')) {
+        setSelectedMenu('Beverages');
+      } else {
+        setSelectedMenu(null);
+      }
+    } else if (selectedMenu === 'Beverages') {
+      setSelectedMenu(null);
+    }
+
     closeModal();
   };
 

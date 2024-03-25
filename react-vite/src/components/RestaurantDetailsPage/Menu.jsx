@@ -27,10 +27,10 @@ function Menu({ id }) {
 
   useEffect(() => {
     if (!selectedMenu && menus && menus.length > 0){
-      const breakfastExist = menus.some(menu => menu.name === 'Breakfast')
-      const lunchExist = menus.some(menu => menu.name === 'Lunch')
-      const dinnerExist = menus.some(menu => menu.name === 'Dinner')
-      const beverageExist = menus.some(menu => menu.name === 'Beverages')
+      const breakfastExist = menus.find(menu => menu.name === 'Breakfast')
+      const lunchExist = menus.find(menu => menu.name === 'Lunch')
+      const dinnerExist = menus.find(menu => menu.name === 'Dinner')
+      const beverageExist = menus.find(menu => menu.name === 'Beverages')
       if (breakfastExist){
         setSelectedMenu('Breakfast')
       } else if (lunchExist){
@@ -71,7 +71,7 @@ function Menu({ id }) {
         <OpenModalButton
           buttonText='Delete Menu'
           modalComponent={
-            <DeleteMenuModal restId={id} menus={menus} selectedMenu={selectedMenu}/>
+            <DeleteMenuModal menus={menus} setSelectedMenu={setSelectedMenu} selectedMenu={selectedMenu}/>
           } />
         : null}
       </div>
