@@ -39,7 +39,6 @@ const DeleteMenuModal = ({ menus, selectedMenu, setSelectedMenu }) => {
     } else if (selectedMenu === 'Beverages') {
       setSelectedMenu(null);
     }
-
     closeModal();
   };
 

@@ -69,8 +69,7 @@ export const createItem = (menuId, item) => async(dispatch) => {
         return newItem
     } else {
         const err = await res.json()
-        console.log(err)
-        return err
+        throw err
     }
 }
 

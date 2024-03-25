@@ -17,29 +17,20 @@ function MenuItemForm({ item, formType }) {
   const [photo_url, setPhoto_url] = useState(item?.photo_url);
   const [errors, setErrors] = useState({});
   const [loaded, setLoaded] = useState(false);
-  let menu_id
-  let item_id
-  if (formType === 'Create Item'){
-    menu_id = id
-  } else if (formType === 'Update Item'){
-    item_id = id
-    menu_id = useSelector(state => state.menu_items[item_id]?.menu_id)
-  }
-
+  const edit_Menu_id = useSelector(state => state.menu_items[item?.id]?.menu_id)
+  const menu_id = formType === 'Create Item' ? id : edit_Menu_id
   const restId = useSelector(state => state.menus[menu_id]?.restaurant_id)
 
   useEffect(() => {
     const fetch = async () => {
       if(formType === 'Update Item') {
-        await dispatch(getOneItem(item_id))
+        await dispatch(getOneItem(id))
         await dispatch(getOneMenu(menu_id))
-        setLoaded(true)
-      } else {
-        setLoaded(true)
       }
+      setLoaded(true)
     }
     fetch()
-  }, [dispatch, formType, item_id, menu_id])
+  }, [dispatch, formType, id, menu_id])
 
   useEffect(() => {
     const errs = {};
@@ -77,13 +68,13 @@ function MenuItemForm({ item, formType }) {
         };
         await dispatch(createItem(menu_id, newItem));
       } else if(formType === "Update Item") {
-        item.id = item_id
+        item.id = id
         const editItem = await dispatch(updateItem(item))
         item = editItem
       }
       navigate(`/restaurants/${restId}`);
     } catch (error) {
-
+        setErrors(error)
     }
   };
 
