@@ -1,8 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { removeMenu } from "../../redux/menu";
-import { useEffect } from "react";
-
 import "./DeleteMenuModal.css";
 
 const DeleteMenuModal = ({ menus, selectedMenu, setSelectedMenu }) => {
