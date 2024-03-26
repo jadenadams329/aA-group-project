@@ -24,33 +24,34 @@ function LoginFormPage() {
 			})
 		);
 
-    if (serverResponse) {
-      setErrors(serverResponse);
-    } else {
-      navigate("/restaurants");
-    }
-  };
+		if (serverResponse) {
+			setErrors(serverResponse);
+		} else {
+			navigate("/restaurants");
+		}
+	};
 
 	return (
 		<>
-			<div className="loginFormContainer">
+			<div className='loginFormContainer'>
 				<div>
-					<h1 style={{ float: 'left', fontWeight: '500'}}>Yum </h1>
-					<h1 style={{ float: 'right', marginLeft: '5px'}}>Cart</h1>
+					<h1 style={{ float: "left", fontWeight: "500" }}>Yum </h1>
+					<h1 style={{ float: "right", marginLeft: "5px" }}>Cart</h1>
 				</div>
 				{errors.length > 0 && errors.map((message) => <p key={message}>{message}</p>)}
-				<form onSubmit={handleSubmit}>
-					<label>
-						Email
+				<form onSubmit={handleSubmit} className='liForm'>
+					<div className="emailContainer">
+						<label>Email</label>
 						<input type='text' value={email} onChange={(e) => setEmail(e.target.value)} required />
-					</label>
-					{errors.email && <p>{errors.email}</p>}
-					<label>
-						Password
+						{errors.email && <p className="error">{errors.email}</p>}
+					</div>
+					<div className="passwordContainer">
+						<label>Password</label>
 						<input type='password' value={password} onChange={(e) => setPassword(e.target.value)} required />
-					</label>
-					{errors.password && <p>{errors.password}</p>}
-					<button type='submit'>Log In</button>
+						{errors.password && <p className="error">{errors.password}</p>}
+					</div>
+
+					<button className="liButton" type='submit'>Log In</button>
 				</form>
 			</div>
 		</>

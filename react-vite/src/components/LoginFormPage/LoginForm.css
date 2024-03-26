@@ -3,10 +3,60 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100vh;
+	height: 75vh;
 }
 
-.loginFormContainer label {
-    display: block;
-    margin-bottom: 10px;
+.liForm{
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
+
+.emailContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+.emailContainer > input {
+	border: none;
+    background-color: rgb(237, 237, 237);
+    height: 35px;
+    border-radius: 5px;
+    font-size: 16px;
+    padding-left: 14px;
+}
+
+.emailContainer > input:focus{
+	background-color: white;
+}
+
+.passwordContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+.passwordContainer > input {
+	border: none;
+    background-color: rgb(237, 237, 237);
+    height: 35px;
+    border-radius: 5px;
+    font-size: 16px;
+    padding-left: 14px;
+	width: 275px;
+}
+
+.passwordContainer > input:focus {
+	background-color: white;
+}
+ .liButton{
+	width: 100%;
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 10px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: medium;
+    font-weight: 500;
+    margin-top: 10px;
+ }
