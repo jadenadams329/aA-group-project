@@ -35,13 +35,14 @@ export const getTheCart = () => async (dispatch)=> {
             cartItems.map((item) => (
                 quant += item.quantity
                 ))
-            console.log(quant,'this is how many items are in my cart~~~~~~~~~~~~~')
+
             const theSpot = await fetch(`/api/restaurants/${cartItems[0].restaurant}`);
             if (theSpot.ok){
                 const restaurant = await theSpot.json()
                 if (restaurant) {
                     dispatch(setRestaurant(restaurant))
                 }
+
             }
         }
         dispatch(setTotalItems(quant))
@@ -72,14 +73,20 @@ export const editQuants = (id,quant) => async (dispatch) =>{
     })
     if (res.ok){
        const data = await res.json()
-        console.log(data,'update quant func hit!**************************************************************************************************')
         dispatch(getTheCart())
     }
 }
 
 
 
-
+export const removeItem = (id) => async (dispatch) => {
+    const res = await fetch(`/api/cart/items/${id}`,{
+        method: 'DELETE'
+    })
+    if(res.ok){
+        dispatch(getTheCart())
+    }
+}
 
 
 
@@ -91,6 +98,9 @@ export const addingItem = (id) => async (dispatch) =>{
 
     if (res.ok){
         const data = await res.json()
+        const rest = await fetch(`/api/restaurants/${id}`)
+        const test = await rest.json()
+        console.log(test,' this is my new resty------------')
         dispatch(getTheCart())
         return data
     }

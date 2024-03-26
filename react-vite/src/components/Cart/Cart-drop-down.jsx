@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { editQuants, getTheCart } from "../../redux/cart";
+import { editQuants, getTheCart, removeItem } from "../../redux/cart";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaRegTrashCan } from "react-icons/fa6";
 import "./cart.css";
 
 export default function CartDropDown({ cart, restaurant }) {
@@ -10,7 +11,6 @@ export default function CartDropDown({ cart, restaurant }) {
   const [isLoading, setIsLoading] = useState(true);
   const user = useSelector((state) => state.session.user);
 
-  // console.log(cart,"this is my cart state at the moment")
   let subTotal = 0.0;
   const getSubTotal = () => {
     if (cart.length) {
@@ -20,20 +20,23 @@ export default function CartDropDown({ cart, restaurant }) {
     return subTotal.toFixed(2);
   };
 
-  const addOne = (id,quant) =>{
-    dispatch(editQuants(id,{quantity: quant}))
-  }
+  const addOne = (id, quant) => {
+    const newq = quant + 1;
+    dispatch(editQuants(id, { quantity: newq }));
+  };
   useEffect(() => {
-    dispatch(getTheCart()).then(() => setIsLoading(false))
-  }, [dispatch]);
+    dispatch(getTheCart()).then(() => setIsLoading(false));
+  }, [dispatch, cart.length]);
 
   const addItemfunc = (e) => {
     e.preventDefault();
     navigate(`restaurants/${restaurant.id}`);
   };
 
-
-
+  const subOne = (id, quant) => {
+    const newq = quant - 1;
+    dispatch(editQuants(id, { quantity: newq }));
+  };
 
   if (!isLoading) {
     return (
@@ -66,9 +69,37 @@ export default function CartDropDown({ cart, restaurant }) {
                   <li key={item.name} className='items'>
                     <>
                       <div className='quantityButtons'>
-                        {console.log(item.id,'this is the item')}
-                        <button className='qbutton' > - </button> {item.quantity}{" "}
-                        <button className='qbutton' onClick={()=> addOne(item.id,item.quantity)}>+</button>
+                        {console.log(item.id, "this is the item")}
+                        {item.quantity > 1 && (
+                          <button
+                            className='qbutton'
+                            onClick={() => subOne(item.id, item.quantity)}
+                          >
+                            {" "}
+                            - {" "}
+                          </button>
+                        )}
+                        {item.quantity === 1 && (
+                          <button
+                            style={{
+                              borderRadius: "20px",
+                              width: "30px",
+                              border: "none",
+                              height: "25px",
+                              backgroundColor: "lightgrey",
+                            }}
+                            onClick={() => dispatch(removeItem(item.id))}
+                          >
+                            <FaRegTrashCan />
+                          </button>
+                        )}{" "}
+                        {item.quantity}{" "}
+                        <button
+                          className='qbutton'
+                          onClick={() => addOne(item.id, item.quantity)}
+                        >
+                          +
+                        </button>
                       </div>
                       <div>
                         <p
@@ -76,15 +107,14 @@ export default function CartDropDown({ cart, restaurant }) {
                           style={{ fontSize: "11pt", color: "black" }}
                         >
                           {item.name}
-
                         </p>
                         <p
-                            className='price'
-                            style={{ fontWeight: "bold", color: "black" }}
-                          >
-                            {" "}
-                            ${(item.price * item.quantity).toFixed(2)}
-                          </p>
+                          className='price'
+                          style={{ fontWeight: "bold", color: "black" }}
+                        >
+                          {" "}
+                          ${(item.price * item.quantity).toFixed(2)}
+                        </p>
                         <hr className='separater'></hr>
                       </div>
                       <img
@@ -115,19 +145,29 @@ export default function CartDropDown({ cart, restaurant }) {
             </div>
           </>
         )}
-        {!cart || cart.length == 0 && (
-          <>
-            <h1>No items in Cart!</h1>
-            <hr></hr>
-            <button
-              className='addItemsButton'
-              onClick={() => navigate("restaurants")}
-
-            >
-              Add Items
-            </button>
-          </>
-        )}
+        {!cart ||
+          (cart.length == 0 && (
+            <div>
+              <h1 style={{position:'relative', left:'30px',
+            fontSize:'30pt'}}>No items in Cart!</h1>
+              <hr></hr>
+              <button
+                  style={{padding:' 12px',
+                    marginBottom: '8px',
+                    borderRadius: '8px',
+                    border:'none',
+                    backgroundColor: 'lightgray',
+                  width:'400px',
+                  fontSize:'18pt',
+                  fontWeight:'bold',
+                  fontStyle:'italic'
+                  }}
+                onClick={() => navigate("restaurants")}
+              >
+                Add Items
+              </button>
+            </div>
+          ))}
       </div>
     );
   } else {
