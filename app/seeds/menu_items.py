@@ -23,7 +23,7 @@ def seed_menu_items():
         name="Avocado Toast",
         price=12.50,
         description="Sliced avocado on whole-grain toast, topped with cherry tomatoes, red pepper flakes, and a drizzle of olive oil.",
-        category="Breakfast",
+        category="Toast",
         photo_url="https://www.thekitchenwhisperer.net/wp-content/uploads/2020/03/Caprese-Avocado-Toast-7.jpg",
         menu_id=10,
     )
@@ -132,12 +132,12 @@ def seed_menu_items():
         menu_id=1
     )
     item17 = MenuItem(
-            name='Tomato Toast',
-            price=9.99,
-            description='Toasted bread topped with sliced tomatoes, chopped chives, and cream',
-            category='Toast',
-            photo_url='https://images.unsplash.com/photo-1506280754576-f6fa8a873550?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-            menu_id=1
+        name='Tomato Toast',
+        price=9.99,
+        description='Toasted bread topped with sliced tomatoes, chopped chives, and cream',
+        category='Toast',
+        photo_url='https://images.unsplash.com/photo-1506280754576-f6fa8a873550?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=1
     )
     item18 = MenuItem(
         name='Rasberry Cheesecake',
