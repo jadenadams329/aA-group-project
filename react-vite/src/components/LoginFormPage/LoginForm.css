@@ -60,3 +60,18 @@
     font-weight: 500;
     margin-top: 10px;
  }
+
+ .liButton:hover{
+	background-color: rgb(50, 50, 50);
+ }
+
+ .demoUserButton{
+	border: none;
+	background-color: white;
+	margin-top: 7px;
+	cursor: pointer;
+ }
+
+ .demoUserButton:hover{
+	text-decoration: underline;
+ }

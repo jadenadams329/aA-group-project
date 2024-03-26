@@ -31,6 +31,24 @@ function LoginFormPage() {
 		}
 	};
 
+	const demoUserOnClick = async (e) => {
+		e.preventDefault();
+
+		const serverResponse = await dispatch(
+			thunkLogin({
+				email: "demo@aa.io",
+				password: "password",
+			})
+		);
+
+		if (serverResponse) {
+			setErrors(serverResponse);
+		} else {
+			navigate("/restaurants");
+		}
+
+	}
+
 	return (
 		<>
 			<div className='loginFormContainer'>
@@ -50,8 +68,8 @@ function LoginFormPage() {
 						<input type='password' value={password} onChange={(e) => setPassword(e.target.value)} required />
 						{errors.password && <p className="error">{errors.password}</p>}
 					</div>
-
 					<button className="liButton" type='submit'>Log In</button>
+					<button className="demoUserButton" onClick={demoUserOnClick}>Log in as Demo User</button>
 				</form>
 			</div>
 		</>
