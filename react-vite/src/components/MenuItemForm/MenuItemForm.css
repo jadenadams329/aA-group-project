@@ -1,0 +1,83 @@
+.ItemForm {
+  display: flex;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  margin-top: 50px;
+  height: 980px;
+  width: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ItemForm h2,
+.ItemForm h4 {
+  margin-bottom: 0px;
+}
+
+h2 {
+    font-size: 40px;
+    margin-top: 50px;
+}
+
+h4 {
+    font-size: 28px;
+    margin-top: 15px;
+}
+
+.FormPic {
+  height: 100%;
+  width: 100%;
+  border-radius: 15px 0px 0px 15px;
+  object-fit: cover;
+}
+
+.Pic {
+  flex: 1;
+}
+
+.Form {
+  flex: 1;
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Form label h4 {
+  text-align: left;
+}
+
+.Form input,
+.Form textarea {
+  width: 75%;
+  padding: 5px;
+  font-size: 15px;
+  border: 1px solid lightblue;
+  border-radius: 5px;
+}
+
+.Form textarea {
+  resize: vertical;
+}
+
+.ErrorMsg {
+  color: red;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.CreateButton {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.CreateItemButton {
+    display: inline-block;
+    cursor: pointer;
+    background-color: blue;
+    width: 200px;
+    border-radius: 15px;
+    color: #fff;
+    height: 35px;
+    font-size: 18px;
+}

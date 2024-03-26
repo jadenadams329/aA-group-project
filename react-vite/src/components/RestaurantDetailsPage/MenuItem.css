@@ -1,0 +1,90 @@
+.ItemDetail {
+  display: flex;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  align-items: center;
+  width: 750px;
+  height: 230px;
+}
+
+.NameAndDes {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 15px;
+  justify-content: center;
+  flex: 1;
+  padding: 10px;
+}
+
+.ItemDetail {
+  display: flex;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  align-items: center;
+  width: 750px;
+}
+
+.itemdes {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: lighter;
+}
+
+.ItemImage {
+  width: 200px;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  flex: 0 0 30%;
+}
+
+.fa-solid.fa-circle-plus{
+  font-size: 30px;
+  transition: font-size 1s ease;
+}
+
+.fa-solid.fa-circle-plus:hover{
+  font-size: 40px;
+}
+
+.AddButton {
+  border: none;
+  background-color: white;
+}
+
+.DesAndButton {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Buttons {
+  display: flex;
+}
+
+.UpdateLink {
+  margin-right: 20px;
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 6px;
+  background-color: #2ea44f;
+  border-color: #1b1f2326;
+}
+
+.UpdateLink a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.DeleteItemButton button{
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 6px;
+  color: #ffffff;
+  background-color: red;
+  border: 1px solid red;
+  font-weight: bold;
+}

@@ -1,0 +1,26 @@
+.MenuTypeContainer {
+  display: flex;
+  font-size: 25px;
+  gap: 25px;
+  font-weight: bold;
+  text-decoration: underline;
+  padding-bottom: 20px;
+}
+
+.MenuName:hover {
+  cursor: pointer;
+}
+
+.SelectedMenu {
+  font-size: 30px;
+  color: blue;
+}
+
+.MenuTypeContainer button {
+  box-shadow: 3px 3px 3px black;
+  color: white;
+  background-color: blue;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  height: 30px;
+  width: 100px;
+}

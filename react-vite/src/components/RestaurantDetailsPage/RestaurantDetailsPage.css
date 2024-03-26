@@ -1,0 +1,87 @@
+.rdContainer {
+	display: flex;
+	flex-direction: column;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.rdContainer > h1 {
+	margin: 0;
+	font-weight: 600;
+	color: black;
+}
+.rdReviewLinkContainer {
+	display: flex;
+	align-items: baseline;
+	gap: 5px;
+	text-decoration: none;
+	color: black;
+}
+.rdReviewLinkContainer > span {
+	font-size: smaller;
+}
+.rdReviewLinkSpan {
+	color: gray;
+}
+.logoBanner {
+	display: flex;
+	justify-content: flex-end;
+}
+.rdEditButton {
+	border: none;
+	background-color: white;
+	width: 50px;
+	height: 50px;
+	margin: 10px 10px 5px 10px;
+	padding: 10px;
+	border-radius: 50%;
+	font-weight: 600;
+	cursor: pointer;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+.restaurant-dropdown {
+	/* Styles for when the menu is visible */
+	position: absolute;
+	top: 100%; /* This will position the dropdown right below the button */
+	right: 0;
+    margin: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 0 20px;
+	width: 150px;
+	height: 100px;
+	list-style-type: none;
+	margin-top: 0px;
+	border-radius: 20px;
+	background-color: white;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.08), 0px 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.restaurant-dropdown > div {
+	padding: 5px 0;
+}
+
+.restaurant-dropdown.hidden {
+	display: none;
+	/* Additional styles for when the menu is hidden */
+}
+
+.obListItem {
+	padding: 5px 0;
+}
+.obLink {
+	text-decoration: none;
+	color: black;
+	background-color: white;
+	border: none;
+	font-size: medium;
+	cursor: pointer;
+}
+.obLink:hover {
+	text-decoration: underline;
+}
+.obDeleteButton{
+	border: none;
+
+}

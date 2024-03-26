@@ -24,12 +24,12 @@ function LoginFormPage() {
 			})
 		);
 
-		if (serverResponse) {
-			setErrors(serverResponse);
-		} else {
-			navigate("/");
-		}
-	};
+    if (serverResponse) {
+      setErrors(serverResponse);
+    } else {
+      navigate("/restaurants");
+    }
+  };
 
 	return (
 		<>
