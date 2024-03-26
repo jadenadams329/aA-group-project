@@ -49,7 +49,7 @@ def seed_menu_items():
         description='Big Mac® is a 100 percent beef burger with a taste like no other.',
         category='Burger',
         photo_url='https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?q=80&w=2615&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        menu_id=1
+        menu_id=2
     )
     item7 = MenuItem(
         name='Healthy Salad',
@@ -65,7 +65,7 @@ def seed_menu_items():
         description='Braised Salmon with Oyster Sauce with chopped Cucumbers',
         category='Seafood',
         photo_url='https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        menu_id=1
+        menu_id=3
     )
     item9 = MenuItem(
         name='Honey Pancakes',
@@ -100,12 +100,12 @@ def seed_menu_items():
         menu_id=4
     )
     item13 = MenuItem(
-        name='Chicken Fried Rice',
-        price=15.99,
-        description='Chicken Fried Rice served with peas, corns, and carrots',
-        category='Fried Rice',
-        photo_url='https://images.unsplash.com/photo-1603133872878-684f208fb84b?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        menu_id=3
+            name='Chicken Fried Rice',
+            price=15.99,
+            description='Chicken Fried Rice served with peas, corns, and carrots',
+            category='Fried Rice',
+            photo_url='https://images.unsplash.com/photo-1603133872878-684f208fb84b?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            menu_id=3
     )
     item14 = MenuItem(
         name='Fresh Fried Chicken',
@@ -123,8 +123,96 @@ def seed_menu_items():
         photo_url='https://images.unsplash.com/photo-1603661688298-870c8958ebf8?q=80&w=2008&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         menu_id=2
     )
+    item16 = MenuItem(
+        name='Avocado Toast',
+        price=8.99,
+        description='Avocado toast topped with a sunny-side-up egg.',
+        category='Toast',
+        photo_url='https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=1
+    )
+    item17 = MenuItem(
+            name='Tomato Toast',
+            price=9.99,
+            description='Toasted bread topped with sliced tomatoes, chopped chives, and cream',
+            category='Toast',
+            photo_url='https://images.unsplash.com/photo-1506280754576-f6fa8a873550?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            menu_id=1
+    )
+    item18 = MenuItem(
+        name='Rasberry Cheesecake',
+        price=11.99,
+        description='Creamy cheesecake with a luscious raspberry swirl atop a crumbly graham cracker crust.',
+        category='Dessert',
+        photo_url='',
+        menu_id=3
+    )
+    item19 = MenuItem(
+        name='Chocolate Chip Cookie',
+        price=7.99,
+        description='Fresh Baked Chocolate Chip Cookies topped with almonds',
+        category='Dessert',
+        photo_url='https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=2564&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=3
+    )
+    item20 = MenuItem(
+        name='Butter Crossiant',
+        price=7.99,
+        description='Flaky, buttery pastry layers delicately folded into a crescent shape, offering a rich and indulgent treat with every bite',
+        category='Bakery Items',
+        photo_url='https://images.unsplash.com/photo-1530610476181-d83430b64dcd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=5
+    )
+    item21 = MenuItem(
+        name='Fresh Bake Bagels',
+        price=5.99,
+        description='Bagels slathered with smooth, sweet cream cheese, offering a delightful blend of savory and sweet flavors in every bite',
+        category='Bakery Items',
+        photo_url='https://images.unsplash.com/photo-1608048608495-e062fc7d0725?q=80&w=2564&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=5
+    )
+    item22 = MenuItem(
+        name='Breakfast Platter',
+        price=15.99,
+        description='A hearty platter featuring eggs, crispy bacon, savory sausage, and slices of freshly baked bread.',
+        category='Combo',
+        photo_url='https://images.unsplash.com/photo-1533920379810-6bedac961555?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=5
+    )
+    item23 = MenuItem(
+        name='Tomato Pasta',
+        price=15.99,
+        description='Pasta tossed in a rich tomato sauce, bursting with the flavors of ripe tomatoes, garlic, herbs.',
+        category='Pasta',
+        photo_url='https://images.unsplash.com/photo-1608897013039-887f21d8c804?q=80&w=2584&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=6
+    )
+    item24 = MenuItem(
+        name='Grilled Salmon',
+        price=18.99,
+        description='Grilled salmon served alongside creamy avocado slices and a fresh house salad',
+        category='Seafood',
+        photo_url='https://images.unsplash.com/photo-1611599537845-1c7aca0091c0?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=6
+    )
+    item25 = MenuItem(
+        name='Beef Tacos',
+        price=12.95,
+        description='Three soft corn tortillas filled with seasoned ground beef, topped with crisp lettuce, diced tomatoes, shredded cheese.',
+        category='Tacos',
+        photo_url='https://images.unsplash.com/photo-1588556008426-af415581d44b?q=80&w=2565&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=6
+    )
+    item26 = MenuItem(
+        name='Beef Rice Noodle',
+        price=15.99,
+        description='Savory beef slices in pork soup with tender rice noodles',
+        category='Noodle',
+        photo_url='https://images.unsplash.com/photo-1555126634-323283e090fa?q=80&w=2564&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=7
+    )
 
-    db.session.add_all([item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12, item13, item14, item15])
+    db.session.add_all([item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12, item13, item14, item15, item16, item17, item18, item19, item20, item21, item22, item23, item24, item25, item26])
     db.session.commit()
 
 
