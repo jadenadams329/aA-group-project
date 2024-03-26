@@ -144,7 +144,7 @@ def seed_menu_items():
         price=11.99,
         description='Creamy cheesecake with a luscious raspberry swirl atop a crumbly graham cracker crust.',
         category='Dessert',
-        photo_url='',
+        photo_url='https://images.unsplash.com/photo-1621955511667-e2c316e4575d?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         menu_id=3
     )
     item19 = MenuItem(
@@ -211,8 +211,64 @@ def seed_menu_items():
         photo_url='https://images.unsplash.com/photo-1555126634-323283e090fa?q=80&w=2564&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         menu_id=7
     )
+    item27 = MenuItem(
+        name='Sirloin Steak',
+        price=28.99,
+        description='Sirloin Steak topped with chives and fresh fried french fries.',
+        category='Steak',
+        photo_url='https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=7
+    )
+    item28 = MenuItem(
+        name='T-Bone Steak',
+        price=32.99,
+        description='22 oz Fresh Grilled T-Bone steak.',
+        category='Steak',
+        photo_url='https://images.unsplash.com/photo-1598577790111-6bb8ee8f7af9?q=80&w=2564&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=7
+    )
+    item29 = MenuItem(
+        name='Ice Milk Tea',
+        price=5.99,
+        description='Refreshing milk tea infused with aromatic black tea, served over ice.',
+        category='Tea',
+        photo_url='https://images.unsplash.com/photo-1621221814631-e8bfdabd5ca4?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=8
+    )
+    item30 = MenuItem(
+        name='Ice Green Tea Latte',
+        price=6.95,
+        description='Chilled green tea combined with creamy milk and poured over ice',
+        category='Coffee',
+        photo_url='https://images.unsplash.com/photo-1592284441621-581ebd2e677d?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=8
+    )
+    item31 = MenuItem(
+        name='Brown Sugar Milk Tea',
+        price=7.95,
+        description='Milk tea with rich brown sugar syrup, served over ice for a delightful blend of sweetness and creaminess',
+        category='Boba',
+        photo_url='https://images.unsplash.com/photo-1599536837271-f3e08bd0fac5?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=8
+    )
+    item32 = MenuItem(
+        name='Cheese Corn SandWich',
+        price=6.95,
+        description='Sandwich featuring creamy cheese and flavorful corn kernels layered between slices of toasted bread',
+        category='Sandwich',
+        photo_url='https://images.unsplash.com/photo-1528736235302-52922df5c122?q=80&w=2754&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=9
+    )
+    item33 = MenuItem(
+        name='Cheese Burger',
+        price=11.89,
+        description='Cheeseburger featuring a juicy beef patty grilled to perfection, topped with melted cheese',
+        category='Burger',
+        photo_url='https://images.unsplash.com/photo-1605789538467-f715d58e03f9?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=10
+    )
 
-    db.session.add_all([item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12, item13, item14, item15, item16, item17, item18, item19, item20, item21, item22, item23, item24, item25, item26])
+    db.session.add_all([item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12, item13, item14, item15, item16, item17, item18, item19, item20, item21, item22, item23, item24, item25, item26, item27, item28, item29, item30, item31, item32, item33])
     db.session.commit()
 
 
