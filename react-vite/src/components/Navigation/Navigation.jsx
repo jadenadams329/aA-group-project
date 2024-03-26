@@ -52,7 +52,7 @@ function Navigation({ isLoaded }) {
 				<div className='navListContainer'>
 					<div>
 						<li>
-							<NavLink className='yumLogo' to='/'>Yum</NavLink> <NavLink className='cartLogo' to='/'>Cart</NavLink>
+							<NavLink className='yumLogo' to='/restaurants'>Yum</NavLink> <NavLink className='cartLogo' to='/restaurants'>Cart</NavLink>
 						</li>
 					</div>
 					<div className='sessionLinks'>{isLoaded && sessionLinks}</div>

@@ -3,11 +3,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createItem, updateItem } from "../../redux/menu_item";
 import "./MenuItemForm.css";
+import { getOneItem } from "../../redux/menu_item";
 import { getOneMenu } from "../../redux/menu";
 
 function MenuItemForm({ item, formType }) {
   const { id } = useParams();
-  const menu_id = id;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [name, setName] = useState(item?.name);
@@ -17,20 +17,28 @@ function MenuItemForm({ item, formType }) {
   const [photo_url, setPhoto_url] = useState(item?.photo_url);
   const [errors, setErrors] = useState({});
   const [loaded, setLoaded] = useState(false);
-  const restId = useSelector((state) =>
-    state.menus ? state.menus["1"]?.restaurant_id : null
-  );
+  const edit_Menu_id = useSelector(state => state.menu_items[item?.id]?.menu_id)
+  const menu_id = formType === 'Create Item' ? id : edit_Menu_id
+  const restId = useSelector(state => state.menus[menu_id]?.restaurant_id)
 
   useEffect(() => {
-    dispatch(getOneMenu(menu_id));
-    setLoaded(true);
+    const fetch = async () => {
+      if(formType === 'Update Item') {
+        await dispatch(getOneItem(id))
+        await dispatch(getOneMenu(menu_id))
+      }
+      setLoaded(true)
+    }
+    fetch()
+  }, [dispatch, formType, id, menu_id])
+
+  useEffect(() => {
     const errs = {};
     if (!name) errs.name = "Please provide a name for the Item.";
     if (!price) errs.price = "Please provide the price for the Item.";
     if (price && price <= 0) errs.price = "Price must be greater than 0.";
-    if (description && description.length <= 0)
-      errs.description = "Please provide description of the item.";
-    if (category && category.length <= 0) errs.category = "Please categorize the item.";
+    if (!description) errs.description = "Please provide description of the item.";
+    if (category.length <= 0) errs.category = "Please categorize the item.";
     if (!photo_url) errs.photo_url = "Please provide a picture for the item";
     if (
       photo_url &&
@@ -43,12 +51,12 @@ function MenuItemForm({ item, formType }) {
       errs.photo_url = "Image URL must end in .png, .jpg, or .jpeg";
     }
     setErrors(errs);
-  }, [dispatch, menu_id, name, price, description, category, photo_url]);
+  }, [dispatch, name, price, description, category, photo_url]);
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      item = { name, price, description, category, photo_url, menu_id };
+      item = { name, price, description, category, photo_url };
       if (formType === "Create Item") {
         const newItem = {
           name,
@@ -66,8 +74,7 @@ function MenuItemForm({ item, formType }) {
       }
       navigate(`/restaurants/${restId}`);
     } catch (error) {
-      const errs = await error.json();
-      setErrors(errs.errors);
+        setErrors(error)
     }
   };
 

@@ -56,7 +56,7 @@ export const getAllMenus = restaurantId => async(dispatch) => {
 }
 
 export const createMenu = (restaurantId, menu) => async(dispatch) => {
-    const res = await fetch(`/api/restaurants/${restaurantId}/menus`, {
+    let res = await fetch(`/api/restaurants/${restaurantId}/menus`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(menu)
@@ -67,8 +67,8 @@ export const createMenu = (restaurantId, menu) => async(dispatch) => {
         dispatch(addMenu(newMenu))
         return newMenu
     } else {
-        const err = await res.json()
-        return err
+        res = await res.json()
+        throw res
     }
 }
 

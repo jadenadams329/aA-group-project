@@ -1,0 +1,23 @@
+.DeleteMenuForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 5px;
+    font-size: 15px;
+}
+
+h5 {
+    margin-top: 0px;
+    margin-bottom: 0px ;
+    font-size: 20px;
+}
+
+.SelectionAndPhoto {
+    align-items: center;
+}
+
+.selectedMenu {
+    font-weight: bold;
+    color: red;
+}
