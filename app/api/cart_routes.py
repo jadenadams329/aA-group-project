@@ -51,19 +51,31 @@ def addItems(id):
   return item.to_dict()
 
 
-@cart_route.route('/items/<int:id>/minus',methods=['PUT'])
-def removeItems(id):
-   item=CartItem.query.get(id)
-   newone = item.to_dict()
-   print(newone['quantity'],'this is the item**************************************************************************')
-   if(int(newone['quantity']) > 1):
-    item.quantity -= 1
-    db.session.commit()
-    return fullCart()
-   else:
-     db.session.delete(item)
-     db.session.commit()
-     return fullCart()
+
+
+
+
+
+
+# @cart_route.route('/items/<int:id>',methods=['PUT'])
+# def removeItems(id):
+#    item=CartItem.query.get(id)
+#    newone = item.to_dict()
+#    print(newone['quantity'],'this is the item**************************************************************************')
+#    if(int(newone['quantity']) > 1):
+#     item.quantity -= 1
+#     db.session.commit()
+#     return fullCart()
+#    else:
+#      db.session.delete(item)
+#      db.session.commit()
+#      return fullCart()
+
+
+
+
+
+
 
 
 @cart_route.route('/items/<int:id>',methods=['POST'])

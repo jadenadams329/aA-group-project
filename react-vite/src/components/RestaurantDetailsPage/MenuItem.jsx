@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DeleteItemModal from "./DeleteItemModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import { Link } from "react-router-dom";
-import { addingItem } from "../../redux/cart";
+import { addingItem, getTheCart } from "../../redux/cart";
 
 
 function MenuItem({ items }) {
@@ -21,7 +21,7 @@ function MenuItem({ items }) {
               <p className="itemdes">{item.description}</p>
               <div className="DesAndButton">
                 ${item.price.toFixed(2)}
-                <button onClick={() => dispatch(addingItem(item.id))} className="AddButton">
+                <button onClick={() => dispatch(addingItem(item.id)).then(() => dispatch(getTheCart()))} className="AddButton">
                   <i className="fa-solid fa-circle-plus"></i>
                 </button>
               </div>

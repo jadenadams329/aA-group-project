@@ -20,21 +20,12 @@ export default function CheckoutPage() {
   const restaurant = useSelector((state) => state.cart?.restaurant);
   const [useCredit, setUseCredit] = useState(false);
   const [lastFour, setLastFour] = useState();
-  const [counted, setCounted] = useState();
+ const counted = useSelector((state) => state.cart.totalItems)
   const [showPics, setShowPics] = useState(true);
 
 
   const tax = 0.09
-  const getCount = () => {
-    let count = 0;
-    if (cart?.length) {
-      cart.map((item) => (count += item.quantity));
-      // console.log(count)
-      return count;
-    } else {
-      return count;
-    }
-  };
+
 
   let subTotal = 0.0;
   const getSubTotal = () => {
@@ -51,7 +42,7 @@ export default function CheckoutPage() {
     if(useCredit){
 
       const total= final - user.credit
-      console.log(total,'this is the whole total for checkout')
+  if (total)
       if(total < 0) {
           return 0.00
         }else{
@@ -64,9 +55,7 @@ export default function CheckoutPage() {
   useEffect(() => {
     dispatch(getTheCart())
       .then(getSubTotal())
-      .then(() => {
-        setCounted(getCount());
-      });
+
   }, [dispatch, subTotal, counted]);
 
 

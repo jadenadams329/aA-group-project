@@ -12,7 +12,7 @@ function CartButton() {
 	const dispatch = useDispatch()
 	const cart = useSelector((state) => state.cart?.cart)
 	const rest = useSelector((state) => state.cart?.restaurant)
-	// let cart = []
+	const count = useSelector((state) => state.cart.totalItems)
 	const [showMenu, setShowMenu] = useState(false);
 	const [counted, setCounted ] = useState()
 	const ulRef = useRef();
@@ -20,28 +20,14 @@ function CartButton() {
 		e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
 		setShowMenu(!showMenu);
 	};
-	let count = 0
-const getCount =()=>{
-		if (cart?.length){
-			cart.map((item) => (
-				count += item.quantity
-				))
-				// console.log(count)
-			return count
 
-		}else{
-		return count
-		}
+	console.log(count,'lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll')
 
 
-}
 	useEffect(()=>{
-		dispatch(getTheCart()).then(() => setCounted(getCount()))
+		dispatch(getTheCart())
 		// console.log(getCount(), "this is the cart in the cartbutton")
-
-
-
-	},[dispatch,counted])
+	},[dispatch,count])
 
 	useEffect(() => {
 		if (!showMenu) return;
@@ -65,14 +51,14 @@ const getCount =()=>{
 					{cart && (
 
 				<button onClick={toggleMenu} className="cartButton">
-						<FaShoppingCart /> Cart · {counted}
+						<FaShoppingCart /> Cart · {count}
 
 				</button>
 					)}
 						{!cart && (
 
 <button onClick={toggleMenu} className="cartButton">
-		<FaShoppingCart /> Cart · {counted}
+		<FaShoppingCart /> Cart · {count}
 
 </button>
 	)}
