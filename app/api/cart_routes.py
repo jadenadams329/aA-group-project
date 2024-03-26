@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint,request
 from app.models.Cart import Cart
 from app.models.db import db
 from app.models.Cart_Items import CartItem
@@ -42,19 +42,25 @@ def fullCart():
 
 
 
+@cart_route.route('/items/<int:id>',methods=['PUT'])
+def updateCart(id):
+   print('hit this guy~~~~~~~~~~')
+   item = CartItem.query.get(id)
+   data = request.get_json()
+   print(data,'we are getting data')
+   if data:
+      item.quantity = data.get('quantity',item.quantity)
+      db.session.commit()
+      return fullCart()
 
-@cart_route.route('/items/<int:id>/add',methods=['PUT'])
-def addItems(id):
-  item= CartItem.query.get(id)
-  item.quantity += 1
-  db.session.commit()
-  return item.to_dict()
 
 
-
-
-
-
+# @cart_route.route('/items/<int:id>/add',methods=['PUT'])
+# def addItems(id):
+#   item= CartItem.query.get(id)
+#   item.quantity += 1
+#   db.session.commit()
+#   return item.to_dict()
 
 
 # @cart_route.route('/items/<int:id>',methods=['PUT'])

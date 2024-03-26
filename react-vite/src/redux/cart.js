@@ -1,3 +1,4 @@
+import { json } from "react-router-dom"
 
 
 //^ action types:
@@ -50,35 +51,38 @@ export const getTheCart = () => async (dispatch)=> {
 
 export const clearCart = () => async (dispatch) => {
     const cartItems = []
-    dispatch(loadCart(cartItems))
+    dispatch(loadCart(cartItems)).then(()=> dispatch(setRestaurant('')))
 }
 
-// export const addQuant = (id) => async (dispatch) =>{
-//     const newQuant = await fetch(`/api/cart/items/${id}/add`,{
-//         method:'PUT'
-//         // body: id
-//     })
 
 
-//     if (newQuant.ok){
-//         const data = await newQuant.json()
-//         dispatch(getTheCart)
-//         return data
-//     }
-// }
-
-// export const removeItem = (id) => async (dispatch) =>{
-//     const newQuant = await fetch(`/api/cart/items/${id}/minus`,{
-//         method:'PUT'
-//     })
 
 
-//     if (newQuant.ok){
-//         const data = await newQuant.json()
-//         dispatch(getTheCart)
 
-//     }
-// }
+
+
+export const editQuants = (id,quant) => async (dispatch) =>{
+    console.log(quant,'quant from my thunk',id)
+    const res = await fetch(`/api/cart/items/${id}`,{
+        method: 'PUT',
+        headers: {
+			"Content-Type": "application/json",
+		},
+        body: JSON.stringify(quant)
+    })
+    if (res.ok){
+       const data = await res.json()
+        console.log(data,'update quant func hit!**************************************************************************************************')
+        dispatch(getTheCart())
+    }
+}
+
+
+
+
+
+
+
 
 export const addingItem = (id) => async (dispatch) =>{
     const res = await fetch(`/api/cart/items/${id}`,{
@@ -87,7 +91,7 @@ export const addingItem = (id) => async (dispatch) =>{
 
     if (res.ok){
         const data = await res.json()
-        dispatch(getTheCart)
+        dispatch(getTheCart())
         return data
     }
 }

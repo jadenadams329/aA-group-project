@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getTheCart } from "../../redux/cart";
+import { editQuants, getTheCart } from "../../redux/cart";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./cart.css";
@@ -19,7 +19,10 @@ export default function CartDropDown({ cart, restaurant }) {
     }
     return subTotal.toFixed(2);
   };
-  
+
+  const addOne = (id,quant) =>{
+    dispatch(editQuants(id,{quantity: quant}))
+  }
   useEffect(() => {
     dispatch(getTheCart()).then(() => setIsLoading(false))
   }, [dispatch]);
@@ -28,7 +31,6 @@ export default function CartDropDown({ cart, restaurant }) {
     e.preventDefault();
     navigate(`restaurants/${restaurant.id}`);
   };
-
 
 
 
@@ -66,7 +68,7 @@ export default function CartDropDown({ cart, restaurant }) {
                       <div className='quantityButtons'>
                         {console.log(item.id,'this is the item')}
                         <button className='qbutton' > - </button> {item.quantity}{" "}
-                        <button className='qbutton' >+</button>
+                        <button className='qbutton' onClick={()=> addOne(item.id,item.quantity)}>+</button>
                       </div>
                       <div>
                         <p
