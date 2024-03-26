@@ -11,6 +11,16 @@
     justify-content: center;
 }
 
+.ItemDeleteDes {
+    color: red;
+    font-weight: bold;
+}
+
+.DeleteItemForm > h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 h2 {
     color: blue;
 }
@@ -29,7 +39,7 @@ h2 {
     object-fit: cover;
 }
 
-.NopeButton {
+.NoDeleteButton {
     box-shadow: 3px 3px 3px black;
     color: white;
     background-color: black;

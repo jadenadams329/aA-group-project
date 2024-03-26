@@ -30,7 +30,7 @@ function MenuItem({ restId, items }) {
                         <div className="UpdateLink">
                             <Link to={`/items/${item.id}/edit`}>Update</Link>
                         </div>
-                        <div className="DeleteItemButton">
+                        <div className="DeleteMenuItemButton">
                           <OpenModalButton
                             buttonText="Delete"
                             modalComponent={

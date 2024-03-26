@@ -24,7 +24,7 @@ const DeleteItemModal = ({item, restId}) => {
     return (
         <form className="DeleteItemForm">
             <h2>Confirm Delete</h2>
-            <p>Are you sure you want to take this item out of the Menu?</p>
+            <div className="ItemDeleteDes">Are you sure you want to delete this item?</div>
             <div className="NameAndImage">
                 <div className="ItemName">{item.name}</div>
                 <img className="itemImage" src={item.photo_url}/>
@@ -35,7 +35,7 @@ const DeleteItemModal = ({item, restId}) => {
                     onClick={confirmDelete}
                 >Yes (Delete Item)</button>
                 <button
-                    className="NopeButton"
+                    className="NoDeleteButton"
                     onClick={nope}
                 >No (Keep Item)</button>
             </div>
