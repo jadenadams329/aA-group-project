@@ -13,7 +13,7 @@ export default function CartDropDown({ cart, restaurant }) {
 
   let subTotal = 0.0;
   const getSubTotal = () => {
-    if (cart.length) {
+    if (cart?.length) {
       cart.map((item) => (subTotal += item.price * item.quantity));
       return subTotal.toFixed(2);
     }
@@ -26,7 +26,7 @@ export default function CartDropDown({ cart, restaurant }) {
   };
   useEffect(() => {
     dispatch(getTheCart()).then(() => setIsLoading(false));
-  }, [dispatch, cart.length]);
+  }, [dispatch, cart?.length]);
 
   const addItemfunc = (e) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ export default function CartDropDown({ cart, restaurant }) {
   if (!isLoading) {
     return (
       <div className='cart'>
-        {cart.length > 0 && (
+        {cart?.length > 0 && (
           <>
             <h1
               className='cart-header'
@@ -88,7 +88,7 @@ export default function CartDropDown({ cart, restaurant }) {
                               height: "25px",
                               backgroundColor: "lightgrey",
                             }}
-                            onClick={() => dispatch(removeItem(item.id))}
+                            onClick={() => dispatch(removeItem(item.id,item.cartId))}
                           >
                             <FaRegTrashCan />
                           </button>
@@ -146,7 +146,7 @@ export default function CartDropDown({ cart, restaurant }) {
           </>
         )}
         {!cart ||
-          (cart.length == 0 && (
+          (cart?.length == 0 && (
             <div>
               <h1 style={{position:'relative', left:'30px',
             fontSize:'30pt'}}>No items in Cart!</h1>

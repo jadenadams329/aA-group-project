@@ -1,4 +1,4 @@
-import { json } from "react-router-dom"
+
 
 
 //^ action types:
@@ -37,7 +37,7 @@ export const getTheCart = () => async (dispatch)=> {
         const cartItems = await res.json();
         // console.log(cartItems[0].restaurant,'this is the cart items in the thunk')
         let quant = 0;
-        if (cartItems){
+        if (cartItems.length){
             dispatch(setId(cartItems[0].id))
         }
         if(cartItems.length){
@@ -62,12 +62,13 @@ export const getTheCart = () => async (dispatch)=> {
 
 
 export const clearCart = (id) => async (dispatch) => {
-    data =await fetch(`/api/cart/${id}`,{
+    const data =await fetch(`/api/cart/${id}`,{
         method: 'DELETE'
 
     })
     if (data.ok){
-        await data.json()
+        const res = await data.json()
+            console.log(res,'ppppppppppppppppppp')
         dispatch(loadCart([]))
         dispatch(getTheCart())
     }
@@ -89,17 +90,23 @@ export const editQuants = (id,quant) => async (dispatch) =>{
     if (res.ok){
        const data = await res.json()
         dispatch(getTheCart())
+        return data
     }
 }
 
 
 
-export const removeItem = (id) => async (dispatch) => {
+export const removeItem = (id,cartId) => async (dispatch) => {
     const res = await fetch(`/api/cart/items/${id}`,{
         method: 'DELETE'
     })
     if(res.ok){
-        dispatch(getTheCart())
+        const data = await fetch('/api/cart/items')
+        if (data.ok){
+            const me= await data.json()
+            console.log(me,'meeeeeeeeeeeeeeeeeeeeeeee')
+            dispatch(clearCart(cartId))
+        }
     }
 }
 
