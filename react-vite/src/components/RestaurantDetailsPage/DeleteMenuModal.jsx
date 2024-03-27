@@ -79,10 +79,10 @@ const DeleteMenuModal = ({ menus, selectedMenu, setSelectedMenu }) => {
         )}
       </div>
       <div className="DeleteItemButtons">
-        <button className="DeleteButton" onClick={confirmDelete}>
+        <button className="DeleteItemButton" onClick={confirmDelete}>
           Yes (Delete Menu!)
         </button>
-        <button className="NopeButton" onClick={nope}>
+        <button className="NopeItemButton" onClick={nope}>
           No (Keep Menu)
         </button>
       </div>

@@ -4,6 +4,11 @@
     align-items: center;
 }
 
+.CreateMenuForm > h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .NopeButton {
     box-shadow: 3px 3px 3px black;
     color: white;

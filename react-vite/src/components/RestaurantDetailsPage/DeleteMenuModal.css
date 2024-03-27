@@ -7,7 +7,12 @@
     font-size: 15px;
 }
 
-h5 {
+.DeleteMenuForm h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.DeleteMenuForm h5 {
     margin-top: 0px;
     margin-bottom: 0px ;
     font-size: 20px;
@@ -20,4 +25,23 @@ h5 {
 .selectedMenu {
     font-weight: bold;
     color: red;
+}
+
+.DeleteItemButton {
+    background-color: orangered;
+    color: white;
+    box-shadow: 3px 3px 3px black;
+    height: 30px;
+    width: 180px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-right: 20px;
+}
+
+.NopeItemButton {
+    background-color: black;
+    color: white;
+    box-shadow: 3px 3px 3px black;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    height: 30px;
+    width: 180px;
 }
