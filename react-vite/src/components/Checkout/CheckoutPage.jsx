@@ -126,7 +126,7 @@ dispatch(clearCart(cartId))
               type='number'
               placeholder='Card Number Required'
               required={true}
-              onChange={(e) => setLastFour(e.target.value.slice(-4))}
+              
             ></input>
             <br />
             <br />
