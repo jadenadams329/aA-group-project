@@ -5,6 +5,7 @@ import { json } from "react-router-dom"
 const LOAD_CART = 'cart/LOAD_CART'
 const GET_REST = 'cart/GET_REST'
 const ADD_QUANT = 'cart/ADD_QUANT'
+const CART_ID = 'cart/CART_ID'
 
 //~ Action Creators:
 const loadCart = (cartItems) =>({
@@ -23,6 +24,11 @@ const setTotalItems = (quant) => ({
 })
 
 
+const setId = (id) => ({
+    type: CART_ID,
+    id
+})
+
 //? Thunks:
 export const getTheCart = () => async (dispatch)=> {
     const res = await fetch('/api/cart/items');
@@ -31,6 +37,9 @@ export const getTheCart = () => async (dispatch)=> {
         const cartItems = await res.json();
         // console.log(cartItems[0].restaurant,'this is the cart items in the thunk')
         let quant = 0;
+        if (cartItems){
+            dispatch(setId(cartItems[0].id))
+        }
         if(cartItems.length){
             cartItems.map((item) => (
                 quant += item.quantity
@@ -50,14 +59,20 @@ export const getTheCart = () => async (dispatch)=> {
     }
 }
 
-export const clearCart = () => async (dispatch) => {
-    const cartItems = []
-    dispatch(loadCart(cartItems)).then(()=> dispatch(setRestaurant('')))
+
+
+export const clearCart = (id) => async (dispatch) => {
+    data =await fetch(`/api/cart/${id}`,{
+        method: 'DELETE'
+
+    })
+    if (data.ok){
+        await data.json()
+        dispatch(loadCart([]))
+        dispatch(getTheCart())
+    }
+
 }
-
-
-
-
 
 
 
@@ -116,6 +131,8 @@ const cartReducer =(state = {},action) =>{
             return {...state, restaurant: action.restaurant}
         case ADD_QUANT:
             return {...state, totalItems: action.quant}
+        case CART_ID:
+            return {...state, cartId: action.id}
         default:
             return state
     }

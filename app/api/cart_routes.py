@@ -17,7 +17,7 @@ def fullCart():
        hi='hi'
        return []
     if activeCart:
-       wholeCart = []
+       wholeCart = activeCart.to_dict()
     # for item in activeCart:
     #   item = item.to_dict()
     #   wholeCart= item
@@ -40,7 +40,8 @@ def fullCart():
            "photo_url": final["photo_url"],
            "price": final["price"],
            "quantity": theguy["quantity"],
-           "restaurant": jay['restaurant_id']
+           "restaurant": jay['restaurant_id'],
+           "cartId" : wholeCart["id"]
         }
 
         theFullList.append(Kart)
@@ -75,7 +76,7 @@ def removeItems(id):
 
 @cart_route.route('/items/<int:id>',methods=['POST'])
 def addToCart(id):
-
+  userId = current_user.to_dict()['id']
   theItem = MenuItem.query.get(id)
   newitem = theItem.to_dict()
   findme = Cart.query.filter(Cart.purchased == False).first()
@@ -84,8 +85,16 @@ def addToCart(id):
   if findme == None:
      print('this')
      menu = Menu.query.get(newitem['menu_id'])
-  #    jay = menu.to_dict()
-  #    newCart = Cart(current['id'],jay['restaurant_id'],puchased=False)
+     jay = menu.to_dict()['restaurant_id']
+     newCart = Cart(user_id=userId,restaurant_id=jay,purchased=False)
+     db.session.add(newCart)
+     db.session.commit()
+
+     cart_id = newCart.to_dict()['id']
+     newGuy = CartItem(cart_id = cart_id,menu_item_id=newitem['id'],quantity=1)
+     db.session.add(newGuy)
+     db.session.commit()
+
      return fullCart()
 
 
