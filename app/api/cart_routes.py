@@ -67,10 +67,17 @@ def updateCart(id):
 
 @cart_route.route('/items/<int:id>',methods=['DELETE'])
 def removeItems(id):
-   item=CartItem.query.get(id)
-   db.session.delete(item)
-   db.session.commit()
-   return fullCart()
+   try:
+
+    item=CartItem.query.get(id)
+    if not item:
+       return jsonify({"error": "no item found"}),404
+    db.session.delete(item)
+    db.session.commit()
+    return fullCart()
+   except Exception as err:
+      return jsonify(error=str(err)),500
+
 
 
 
@@ -127,7 +134,13 @@ def addToCart(id):
 
 @cart_route.route('/<int:id>',methods=['DELETE'])
 def delCart(id):
-   cart = Cart.query.get(id)
-   db.session.delete(cart)
-   db.session.commit()
-   return fullCart()
+   try:
+     cart = Cart.query.get(id)
+     if not cart:
+      return jsonify({'error': 'cart not found'}),404
+     db.session.delete(cart)
+     db.session.commit()
+     return fullCart()
+
+   except Exception as err:
+      return jsonify(error=str(err)),500
