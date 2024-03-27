@@ -2,7 +2,8 @@
 //^ action types:
 const LOAD_CART = 'cart/LOAD_CART'
 const GET_REST = 'cart/GET_REST'
-
+const ADD_QUANT = 'cart/ADD_QUANT'
+const CART_ID = 'cart/CART_ID'
 
 //~ Action Creators:
 const loadCart = (cartItems) =>({
@@ -15,7 +16,16 @@ const setRestaurant = (restaurant) =>({
     restaurant
 })
 
+const setTotalItems = (quant) => ({
+    type: ADD_QUANT,
+    quant
+})
 
+
+const setId = (id) => ({
+    type: CART_ID,
+    id
+})
 
 //? Thunks:
 export const getTheCart = () => async (dispatch)=> {
@@ -23,21 +33,97 @@ export const getTheCart = () => async (dispatch)=> {
 
     if (res.ok) {
         const cartItems = await res.json();
-        console.log(cartItems[0].restaurant,'this is the cart items in the thunk')
-        const theSpot = await fetch(`/api/restaurants/${cartItems[0].restaurant}`);
-        if (theSpot.ok){
-            const restaurant = await theSpot.json()
-            dispatch(setRestaurant(restaurant))
+        // console.log(cartItems[0].restaurant,'this is the cart items in the thunk')
+        let quant = 0;
+        if (cartItems.length){
+            dispatch(setId(cartItems[0].id))
         }
+        if(cartItems.length){
+            cartItems.map((item) => (
+                quant += item.quantity
+                ))
+
+            const theSpot = await fetch(`/api/restaurants/${cartItems[0].restaurant}`);
+            if (theSpot.ok){
+                const restaurant = await theSpot.json()
+                if (restaurant) {
+                    dispatch(setRestaurant(restaurant))
+                }
+
+            }
+        }
+        dispatch(setTotalItems(quant))
         dispatch(loadCart(cartItems))
-    }else{
-        return { message: "No items in Cart" }
     }
 }
 
-export const clearCart = () => async (dispatch) => {
-    const cartItems = []
-    dispatch(loadCart(cartItems))
+
+
+export const clearCart = (id) => async (dispatch) => {
+    const data =await fetch(`/api/cart/${id}`,{
+        method: 'DELETE'
+
+    })
+    if (data.ok){
+        const res = await data.json()
+            console.log(res,'ppppppppppppppppppp')
+        dispatch(loadCart([]))
+        dispatch(getTheCart())
+    }
+
+}
+
+
+
+
+export const editQuants = (id,quant) => async (dispatch) =>{
+    console.log(quant,'quant from my thunk',id)
+    const res = await fetch(`/api/cart/items/${id}`,{
+        method: 'PUT',
+        headers: {
+			"Content-Type": "application/json",
+		},
+        body: JSON.stringify(quant)
+    })
+    if (res.ok){
+       const data = await res.json()
+        dispatch(getTheCart())
+        return data
+    }
+}
+
+
+
+export const removeItem = (id,cartId) => async (dispatch) => {
+    const res = await fetch(`/api/cart/items/${id}`,{
+        method: 'DELETE'
+    })
+    if(res.ok){
+        const data = await fetch('/api/cart/items')
+        if (data.ok){
+            const me= await data.json()
+            console.log(me,'meeeeeeeeeeeeeeeeeeeeeeee')
+            dispatch(clearCart(cartId))
+        }
+    }
+}
+
+
+
+
+export const addingItem = (id) => async (dispatch) =>{
+    const res = await fetch(`/api/cart/items/${id}`,{
+        method: 'POST'
+    })
+
+    if (res.ok){
+        const data = await res.json()
+        const rest = await fetch(`/api/restaurants/${id}`)
+        const test = await rest.json()
+        console.log(test,' this is my new resty------------')
+        dispatch(getTheCart())
+        return data
+    }
 }
 
 //! Reducer:
@@ -48,7 +134,10 @@ const cartReducer =(state = {},action) =>{
             return { ...state, cart: action.cartItems }
         case GET_REST:
             return {...state, restaurant: action.restaurant}
-
+        case ADD_QUANT:
+            return {...state, totalItems: action.quant}
+        case CART_ID:
+            return {...state, cartId: action.id}
         default:
             return state
     }

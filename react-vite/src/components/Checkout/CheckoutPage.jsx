@@ -2,7 +2,7 @@ import "./checkout.css";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { getTheCart } from "../../redux/cart";
+import { clearCart, getTheCart } from "../../redux/cart";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { FaChevronCircleDown } from "react-icons/fa";
@@ -19,7 +19,7 @@ export default function CheckoutPage() {
   const cart = useSelector((state) => state.cart?.cart);
   const restaurant = useSelector((state) => state.cart?.restaurant);
   const [useCredit, setUseCredit] = useState(false);
-  const [lastFour, setLastFour] = useState();
+  const cartId = useSelector((state) => state.cart?.cartId)
   const [counted, setCounted] = useState();
   const [showPics, setShowPics] = useState(true);
 
@@ -72,10 +72,9 @@ export default function CheckoutPage() {
 
   const finished = () => {
 
-const sub = getSubTotal()
-const tot= getTotal()
+dispatch(clearCart(cartId))
   // navigate(<Confirmation lastFour={lastFour} total={getTotal()} subtotal={getSubTotal()}  />)
-  navigate('/confirmed',tot,sub,lastFour)
+  navigate('/confirmed')
   }
 
 
