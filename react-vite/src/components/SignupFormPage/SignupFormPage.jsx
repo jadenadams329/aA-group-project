@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useLocation } from "react-router-dom";
 import { thunkSignup } from "../../redux/session";
 import validator from "validator";
 import "./SignupForm.css";
@@ -8,6 +8,7 @@ import "./SignupForm.css";
 function SignupFormPage() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const location = useLocation();
 	const sessionUser = useSelector((state) => state.session.user);
 	const [email, setEmail] = useState("");
 	const [username, setUsername] = useState("");
@@ -16,31 +17,34 @@ function SignupFormPage() {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [phone, setPhone] = useState("");
-	const [address, setAddress] = useState("");
+	const [address, setAddress] = useState(location.state?.address ? location.state.address : "");
 	const [city, setCity] = useState("");
 	const [state, setState] = useState("");
 	const [zip, setZip] = useState("");
 	const [errors, setErrors] = useState({});
+
 	let [userInteraction, setUserInteraction] = useState({
 		email: false,
 		username: false,
 		firstName: false,
 		lastName: false,
 		password: false,
-    confirmPassword: false,
+		confirmPassword: false,
 		zipCode: false,
 	});
 
-  let submitDisabled = true
+	let submitDisabled = true;
 
-  submitDisabled = Object.values(errors).length === 0 ? false : true;
+
+
+	submitDisabled = Object.values(errors).length === 0 ? false : true;
 
 	useEffect(() => {
 		const validationErrors = {};
 		if (!validator.isEmail(email)) validationErrors["isEmail"] = "*Please enter a valid email";
 		if (username.length <= 3) validationErrors["usernameLength"] = "*Username must be 4 or more characters";
 		if (password.length <= 5) validationErrors["passwordLength"] = "*Password should contain at least 6 characters";
-    if (!validator.equals(password, confirmPassword)) validationErrors["confirmPassword"] = "*Passwords must match";
+		if (!validator.equals(password, confirmPassword)) validationErrors["confirmPassword"] = "*Passwords must match";
 		if (zip.length > 5 || zip.length < 5) validationErrors["zipLength"] = "*Zip must be 5 numbers";
 		setErrors(validationErrors);
 	}, [email, username, firstName, lastName, password, zip, confirmPassword]);
@@ -141,14 +145,18 @@ function SignupFormPage() {
 							<input
 								type='password'
 								value={confirmPassword}
-								onChange={(e) => {setConfirmPassword(e.target.value),
-                  setUserInteraction((prevState) => ({
-                  ...prevState,
-                  confirmPassword: true,
-                }));}}
+								onChange={(e) => {
+									setConfirmPassword(e.target.value),
+										setUserInteraction((prevState) => ({
+											...prevState,
+											confirmPassword: true,
+										}));
+								}}
 								required
 							/>
-							{errors.confirmPassword && userInteraction.confirmPassword && <p className='error'>{errors.confirmPassword}</p>}
+							{errors.confirmPassword && userInteraction.confirmPassword && (
+								<p className='error'>{errors.confirmPassword}</p>
+							)}
 						</div>
 						<div className='suSection'>
 							<div className='suSectionLower'>
@@ -236,11 +244,21 @@ function SignupFormPage() {
 						</div>
 						<div className='suSection'>
 							<label>Zip Code</label>
-							<input type='number' value={zip} onChange={(e) => {setZip(e.target.value), setUserInteraction((prevState) => ({
-									...prevState,
-									zipCode: true,
-								}))} } required />
-							{errors && errors.zipLength && userInteraction.zipCode && <p className='error'>{`${errors.zipLength}`}</p>}
+							<input
+								type='number'
+								value={zip}
+								onChange={(e) => {
+									setZip(e.target.value),
+										setUserInteraction((prevState) => ({
+											...prevState,
+											zipCode: true,
+										}));
+								}}
+								required
+							/>
+							{errors && errors.zipLength && userInteraction.zipCode && (
+								<p className='error'>{`${errors.zipLength}`}</p>
+							)}
 						</div>
 						<button disabled={submitDisabled} className='liButton' type='submit'>
 							Sign Up

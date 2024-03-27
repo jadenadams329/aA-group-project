@@ -10,6 +10,7 @@ import CreateItemForm from '../components/MenuItemForm/CreateItemForm';
 import EditItemForm from '../components/MenuItemForm/EditItemForm';
 import Confirmation from '../components/Checkout/Confirmation';
 import UpdateRestaurantForm from '../components/RestaurantForm/UpdateRestaurantForm';
+import LandingPage from '../components/LandingPage/LandingPage';
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <h1>Welcome!</h1>
+        element: <LandingPage />
       },
       {
         path: "items/:id/edit",
