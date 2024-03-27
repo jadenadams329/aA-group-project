@@ -12,37 +12,21 @@ function CartButton() {
 	const dispatch = useDispatch()
 	const cart = useSelector((state) => state.cart?.cart)
 	const rest = useSelector((state) => state.cart?.restaurant)
-	// let cart = []
+	const count = useSelector((state) => state.cart.totalItems)
 	const [showMenu, setShowMenu] = useState(false);
-	const [counted, setCounted ] = useState()
 	const ulRef = useRef();
 	const toggleMenu = (e) => {
 		e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
 		setShowMenu(!showMenu);
 	};
-	const getCount = () =>{
-		let count = 0
-		if (cart?.length){
-			cart.map((item) => (
-				count += item.quantity
-				))
-				// console.log(count)
-			return count
 
-		}else{
-		return count
-		}
+	// console.log(count,'lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll')
 
 
-}
 	useEffect(()=>{
-		dispatch(getTheCart()).then(() => setCounted(getCount()))
+		dispatch(getTheCart())
 		// console.log(getCount(), "this is the cart in the cartbutton")
-
-
-
-
-	},[dispatch,counted])
+	},[dispatch,count])
 
 	useEffect(() => {
 		if (!showMenu) return;
@@ -56,7 +40,7 @@ function CartButton() {
 		document.addEventListener("mousedown", closeMenu);
 
 		return () => document.removeEventListener("mousedown", closeMenu);
-	}, [showMenu]);
+	}, [showMenu,dispatch]);
 
 	const ulClassName = "cart-dropdown" + (showMenu ? "" : " hidden");
     //TODO ADD CART QTY next to cart word
@@ -66,10 +50,17 @@ function CartButton() {
 					{cart && (
 
 				<button onClick={toggleMenu} className="cartButton">
-						<FaShoppingCart /> Cart · {counted}
+						<FaShoppingCart /> Cart · {count}
 
 				</button>
 					)}
+						{!cart && (
+
+<button onClick={toggleMenu} className="cartButton">
+		<FaShoppingCart /> Cart · {count}
+
+</button>
+	)}
 				{showMenu && (
 					//make a cart button dropdown component and put below.
 					<div className={ulClassName} ref={ulRef}>
