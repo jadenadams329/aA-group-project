@@ -40,7 +40,7 @@ const CreateMenuModal = ({ restId }) => {
       <div className="SelectionAndPhoto">
         {errors.errors && <span className="Errors">{errors.errors}</span>}
         <label>
-          <select onChange={(e) => setMenuType(e.target.value)}>
+          <select id="select" onChange={(e) => setMenuType(e.target.value)}>
             <option value="">Select Menu Type</option>
             <option value="Breakfast">Breakfast</option>
             <option value="Lunch">Lunch</option>
