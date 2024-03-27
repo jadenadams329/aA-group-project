@@ -267,8 +267,96 @@ def seed_menu_items():
         photo_url='https://images.unsplash.com/photo-1605789538467-f715d58e03f9?q=80&w=2671&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         menu_id=10
     )
+    item34 = MenuItem(
+        name='Egg Omelette',
+        price=11.95,
+        description='Fluffy omelette filled with sautéed spinach, creamy cheese, and a hint of garlic',
+        category='Egg',
+        photo_url='https://images.unsplash.com/photo-1677844592730-ce9c936d8f1a?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        menu_id=9
+    )
+    item35 = MenuItem(
+        name='Butter Clams',
+        price=18.99,
+        description='Tender clams cooked in a savory butter sauce, seasoned with garlic, herbs, and a splash of white wine',
+        category='Seafood',
+        photo_url='https://images.unsplash.com/photo-1448043552756-e747b7a2b2b8?q=80&w=2704&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=11
+    )
+    item36 = MenuItem(
+        name='Pepper pan fried Prawns',
+        price=18.95,
+        description='Jumbo prawns seasoned with cracked black pepper, pan-fried to perfection',
+        category='Seafood',
+        photo_url='https://images.unsplash.com/photo-1559742811-822873691df8?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=11
+    )
+    item37 = MenuItem(
+        name='Seafood Risotoo',
+        price=25.99,
+        description='Creamy Italian risotto including shrimp, clams, and mussels, cooked to perfection with garlic.'
+        category='Seafood',
+        photo_url='https://images.unsplash.com/photo-1534080564583-6be75777b70a?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=11
+    )
+    item38 = MenuItem(
+        name='Pepsi',
+        price=3.95,
+        description='Ice Cold Pepsi',
+        category='Soda',
+        photo_url='https://images.unsplash.com/photo-1629203849820-fdd70d49c38e?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=12
+    )
+    item39 = MenuItem(
+        name='Lemonade',
+        price=3.99,
+        description='Fresh Made Ice Lemonade',
+        category='Soft Drinks',
+        photo_url='https://images.unsplash.com/photo-1575596510825-f748919a2bf7?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=12
+    )
+    item40 = MenuItem(
+        name='Bud Light',
+        price=5.95,
+        description='A crisp, refreshing light lager beer',
+        category='Beer',
+        photo_url='https://images.unsplash.com/photo-1639024468754-ca7b3de1d742?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=12
+    )
+    item41 = MenuItem(
+        name='Mountain Dew',
+        price=2.95,
+        description='Energizing Soda!',
+        category='Soda',
+        photo_url='https://images.unsplash.com/photo-1585498154575-3db0fda49f1d?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=12
+    )
+    item42 = MenuItem(
+        name='Shrimp Fried Rice',
+        price=15.95,
+        description='Egg Fried Rice topped with Garlic Shrimp.',
+        category='Fried Rice',
+        photo_url='https://images.unsplash.com/photo-1630914441934-a29bf360934c?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=9
+    )
+    item43 = MenuItem(
+        name='Uni Pasta',
+        price=32.99,
+        description='Creamy pasta with sea urchin roe.',
+        category='Seafood',
+        photo_url='https://images.unsplash.com/photo-1608376156952-5e350ca26284?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=14
+    )
+    item44 = MenuItem(
+        name='Oyster',
+        price=22.95,
+        description='Dozen of fresh oyster served with lemom slices.',
+        category='Seafood',
+        photo_url='https://images.unsplash.com/photo-1584776252066-7ad031913ca0?q=80&w=2658&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        menu_id=15
+    )
 
-    db.session.add_all([item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12, item13, item14, item15, item16, item17, item18, item19, item20, item21, item22, item23, item24, item25, item26, item27, item28, item29, item30, item31, item32, item33])
+    db.session.add_all([item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12, item13, item14, item15, item16, item17, item18, item19, item20, item21, item22, item23, item24, item25, item26, item27, item28, item29, item30, item31, item32, item33, item34, item35, item36, item37, item38, item39, item40, item41, item42, item43, item44])
     db.session.commit()
 
 
