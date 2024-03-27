@@ -57,6 +57,7 @@
     border-radius: 5px;
     font-size: 16px;
     padding-left: 14px;
+    width: 100%;
 
 }
 .rfForm > div > input:focus{
