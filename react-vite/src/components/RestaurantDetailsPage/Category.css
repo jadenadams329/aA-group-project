@@ -32,3 +32,18 @@
     font-size: 18px;
     text-decoration: underline;
 }
+
+/* .Authorties {
+    display: flex;
+    flex-direction: column;
+}
+
+.Authorties button {
+    background-color: orangered;
+    color: white;
+    box-shadow: 3px 3px 3px black;
+    height: 30px;
+    width: 120px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 10px;
+} */

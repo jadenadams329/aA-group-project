@@ -1,6 +1,7 @@
 .profile-dropdown {
 	/* Styles for when the menu is visible */
   position: absolute;
+  z-index: 999;
   padding: 15px;
   list-style-type: none;
   margin-top: 5px;

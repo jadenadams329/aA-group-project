@@ -15,8 +15,12 @@ def seed_menus():
     menu10 = Menu(name="Lunch", restaurant_id=3)
     menu11 = Menu(name="Dinner", restaurant_id=3)
     menu12 = Menu(name="Beverages", restaurant_id=3)
+    menu13 = Menu(name="Breakfast", restaurant_id=4)
+    menu14 = Menu(name="Lunch", restaurant_id=4)
+    menu15 = Menu(name="Dinner", restaurant_id=4)
+    menu16 = Menu(name="Beverages", restaurant_id=4)
 
-    menus = [menu1, menu2, menu3, menu4, menu5, menu6, menu7, menu8, menu9, menu10, menu11, menu12]
+    menus = [menu1, menu2, menu3, menu4, menu5, menu6, menu7, menu8, menu9, menu10, menu11, menu12, menu13, menu14, menu15, menu16]
 
     for menu in menus:
         db.session.add(menu)

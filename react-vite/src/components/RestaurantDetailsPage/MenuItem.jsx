@@ -4,10 +4,9 @@ import DeleteItemModal from "./DeleteItemModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import { Link } from "react-router-dom";
 
-function MenuItem({ items }) {
+function MenuItem({ restId, items }) {
   const userId = useSelector(state => state.session ? state.session?.user?.id : null)
-  const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.owner_id : null)
-  const restId = useSelector(state => state.restaurants ? state.restaurants?.data['1']?.id : null)
+  const ownerId = useSelector(state => state.restaurants ? state.restaurants?.data[restId]?.owner_id : null)
 
   const addItemToCart = () => {
 
@@ -19,7 +18,7 @@ function MenuItem({ items }) {
           <div key={item.id} className="ItemDetail">
             <div className="NameAndDes">
               {item.name}
-              <p className="itemdes">{item.description}</p>
+              <div className="itemdes">{item.description}</div>
               <div className="DesAndButton">
                 ${item.price.toFixed(2)}
                 <button onClick={addItemToCart} className="AddButton">
@@ -31,7 +30,7 @@ function MenuItem({ items }) {
                         <div className="UpdateLink">
                             <Link to={`/items/${item.id}/edit`}>Update</Link>
                         </div>
-                        <div className="DeleteItemButton">
+                        <div className="DeleteMenuItemButton">
                           <OpenModalButton
                             buttonText="Delete"
                             modalComponent={

@@ -1,0 +1,47 @@
+.suPageContainer{
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 75vh;
+}
+
+.suFormContainer{
+    width: 430px;
+}
+.suForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.suSection{
+    display: flex;
+    flex-direction: column;
+}
+.suSection > input{
+    border: none;
+    background-color: rgb(237, 237, 237);
+    height: 35px;
+    border-radius: 5px;
+    font-size: 16px;
+    padding-left: 14px;
+}
+.suSection > input:focus{
+    background-color: white;
+}
+.suSectionLower {
+    display: flex;
+    gap: 5px;
+
+}
+.suSectionLower > div > input, select {
+    border: none;
+    background-color: rgb(237, 237, 237);
+    height: 35px;
+    border-radius: 5px;
+    font-size: 16px;
+    padding-left: 14px;
+}
+.suSectionLower > div > input:focus {
+    background-color: white;
+}

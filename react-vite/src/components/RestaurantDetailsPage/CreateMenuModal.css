@@ -1,0 +1,60 @@
+.CreateMenuForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.CreateMenuForm > h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.NopeButton {
+    box-shadow: 3px 3px 3px black;
+    color: white;
+    background-color: black;
+    height: 40px;
+    width: 200px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.CreateMenuButton {
+    background-color: orangered;
+    color: white;
+    box-shadow: 3px 3px 3px black;
+    height: 40px;
+    width: 200px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-right: 20px;
+}
+
+.MenuPhoto {
+    width: 200px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.SelectionAndPhoto {
+    display: flex;
+    margin-bottom: 20px;
+    flex-direction: column;
+}
+
+.SelectionAndPhoto label {
+    margin-right: 30px;
+}
+
+#select {
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    border-radius: 15px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.Errors {
+    color: red;
+    font-weight: bold;
+}

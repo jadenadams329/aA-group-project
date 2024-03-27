@@ -5,62 +5,75 @@ import { Navigate, useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 
 function LoginFormPage() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const sessionUser = useSelector((state) => state.session.user);
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [errors, setErrors] = useState({});
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+	if (sessionUser) return <Navigate to='/' replace={true} />;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 
-    const serverResponse = await dispatch(
-      thunkLogin({
-        email,
-        password,
-      })
-    );
+		const serverResponse = await dispatch(
+			thunkLogin({
+				email,
+				password,
+			})
+		);
 
-    if (serverResponse) {
-      setErrors(serverResponse);
-    } else {
-      navigate("/");
-    }
-  };
+		if (serverResponse) {
+			setErrors(serverResponse);
+		} else {
+			navigate("/restaurants");
+		}
+	};
 
-  return (
-    <>
-      <h1>Log In</h1>
-      {errors.length > 0 &&
-        errors.map((message) => <p key={message}>{message}</p>)}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
-      </form>
-    </>
-  );
+	const demoUserOnClick = async (e) => {
+		e.preventDefault();
+
+		const serverResponse = await dispatch(
+			thunkLogin({
+				email: "demo@aa.io",
+				password: "password",
+			})
+		);
+
+		if (serverResponse) {
+			setErrors(serverResponse);
+		} else {
+			navigate("/restaurants");
+		}
+
+	}
+
+	return (
+		<>
+			<div className='loginFormContainer'>
+				<div>
+					<h1 style={{ float: "left", fontWeight: "500" }}>Yum </h1>
+					<h1 style={{ float: "right", marginLeft: "5px" }}>Cart</h1>
+				</div>
+				{errors.length > 0 && errors.map((message) => <p key={message}>{message}</p>)}
+				<form onSubmit={handleSubmit} className='liForm'>
+					<div className="emailContainer">
+						<label>Email</label>
+						<input type='text' value={email} onChange={(e) => setEmail(e.target.value)} required />
+						{errors.email && <p className="error">{errors.email}</p>}
+					</div>
+					<div className="passwordContainer">
+						<label>Password</label>
+						<input type='password' value={password} onChange={(e) => setPassword(e.target.value)} required />
+						{errors.password && <p className="error">{errors.password}</p>}
+					</div>
+					<button className="liButton" type='submit'>Log In</button>
+					<button className="demoUserButton" onClick={demoUserOnClick}>Log in as Demo User</button>
+				</form>
+			</div>
+		</>
+	);
 }
 
 export default LoginFormPage;

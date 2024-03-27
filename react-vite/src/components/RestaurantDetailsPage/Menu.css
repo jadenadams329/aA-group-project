@@ -15,3 +15,12 @@
   font-size: 30px;
   color: blue;
 }
+
+.MenuTypeContainer button {
+  box-shadow: 3px 3px 3px black;
+  color: white;
+  background-color: blue;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  height: 30px;
+  width: 100px;
+}
