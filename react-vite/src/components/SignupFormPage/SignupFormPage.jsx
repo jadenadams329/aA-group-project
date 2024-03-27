@@ -27,6 +27,7 @@ function SignupFormPage() {
 		firstName: false,
 		lastName: false,
 		password: false,
+    confirmPassword: false,
 		zipCode: false,
 	});
 
@@ -39,18 +40,19 @@ function SignupFormPage() {
 		if (!validator.isEmail(email)) validationErrors["isEmail"] = "*Please enter a valid email";
 		if (username.length <= 3) validationErrors["usernameLength"] = "*Username must be 4 or more characters";
 		if (password.length <= 5) validationErrors["passwordLength"] = "*Password should contain at least 6 characters";
+    if (!validator.equals(password, confirmPassword)) validationErrors["confirmPassword"] = "*Passwords must match";
 		if (zip.length > 5 || zip.length < 5) validationErrors["zipLength"] = "*Zip must be 5 numbers";
 		setErrors(validationErrors);
-	}, [email, username, firstName, lastName, password, zip]);
+	}, [email, username, firstName, lastName, password, zip, confirmPassword]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if (password !== confirmPassword) {
-			return setErrors({
-				confirmPassword: "Confirm Password field must be the same as the Password field",
-			});
-		}
+		// if (password !== confirmPassword) {
+		// 	return setErrors({
+		// 		confirmPassword: "Confirm Password field must be the same as the Password field",
+		// 	});
+		// }
 
 		const serverResponse = await dispatch(
 			thunkSignup({
@@ -139,10 +141,14 @@ function SignupFormPage() {
 							<input
 								type='password'
 								value={confirmPassword}
-								onChange={(e) => setConfirmPassword(e.target.value)}
+								onChange={(e) => {setConfirmPassword(e.target.value),
+                  setUserInteraction((prevState) => ({
+                  ...prevState,
+                  confirmPassword: true,
+                }));}}
 								required
 							/>
-							{errors.confirmPassword && <p className='error'>{errors.confirmPassword}</p>}
+							{errors.confirmPassword && userInteraction.confirmPassword && <p className='error'>{errors.confirmPassword}</p>}
 						</div>
 						<div className='suSection'>
 							<div className='suSectionLower'>
