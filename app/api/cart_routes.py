@@ -22,7 +22,7 @@ def fullCart():
     #   item = item.to_dict()
     #   wholeCart= item
 
-    print(activeCart,'.......................................................................................................................................................................................................................................')
+
 
     allthem = CartItem.query.all()
     theFullList = []
@@ -87,7 +87,7 @@ def addToCart(id):
   theItem = MenuItem.query.get(id)
   newitem = theItem.to_dict()
   findme = Cart.query.filter(Cart.purchased == False).first()
-
+  themenu = Menu.query.get(newitem['menu_id'])
   if findme == None:
      print('this')
      menu = Menu.query.get(newitem['menu_id'])
@@ -107,7 +107,13 @@ def addToCart(id):
 
   if findme:
     thisGuy = findme.id
-
+    menu = Menu.query.get(newitem['menu_id'])
+    jay =findme.to_dict()['restaurant_id']
+    itemRest = themenu.to_dict()['restaurant_id']
+ 
+    if itemRest != jay:
+       print('aye---------------------------------------------')
+       return jsonify({"error": "You can only order from 1 restaurant at a time."}),401
     cart = fullCart()
     newCart = []
     for item in cart:

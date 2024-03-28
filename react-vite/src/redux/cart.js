@@ -129,6 +129,10 @@ export const addingItem = (id) => async (dispatch) =>{
         dispatch(setId(''))
         dispatch(getTheCart())
         return data
+    }else{
+        const errorData = await res.json();
+		console.log(errorData)
+		throw errorData;
     }
 }
 
