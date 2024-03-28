@@ -45,11 +45,11 @@ export default function CartDropDown({ cart, restaurant }) {
           <>
             <h1
               className='cart-header'
-              style={{ position: "relative", right: "50px" }}
+              style={{ position: "relative", left: "50px" }}
             >
               {restaurant.name}
             </h1>
-            <p style={{ color: "black" }}>Deliver to {user.address}</p>
+            <p style={{ color: "black",position:'relative',left:'120px' }}>Deliver to {user.address}</p>
             <hr></hr>
             <ul className='cartList' style={{ listStyle: "none" }}>
               {cart &&
