@@ -4,6 +4,7 @@ const LOAD_CART = 'cart/LOAD_CART'
 const GET_REST = 'cart/GET_REST'
 const ADD_QUANT = 'cart/ADD_QUANT'
 const CART_ID = 'cart/CART_ID'
+const CLEAR_CART='cart/CLEAR_CART'
 
 //~ Action Creators:
 const loadCart = (cartItems) =>({
@@ -27,6 +28,10 @@ const setId = (id) => ({
     id
 })
 
+const clearedCart = () => ({
+type: CLEAR_CART
+})
+
 //? Thunks:
 export const getTheCart = () => async (dispatch)=> {
     const res = await fetch('/api/cart/items');
@@ -36,7 +41,7 @@ export const getTheCart = () => async (dispatch)=> {
         // console.log(cartItems[0].restaurant,'this is the cart items in the thunk')
         let quant = 0;
         if (cartItems.length){
-            dispatch(setId(cartItems[0].id))
+            dispatch(setId(cartItems[0].cartId))
         }
         if(cartItems.length){
             cartItems.map((item) => (
@@ -67,8 +72,8 @@ export const clearCart = (id) => async (dispatch) => {
     if (data.ok){
         const res = await data.json()
             console.log(res,'ppppppppppppppppppp')
-        dispatch(loadCart([]))
-        dispatch(getTheCart())
+
+        dispatch(clearedCart())
     }
 
 }
@@ -121,6 +126,7 @@ export const addingItem = (id) => async (dispatch) =>{
         const rest = await fetch(`/api/restaurants/${id}`)
         const test = await rest.json()
         console.log(test,' this is my new resty------------')
+        dispatch(setId(''))
         dispatch(getTheCart())
         return data
     }
@@ -138,6 +144,8 @@ const cartReducer =(state = {},action) =>{
             return {...state, totalItems: action.quant}
         case CART_ID:
             return {...state, cartId: action.id}
+        case CLEAR_CART:
+            return {}
         default:
             return state
     }

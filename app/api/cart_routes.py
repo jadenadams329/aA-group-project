@@ -87,8 +87,7 @@ def addToCart(id):
   theItem = MenuItem.query.get(id)
   newitem = theItem.to_dict()
   findme = Cart.query.filter(Cart.purchased == False).first()
-  print(findme,'///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////')
-  print(current_user,'this is the menu im checkouttttttt')
+
   if findme == None:
      print('this')
      menu = Menu.query.get(newitem['menu_id'])
@@ -96,8 +95,9 @@ def addToCart(id):
      newCart = Cart(user_id=userId,restaurant_id=jay,purchased=False)
      db.session.add(newCart)
      db.session.commit()
-
-     cart_id = newCart.to_dict()['id']
+# need to query the cart here
+     currentCart=Cart.query.filter(Cart.purchased == False).first()
+     cart_id = currentCart.to_dict()['id']
      newGuy = CartItem(cart_id = cart_id,menu_item_id=newitem['id'],quantity=1)
      db.session.add(newGuy)
      db.session.commit()
