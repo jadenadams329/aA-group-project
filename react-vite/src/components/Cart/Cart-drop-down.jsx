@@ -45,23 +45,11 @@ export default function CartDropDown({ cart, restaurant }) {
           <>
             <h1
               className='cart-header'
-              style={{ position: "relative", right: "50px" }}
+              style={{ position: "relative", left: "50px" }}
             >
-              <img
-                key={restaurant.id}
-                src={restaurant.logo}
-                style={{
-                  height: "50px",
-                  width: "50px",
-                  borderRadius: "30px",
-                  position: "relative",
-                  left: "330px",
-                  top: "15px",
-                }}
-              ></img>
               {restaurant.name}
             </h1>
-            <p style={{ color: "black" }}>Deliver to {user.address}</p>
+            <p style={{ color: "black",position:'relative',left:'120px' }}>Deliver to {user.address}</p>
             <hr></hr>
             <ul className='cartList' style={{ listStyle: "none" }}>
               {cart &&
